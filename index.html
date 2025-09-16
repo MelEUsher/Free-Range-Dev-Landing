@@ -18,7 +18,7 @@
   <!-- Body font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
   <!-- Relaxed boho heading font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" />
 
   <style>
     body {
@@ -80,6 +80,20 @@
       color: #666;
     }
 
+    /* Success animation */
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+
+    @keyframes scale {
+      0%, 100% { transform: none; }
+      50% { transform: scale3d(1.1, 1.1, 1); }
+    }
+
+    .checkmark-container {
+      animation: scale 0.3s ease-in-out 0.9s both;
+    }
+
     /* Modal + Form Styling */
     #supportBox {
       background: #d5e6f3; /* brand light blue */
@@ -98,18 +112,20 @@
       transition: opacity 0.5s ease;
     }
 
+    /* Heading uses relaxed boho font */
     #supportBox h2 {
       margin-bottom: 1rem;
       width: 100%;
-      font-family: 'Amatic SC', cursive; /* relaxed boho style */
+      font-family: 'Kalam', cursive;
       font-size: 2rem;
+      font-weight: 700;
       color: #111;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     #supportForm {
       width: 100%;
-      max-width: 380px; 
+      max-width: 380px;
       text-align: left;
     }
 
@@ -126,9 +142,10 @@
       transition: border-color 0.3s;
     }
 
+    /* Branded orange highlight on focus */
     #supportForm input:focus,
     #supportForm textarea:focus {
-      border-color: #f9a54a; /* branded orange */
+      border-color: #f9a54a;
       box-shadow: 0 0 0 2px rgba(249, 165, 74, 0.2);
     }
 
@@ -146,19 +163,6 @@
 
     #supportForm button:hover {
       background: #333;
-    }
-
-    /* Success animation */
-    @keyframes stroke {
-      100% { stroke-dashoffset: 0; }
-    }
-    @keyframes scale {
-      0%, 100% { transform: none; }
-      50% { transform: scale3d(1.1, 1.1, 1); }
-    }
-
-    .checkmark-container {
-      animation: scale 0.3s ease-in-out 0.9s both;
     }
 
     /* Responsive tweaks */
