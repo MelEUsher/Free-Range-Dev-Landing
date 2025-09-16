@@ -15,10 +15,10 @@
   <meta name="twitter:card" content="summary_large_image" />
   <title>The Free Range Dev</title>
 
-  <!-- Primary font -->
+  <!-- Body font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
-  <!-- Textured headline font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" />
+  <!-- Relaxed boho heading font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" />
 
   <style>
     body {
@@ -80,20 +80,6 @@
       color: #666;
     }
 
-    /* Success animation */
-    @keyframes stroke {
-      100% { stroke-dashoffset: 0; }
-    }
-
-    @keyframes scale {
-      0%, 100% { transform: none; }
-      50% { transform: scale3d(1.1, 1.1, 1); }
-    }
-
-    .checkmark-container {
-      animation: scale 0.3s ease-in-out 0.9s both;
-    }
-
     /* Modal + Form Styling */
     #supportBox {
       background: #d5e6f3; /* brand light blue */
@@ -112,18 +98,18 @@
       transition: opacity 0.5s ease;
     }
 
-    /* Heading uses textured font */
     #supportBox h2 {
       margin-bottom: 1rem;
       width: 100%;
-      font-family: 'Fredericka the Great', cursive;
-      font-size: 1.7rem;
+      font-family: 'Amatic SC', cursive; /* relaxed boho style */
+      font-size: 2rem;
       color: #111;
+      letter-spacing: 1px;
     }
 
     #supportForm {
       width: 100%;
-      max-width: 380px; /* centers nicely within box */
+      max-width: 380px; 
       text-align: left;
     }
 
@@ -140,10 +126,9 @@
       transition: border-color 0.3s;
     }
 
-    /* Branded orange highlight on focus */
     #supportForm input:focus,
     #supportForm textarea:focus {
-      border-color: #f9a54a;
+      border-color: #f9a54a; /* branded orange */
       box-shadow: 0 0 0 2px rgba(249, 165, 74, 0.2);
     }
 
@@ -161,6 +146,19 @@
 
     #supportForm button:hover {
       background: #333;
+    }
+
+    /* Success animation */
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes scale {
+      0%, 100% { transform: none; }
+      50% { transform: scale3d(1.1, 1.1, 1); }
+    }
+
+    .checkmark-container {
+      animation: scale 0.3s ease-in-out 0.9s both;
     }
 
     /* Responsive tweaks */
@@ -225,7 +223,7 @@
         <button type="submit">Send</button>
       </form>
 
-      <!-- Success Message with Animated Checkmark -->
+      <!-- Success Message -->
       <div id="supportSuccess" style="display:none;color:#6ca16e;font-weight:bold;margin-top:1rem;text-align:center;">
         <div class="checkmark-container" style="display:inline-block;margin-bottom:10px;">
           <svg class="checkmark" width="60" height="60" viewBox="0 0 52 52" style="border-radius:50%;display:block;stroke-width:2;stroke:#6ca16e;stroke-miterlimit:10;margin:0 auto;">
@@ -257,7 +255,6 @@
         });
         form.style.display = "none";
         successMsg.style.display = "block";
-        // After 3 seconds, fade out and close modal
         setTimeout(() => {
           box.style.opacity = "0";
           setTimeout(() => {
@@ -268,14 +265,12 @@
             successMsg.style.display = "none";
           }, 500);
         }, 3000);
-      } 
-      catch (error) {
+      } catch (error) {
         successMsg.innerHTML = '<p style="margin:0;color:red;">❌ Oops! Something went wrong.</p>';
         successMsg.style.display = "block";
       }
     });
 
-    // close modal on background click
     window.onclick = function(e) {
       if (e.target === modal) {
         modal.style.display = "none";
