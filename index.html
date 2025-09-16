@@ -199,11 +199,11 @@
             successMsg.style.display = "none";
           }, 500);
         }, 3000);
-      } catch (error) {
-        successMsg.innerText = "❌ Oops! Something went wrong.";
-        successMsg.style.color = "red";
-        successMsg.style.display = "block";
-      }
+      } 
+      catch (error) {
+  successMsg.innerHTML = '<p style="margin:0;color:red;">❌ Oops! Something went wrong.</p>';
+  successMsg.style.display = "block";
+}
     });
 
     // close modal on background click
