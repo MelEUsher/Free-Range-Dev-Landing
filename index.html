@@ -24,20 +24,24 @@
       height: 100vh;
       text-align: center;
     }
+
     header {
       max-width: 600px;
       padding: 20px;
     }
+
     header img {
-  display: block;              /* makes it behave like a block so margin auto works */
-  margin: 0 auto 20px auto;    /* centers it horizontally, adds bottom spacing */
-  max-width: 150px;            /* keeps it from being too big */
-  height: auto;                /* keeps proportions correct */
+      display: block;              /* block element so margin auto works */
+      margin: 0 auto 20px auto;    /* center horizontally, add spacing below */
+      max-width: 150px;            /* logo size for mobile */
+      height: auto;                /* keep proportions */
     }
+
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
     }
+
     .cta {
       margin-top: 2rem;
       display: flex;
@@ -45,6 +49,7 @@
       justify-content: center;
       gap: 1rem;
     }
+
     .cta a {
       background: #111;
       color: #fff;
@@ -54,26 +59,32 @@
       font-weight: bold;
       transition: background 0.3s;
     }
+
     .cta a:hover {
       background: #333;
     }
+
     footer {
       margin-top: 3rem;
       font-size: 0.875rem;
       color: #666;
     }
+
+    /* 📱 Responsive tweak: bigger logo on tablets/desktops */
     @media (min-width: 768px) {
       header img {
-    max-width: 200px;  /* bigger logo on tablets & desktops */
+        max-width: 200px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-     <img src="assets/logo.png" alt="The Free Range Dev Logo" 
-     style="max-width:150px; height:auto; margin-bottom:20px;" />
-    <h1>From command line to coastline &mdash; building income, living free, giving back. <br />Join me.</h1>
+    <img src="assets/logo.png" alt="The Free Range Dev Logo" />
+    <h1>
+      From command line to coastline &mdash; building income, living free, giving back.
+      <br />Join me.
+    </h1>
     <div class="cta">
       <a href="https://www.youtube.com/@TheFreeRangeDev" target="_blank">YouTube</a>
       <a href="https://www.tiktok.com/@thefreerangedev?lang=en" target="_blank">TikTok</a>
