@@ -130,11 +130,61 @@
       ✅ Thank you! Your message has been sent.
     </p>
   </div>
+<!-- Support Squad Modal -->
+<div id="supportModal" style="
+  display:none;
+  position:fixed;
+  z-index:1000;
+  left:0;top:0;
+  width:100%;height:100%;
+  background-color:rgba(0,0,0,0.6);
+">
+  <div id="supportBox" style="
+    background:#fff;
+    margin:10% auto;
+    padding:20px;
+    border-radius:8px;
+    width:90%;
+    max-width:400px;
+    position:relative;
+    text-align:left;
+    transition: opacity 0.5s ease;
+  ">
+    
+    <!-- Close button -->
+    <span onclick="document.getElementById('supportModal').style.display='none'" 
+          style="position:absolute;top:10px;right:15px;cursor:pointer;font-size:20px;">&times;</span>
+    
+    <h2>Contact the Support Squad</h2>
+    
+    <!-- Formspree form -->
+    <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST">
+      <label for="name">Name</label><br>
+      <input type="text" name="name" id="name" required style="width:100%;padding:8px;margin:8px 0;"><br>
+      
+      <label for="email">Email</label><br>
+      <input type="email" name="_replyto" id="email" required style="width:100%;padding:8px;margin:8px 0;"><br>
+      
+      <label for="message">Message</label><br>
+      <textarea name="message" id="message" rows="5" required style="width:100%;padding:8px;margin:8px 0;"></textarea><br>
+      
+      <button type="submit" style="background:#111;color:#fff;padding:10px 20px;border:none;border-radius:6px;cursor:pointer;">
+        Send
+      </button>
+    </form>
+
+    <!-- Success message -->
+    <p id="supportSuccess" style="display:none;color:green;font-weight:bold;margin-top:1rem;">
+      ✅ Thank you! Your message has been sent.
+    </p>
+  </div>
 </div>
 
 <script>
   const form = document.getElementById("supportForm");
   const successMsg = document.getElementById("supportSuccess");
+  const modal = document.getElementById("supportModal");
+  const box = document.getElementById("supportBox");
 
   form.addEventListener("submit", async function(e) {
     e.preventDefault(); // prevent redirect
@@ -145,16 +195,26 @@
         body: data,
         headers: { 'Accept': 'application/json' }
       });
-      form.style.display = "none";      // hide form
-      successMsg.style.display = "block"; // show success
+      form.style.display = "none";         // hide form
+      successMsg.style.display = "block";  // show success
+      // After 3 seconds, fade out and close modal
+      setTimeout(() => {
+        box.style.opacity = "0";
+        setTimeout(() => {
+          modal.style.display = "none";
+          box.style.opacity = "1"; // reset for next open
+          form.style.display = "block"; // reset form visibility
+          form.reset();
+          successMsg.style.display = "none";
+        }, 500);
+      }, 3000);
     } catch (error) {
       successMsg.innerText = "❌ Oops! Something went wrong.";
       successMsg.style.color = "red";
       successMsg.style.display = "block";
     }
   });
-</script>
-<body>
+</script><body>
   <header>
     <img src="assets/freerange-logo.png" alt="The Free Range Dev Logo" />
     <h1>
