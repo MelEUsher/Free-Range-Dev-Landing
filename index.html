@@ -78,6 +78,20 @@
     @media (min-width: 768px) {
       header img { max-width: 200px; }
     }
+    @keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% { transform: none; }
+  50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+.checkmark-container {
+  animation: scale 0.3s ease-in-out 0.9s both;
+}
   </style>
 </head>
 <body>
@@ -142,9 +156,18 @@
         </button>
       </form>
 
-      <p id="supportSuccess" style="display:none;color:green;font-weight:bold;margin-top:1rem;">
-        ✅ Thank you! Your message has been sent.
-      </p>
+      <!-- Success Message with Animated Checkmark -->
+<div id="supportSuccess" style="display:none;color:green;font-weight:bold;margin-top:1rem;text-align:center;">
+  <div class="checkmark-container" style="display:inline-block;margin-bottom:10px;">
+    <svg class="checkmark" width="60" height="60" viewBox="0 0 52 52" style="border-radius:50%;display:block;stroke-width:2;stroke:#4CAF50;stroke-miterlimit:10;margin:0 auto;">
+      <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"
+        style="stroke-dasharray:166; stroke-dashoffset:166; animation: stroke 0.6s cubic-bezier(0.65,0,0.45,1) forwards;" />
+      <path class="checkmark-check" fill="none" d="m14.1,27.2 7.1,7.2 16.7-16.8"
+        style="stroke-dasharray:48; stroke-dashoffset:48; animation: stroke 0.3s cubic-bezier(0.65,0,0.45,1) 0.8s forwards;" />
+    </svg>
+  </div>
+  <p style="margin:0;">Thank you! Your message has been sent.</p>
+</div>
     </div>
   </div>
 
