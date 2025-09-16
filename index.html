@@ -28,6 +28,12 @@
       max-width: 600px;
       padding: 20px;
     }
+    header img {
+  display: block;              /* makes it behave like a block so margin auto works */
+  margin: 0 auto 20px auto;    /* centers it horizontally, adds bottom spacing */
+  max-width: 150px;            /* keeps it from being too big */
+  height: auto;                /* keeps proportions correct */
+    }
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
@@ -55,6 +61,11 @@
       margin-top: 3rem;
       font-size: 0.875rem;
       color: #666;
+    }
+    @media (min-width: 768px) {
+      header img {
+    max-width: 200px;  /* bigger logo on tablets & desktops */
+      }
     }
   </style>
 </head>
