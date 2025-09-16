@@ -127,31 +127,53 @@
     background-color:rgba(0,0,0,0.6);
   ">
     <div id="supportBox" style="
-      background:#fff;
-      margin:10% auto;
-      padding:20px;
-      border-radius:8px;
-      width:90%;
-      max-width:400px;
-      position:relative;
-      text-align:left;
-      transition: opacity 0.5s ease;
-    ">
-      <span onclick="document.getElementById('supportModal').style.display='none'" 
-            style="position:absolute;top:10px;right:15px;cursor:pointer;font-size:20px;">&times;</span>
-      <h2>Contact the Support Squad</h2>
+    background:#d6e8f2; /* light blue from logo */
+    margin:10% auto;
+    padding:30px;
+    border-radius:12px;
+    width:90%;
+    max-width:450px;
+    position:relative;
+    text-align:center; /* center content */
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    transition: opacity 0.5s ease;
+  ">
+    <span onclick="document.getElementById('supportModal').style.display='none'" 
+          style="position:absolute;top:12px;right:18px;cursor:pointer;font-size:22px;font-weight:bold;">
+      &times;
+    </span>
+      <h2 style="margin-bottom:1rem;">Contact the Support Squad</h2>
       
-      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST">
+      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST" style="text-align:left;">
         <label for="name">Name</label><br>
-        <input type="text" name="name" id="name" required style="width:100%;padding:8px;margin:8px 0;"><br>
+        <input type="text" name="name" id="name" required style="width:100%;padding:10px;margin:8px 0;
+        border:1px solid #ccc;border-radius:6px;
+        font-size:1rem;
+      "><br>
         
         <label for="email">Email</label><br>
-        <input type="email" name="_replyto" id="email" required style="width:100%;padding:8px;margin:8px 0;"><br>
+        <input type="email" name="_replyto" id="email" required style="
+        width:100%;padding:10px;margin:8px 0;
+        border:1px solid #ccc;border-radius:6px;
+        font-size:1rem;
+      "><br>
         
         <label for="message">Message</label><br>
-        <textarea name="message" id="message" rows="5" required style="width:100%;padding:8px;margin:8px 0;"></textarea><br>
+        <textarea name="message" id="message" rows="5" required style="
+        width:100%;padding:10px;margin:8px 0;
+        border:1px solid #ccc;border-radius:6px;
+        font-size:1rem;
+      "></textarea><br>
         
-        <button type="submit" style="background:#111;color:#fff;padding:10px 20px;border:none;border-radius:6px;cursor:pointer;">
+        <button type="submit" style="
+        background:#111;color:#fff;
+        padding:12px 25px;
+        border:none;border-radius:8px;
+        cursor:pointer;
+        font-weight:bold;
+        width:100%;
+        transition:background 0.3s;
+      ">
           Send
         </button>
       </form>
