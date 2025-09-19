@@ -77,6 +77,35 @@
       width: 100%;
     }
 
+    /* Support Squad Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 2rem; /* added padding for better visibility of the contact form */
+      border-radius: 8px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
     .cta a {
       background-color: #a8bdb0 !important; /* Updated to the green color from Canva */
       color: white;
@@ -244,8 +273,8 @@
   <header>
     <img src="assets/freerange-logo.png" alt="The Free Range Dev Logo" />
     <h1>
-      From Command Line to CoastlineB
-      <br />reaking Stuff, Building Income, Living Free - Together
+      From Command Line to Coastline
+      <br />Breaking Stuff, Building Income, Living Free - Together
       <br />Dev & Entrepreneur Hacks | Join the squad & build your freedom
     </h1>
     <div class="cta">
