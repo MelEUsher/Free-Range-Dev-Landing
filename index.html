@@ -2,284 +2,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="From command line to coastline — building income, living free, giving back. Join me." />
-  <meta property="og:title" content="The Free Range Dev" />
-  <meta property="og:description" content="From command line to coastline — building income, living free, giving back." />
-  <meta property="og:url" content="https://thefreerangedev.com" />
-  <meta property="og:image" content="https://thefreerangedev.com/assets/freerange-logo.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="600" />
-  <meta property="og:image:height" content="600" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>The Free Range Dev</title>
-
-  <!-- Body font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
-  <!-- Relaxed boho heading font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" />
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fefefe;
-      color: #111;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    header {
-      max-width: 600px;
-      padding: 20px;
-    }
-
-    header img {
-      display: block;
-      margin: 0 auto 20px auto;
-      max-width: 150px;
-      height: auto;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .cta a {
-      background: #111;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .cta a:hover {
-      background: #333;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.875rem;
-      color: #666;
-    }
-
-    /* Success animation */
-    @keyframes stroke {
-      100% { stroke-dashoffset: 0; }
-    }
-
-    @keyframes scale {
-      0%, 100% { transform: none; }
-      50% { transform: scale3d(1.1, 1.1, 1); }
-    }
-
-    .checkmark-container {
-      animation: scale 0.3s ease-in-out 0.9s both;
-    }
-
-    /* Modal + Form Styling */
-    #supportBox {
-      background: #d5e6f3; /* brand light blue */
-      margin: 10% auto;
-      padding: 30px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 450px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: opacity 0.5s ease;
-    }
-
-    /* Heading uses relaxed boho font */
-    #supportBox h2 {
-      margin-bottom: 1rem;
-      width: 100%;
-      font-family: 'Kalam', cursive;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #111;
-      letter-spacing: 0.5px;
-    }
-
-    #supportForm {
-      width: 100%;
-      max-width: 380px;
-      text-align: left;
-    }
-
-    #supportForm input,
-    #supportForm textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      box-sizing: border-box;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    /* Branded orange highlight on focus */
-    #supportForm input:focus,
-    #supportForm textarea:focus {
-      border-color: #f9a54a;
-      box-shadow: 0 0 0 2px rgba(249, 165, 74, 0.2);
-    }
-
-    #supportForm button {
-      background: #111;
-      color: #fff;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      width: 100%;
-      transition: background 0.3s;
-    }
-
-    #supportForm button:hover {
-      background: #333;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 480px) {
-      #supportBox { padding: 20px; }
-    }
-
-    @media (min-width: 768px) {
-      header img { max-width: 200px; }
-    }
-  </style>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <meta name="description" content="From command line to coastline — building income, living free, giving back. Join me." />
+ <meta property="og:title" content="The Free Range Dev" />
+ <meta property="og:description" content="From command line to coastline — building income, living free, giving back." />
+ <meta property="og:url" content="https://thefreerangedev.dev" />
+ <title>The Free Range Dev</title>
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+ <style>
+   body {
+     font-family: 'Inter', sans-serif;
+     margin: 0;
+     padding: 0;
+     background: #f9f8f3;
+     color: #333;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+     text-align: center;
+   }
+   header {
+     max-width: 600px;
+     padding: 20px;
+   }
+   h1 {
+     font-size: 2rem;
+     margin-bottom: 1rem;
+     font-weight: 900;
+   }
+   .cta {
+     margin-top: 2rem;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     gap: 1rem;
+   }
+   .cta a {
+     background: #9CAEA9;
+     color: #fff;
+     padding: 0.75rem 1.5rem;
+     border-radius: 8px;
+     text-decoration: none;
+     font-weight: 600;
+     transition: background-color 0.3s ease;
+   }
+   .cta a:hover {
+     background: #7f8c7f;
+   }
+   footer {
+     margin-top: 3rem;
+     font-size: 0.875rem;
+     color: #666;
+   }
+ </style>
 </head>
 <body>
-  <header>
-    <img src="assets/freerange-logo.png" alt="The Free Range Dev Logo" />
-    <h1>
-      From command line to coastline &mdash; building income, living free, giving back.
-      <br />Join me.
-    </h1>
-    <div class="cta">
-      <a href="https://www.youtube.com/@TheFreeRangeDev" target="_blank">YouTube</a>
-      <a href="https://www.tiktok.com/@thefreerangedev?lang=en" target="_blank">TikTok</a>
-      <a href="https://www.instagram.com/thefreerangedev/" target="_blank">Instagram</a>
-      <a href="https://www.thefreerangedev.store" target="_blank">Shop</a>
-      <a href="#supportModal" class="support-button"
-         onclick="document.getElementById('supportModal').style.display='block'">
-        Support Squad
-      </a>
-    </div>
-  </header>
-
-  <footer>
-    &copy; 2025 The Free Range Dev. All rights reserved.
-  </footer>
-
-  <!-- Support Squad Modal -->
-  <div id="supportModal" style="
-    display:none;
-    position:fixed;
-    z-index:1000;
-    left:0;top:0;
-    width:100%;height:100%;
-    background-color:rgba(0,0,0,0.6);
-  ">
-    <div id="supportBox">
-      <span onclick="document.getElementById('supportModal').style.display='none'" 
-            style="position:absolute;top:12px;right:18px;cursor:pointer;font-size:22px;font-weight:bold;">
-        &times;
-      </span>
-      <h2>Contact the Support Squad</h2>
-      
-      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST">
-        <label for="name">Name</label><br>
-        <input type="text" name="name" id="name" required><br>
-        
-        <label for="email">Email</label><br>
-        <input type="email" name="_replyto" id="email" required><br>
-        
-        <label for="message">Message</label><br>
-        <textarea name="message" id="message" rows="5" required></textarea><br>
-        
-        <button type="submit">Send</button>
-      </form>
-
-      <!-- Success Message -->
-      <div id="supportSuccess" style="display:none;color:#6ca16e;font-weight:bold;margin-top:1rem;text-align:center;">
-        <div class="checkmark-container" style="display:inline-block;margin-bottom:10px;">
-          <svg class="checkmark" width="60" height="60" viewBox="0 0 52 52" style="border-radius:50%;display:block;stroke-width:2;stroke:#6ca16e;stroke-miterlimit:10;margin:0 auto;">
-            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"
-              style="stroke-dasharray:166; stroke-dashoffset:166; animation: stroke 0.6s cubic-bezier(0.65,0,0.45,1) forwards;" />
-            <path class="checkmark-check" fill="none" d="m14.1,27.2 7.1,7.2 16.7-16.8"
-              style="stroke-dasharray:48; stroke-dashoffset:48; animation: stroke 0.3s cubic-bezier(0.65,0,0.45,1) 0.8s forwards;" />
-          </svg>
-        </div>
-        <p style="margin:0;">Thank you! Your message has been sent.</p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const form = document.getElementById("supportForm");
-    const successMsg = document.getElementById("supportSuccess");
-    const modal = document.getElementById("supportModal");
-    const box = document.getElementById("supportBox");
-
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      try {
-        await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        form.style.display = "none";
-        successMsg.style.display = "block";
-        setTimeout(() => {
-          box.style.opacity = "0";
-          setTimeout(() => {
-            modal.style.display = "none";
-            box.style.opacity = "1";
-            form.style.display = "block";
-            form.reset();
-            successMsg.style.display = "none";
-          }, 500);
-        }, 3000);
-      } catch (error) {
-        successMsg.innerHTML = '<p style="margin:0;color:red;">❌ Oops! Something went wrong.</p>';
-        successMsg.style.display = "block";
-      }
-    });
-
-    window.onclick = function(e) {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
+ <header>
+   <h1>From Command Line to Coastline &mdash; Breaking Stuff, Building Income, Living Free - Together <br />Dev & Entrepreneur Hacks | Join the squad & build your freedom.</h1>
+   <div class="cta">
+     <a href="https://www.youtube.com/@TheFreeRangeDev" target="_blank">YouTube</a>
+     <a href="https://www.tiktok.com/@thefreerangedev?lang=en" target="_blank">TikTok</a>
+     <a href="https://www.instagram.com/thefreerangedev/" target="_blank">Instagram</a>
+     <a href="https://thefreerangedev.store" target="_blank">Gumroad</a>
+     <a href="https://www.skool.com/the-free-range-dev" target="_blank">Skool Community</a>
+     <a href="mailto:squad@thefreerangedev.dev">Support Squad</a>
+   </div>
+ </header>
+ <footer>
+   &copy; 2025 The Free Range Dev. All rights reserved.
+ </footer>
 </body>
 </html>
+
+
