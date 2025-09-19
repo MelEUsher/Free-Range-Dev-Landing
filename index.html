@@ -61,6 +61,7 @@
       text-decoration: none;
       margin: 0.5em;
       display: inline-block;
+      transition: all 0.3s ease;
     }
 
     .cta {
@@ -68,6 +69,15 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 1rem;
+    }
+
+    .cta a:hover {
+      background-color: #ffbd59 !important; /* Change to Canva color on hover */
+      transform: translateY(-5px); /* Raise effect */
+      box-shadow: 0 8px 15px rgba(255, 189, 89, 0.4); /* Subtle shadow */
+      color: black; /* Optional: change text color for contrast */
+    }
       gap: 1rem;
     }
 
