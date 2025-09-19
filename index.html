@@ -4,31 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="From command line to coastline — building income, living free, giving back. Join me." />
+  <meta name="description" content="The Free Range Dev - Portfolio and brand hub" />
   <meta property="og:title" content="The Free Range Dev" />
-  <meta property="og:description" content="From Command Line to Coastline — Breaking Stuff, Building Income, Living Free - Together | Dev & Entrepreneur Hacks | Join the squad & build your freedom"/>
+  <meta property="og:description" content="Portfolio and brand hub for The Free Range Dev project" />
   <meta property="og:url" content="https://thefreerangedev.com" />
   <meta property="og:image" content="https://thefreerangedev.com/assets/freerange-logo.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="600" />
-  <meta property="og:image:height" content="600" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>The Free Range Dev</title>
 
-  <!-- Body font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" />
-  <!-- Comfortaa for tagline / subtagline -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" />
-  <!-- Relaxed boho heading font -->
-  <meta property="og:description" content="From Command Line to Coastline 	6 Breaking Stuff, Building Income, Living Free - Together | Dev & Entrepreneur Hacks | Join the squad & build your freedom" />
+  <!-- Load fonts once: Inter for UI, Kalam for heading, Comfortaa for taglines -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kalam&family=Comfortaa:wght@700&display=swap" rel="stylesheet" />
 
   <style>
+    /* Base layout kept to preserve existing centered/full-height look,
+       but update colors and font fallbacks for better rendering. */
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #fefefe;
-      color: #111;
+      background-color: #f9f9f9;
+      color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -49,12 +44,18 @@
       height: auto;
     }
 
+    /* Use Kalam for the main brand heading but keep size conservative
+       so layout doesn't shift drastically. */
     h1 {
+      font-family: 'Kalam', cursive;
       font-size: 2rem;
       margin-bottom: 1rem;
+      margin-top: 0;
+      line-height: 1.1;
     }
 
-    /* Tagline and Subtagline use Comfortaa bold */
+    /* Tagline and Subtagline use Comfortaa bold; only define family/weight here
+       so the existing .tagline size/margins (that follow after this block) remain intact. */
     .tagline {
       font-family: 'Comfortaa', cursive;
       font-weight: 700;
