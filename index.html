@@ -83,6 +83,20 @@
       width: 100%;
     }
 
+    /* Logo placement:
+       Hide any logo placed in the header and ensure the footer logo
+       is displayed at a smaller size. Targets both elements with a
+       .logo class or the logo filename in the src attribute. */
+    header img[src*="freerange-logo"], header .logo {
+      display: none;
+    }
+
+    footer img[src*="freerange-logo"], footer .logo {
+      max-width: 50px;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
     /* Support Squad Modal Styles */
     .modal {
       display: none;
