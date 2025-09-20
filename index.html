@@ -37,8 +37,15 @@
       margin-top: 0.3em;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem 1rem; /* reduce vertical gap to half line approx */
+      /* prefer a compact grid so buttons form two rows (3 columns) on wider
+         screens but wrap down responsively on smaller devices */
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      place-items: center;
+      justify-items: center;
+      gap: 0.75rem 1rem;
+      width: 100%;
+      max-width: 560px;
     }
 
     header {
@@ -58,6 +65,45 @@
     h1 {
       font-family: 'Kalam', cursive;
       font-size: 3.5rem;
+
+    /* Tagline (h2.tagline) styling */
+    h2.tagline {
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: #56606a;
+      text-align: center;
+      margin: 0 0 0.6rem;
+    }
+
+    /* Green button styles for CTA links */
+    .cta .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 220px;
+      padding: 0.55rem 0.9rem;
+      background: linear-gradient(180deg,#34c77a 0%, #27a65d 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      box-shadow: 0 6px 16px rgba(39,166,93,0.12), inset 0 -1px 0 rgba(0,0,0,0.06);
+      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+    }
+
+    .cta .btn:hover,
+    .cta .btn:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(39,166,93,0.18);
+      filter: brightness(0.98);
+    }
+
+    /* Ensure the Support Squad button (or any CTA) that links within the page
+       behaves like the others when opened modally */
+    .cta .btn#supportSquadBtn {
+      cursor: pointer;
+    }
       margin: 0 0 10px;
       line-height: 1.1;
       color: #333333;
