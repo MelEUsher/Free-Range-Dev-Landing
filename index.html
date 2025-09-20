@@ -236,6 +236,73 @@
       margin-top: 10px;
       color: #a8bdb0; /* Changed to match button color */
       font-weight: 600;
+      text-align: center;
+    }
+
+    /* Animated checkmark styles */
+    .checkmark-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .checkmark {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2;
+      stroke: #a8bdb0;
+      stroke-miterlimit: 10;
+      box-shadow: inset 0px 0px 0px #a8bdb0;
+      animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+    }
+
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2;
+      stroke-miterlimit: 10;
+      stroke: #a8bdb0;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .checkmark-check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      stroke: #a8bdb0;
+      stroke-width: 3;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes scale {
+      0%, 100% {
+        transform: none;
+      }
+      50% {
+        transform: scale3d(1.1, 1.1, 1);
+      }
+    }
+
+    @keyframes fill {
+      100% {
+        box-shadow: inset 0px 0px 0px 30px #a8bdb0;
+      }
+    }
+
+    .success-message p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #333;
     }
       cursor: pointer;
     }
@@ -355,7 +422,15 @@
         </div>
         <button type="submit">Send</button>
       </form>
-      <div id="successMessage" class="success-message" style="display:none;">Thank you for contacting us!</div>
+      <div id="successMessage" class="success-message" style="display:none;">
+        <div class="checkmark-container">
+          <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark-check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <p>Thank you for contacting The Free Range Dev Support Squad. Expect to hear from us within the next 24 business hours.</p>
+      </div>
     </div>
   </div>
 
