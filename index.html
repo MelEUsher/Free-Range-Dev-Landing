@@ -442,11 +442,27 @@
     const successMessage = document.getElementById('successMessage');
     const supportForm = document.getElementById('supportForm');
 
+    // Debug: Check if elements are found
+    console.log('supportSquadBtn:', supportSquadBtn);
+    console.log('supportModal:', supportModal);
+    console.log('closeModal:', closeModal);
+    console.log('successMessage:', successMessage);
+    console.log('supportForm:', supportForm);
+
     // Open modal
-    supportSquadBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      supportModal.style.display = 'block';
-    });
+    if (supportSquadBtn) {
+      supportSquadBtn.addEventListener('click', (e) => {
+        console.log('Support Squad button clicked!');
+        e.preventDefault();
+        if (supportModal) {
+          supportModal.style.display = 'block';
+        } else {
+          console.error('Support modal element not found!');
+        }
+      });
+    } else {
+      console.error('Support Squad button not found!');
+    }
 
     // Close modal
     closeModal.addEventListener('click', () => {
