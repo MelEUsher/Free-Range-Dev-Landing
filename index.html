@@ -476,12 +476,22 @@
         });
 
         if (response.ok) {
+          // Hide the form and show success message with animation
+          supportForm.style.display = 'none';
           successMessage.style.display = 'block';
-          supportForm.reset();
+
+          // Reset animations by removing and re-adding the checkmark
+          const checkmark = successMessage.querySelector('.checkmark');
+          checkmark.style.animation = 'none';
+          checkmark.offsetHeight; // Trigger reflow
+          checkmark.style.animation = null;
+
           setTimeout(() => {
             successMessage.style.display = 'none';
+            supportForm.style.display = 'flex';
+            supportForm.reset();
             supportModal.style.display = 'none';
-          }, 3000);
+          }, 5000); // Increased to 5 seconds to allow time to read the message
         } else {
           alert('Oops! There was a problem submitting your form.');
         }
