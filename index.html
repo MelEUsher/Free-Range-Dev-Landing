@@ -450,14 +450,23 @@
 
     // Close modal
     closeModal.addEventListener('click', () => {
+      // Reset form state when closing
+      successMessage.style.display = 'none';
+      supportForm.style.display = 'flex';
+      supportForm.reset();
       supportModal.style.display = 'none';
     });
 
     // Close modal when clicking outside
     window.addEventListener('click', (event) => {
       if (event.target === supportModal) {
+        // Reset form state when closing
+        successMessage.style.display = 'none';
+        supportForm.style.display = 'flex';
+        supportForm.reset();
         supportModal.style.display = 'none';
       }
+    });
     });
 
     // Handle form submission
@@ -486,12 +495,7 @@
           checkmark.offsetHeight; // Trigger reflow
           checkmark.style.animation = null;
 
-          setTimeout(() => {
-            successMessage.style.display = 'none';
-            supportForm.style.display = 'flex';
-            supportForm.reset();
-            supportModal.style.display = 'none';
-          }, 5000); // Increased to 5 seconds to allow time to read the message
+          // No automatic timeout - user must manually close the modal
         } else {
           alert('Oops! There was a problem submitting your form.');
         }
