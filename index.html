@@ -533,16 +533,15 @@
     <div class="modal-content" role="document" tabindex="-1">
       <span class="close" id="closeModal" aria-label="Close contact form">×</span>
       <h3 id="supportModalTitle">Contact Support Squad</h3>
-      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST" novalidate>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" autocomplete="name" required />
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" autocomplete="email" required />
-
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-
+      <form action="https://formspree.io/f/xdklvjpn" method="POST">
+        <label>
+          Your email:
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Your message:
+          <textarea name="message" required></textarea>
+        </label>
         <button type="submit">Send</button>
       </form>
       <div id="successMessage" class="success-message" style="display:none;">Thank you for contacting us!</div>
@@ -553,7 +552,6 @@
     const supportSquadBtn = document.getElementById('supportSquadBtn');
     const supportModal = document.getElementById('supportModal');
     const closeModal = document.getElementById('closeModal');
-    const supportForm = document.getElementById('supportForm');
     const successMessage = document.getElementById('successMessage');
 
     supportSquadBtn.addEventListener('click', () => {
@@ -570,6 +568,8 @@
       }
     });
 
+    // Handle form submission with fetch
+    const supportForm = supportModal.querySelector('form');
     supportForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -599,6 +599,12 @@
           console.error('Form submission error:', errorData);
           alert('Oops! There was a problem submitting your form.');
         }
+      } catch (error) {
+        console.error('Fetch error:', error);
+        alert('Oops! There was a problem submitting your form.');
+      }
+    });
+  </script>
       } catch (error) {
         console.error('Fetch error:', error);
         alert('Oops! There was a problem submitting your form.');
