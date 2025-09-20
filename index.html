@@ -53,6 +53,18 @@
       display: none;
     }
 
+    /* Typography for brand headings: ensure Comfortaa is used, bold weight,
+       and prevent wrapping so the brand lines stay on a single line. */
+    h1,
+    h2 {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 700;
+      white-space: nowrap;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* Main brand heading (h1) — use Kalam for a friendly, hand-drawn look.
        Size is slightly increased to comfortably lead the new multi-line
        header structure (h1, h2, h3, h4). Keep margins small so the
