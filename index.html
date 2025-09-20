@@ -162,6 +162,24 @@
       h2.tagline {
         font-size: 1.4rem;
       }
+
+      /* Mobile: reduce overlay opacity to make background image more visible */
+      body::before {
+        background-color: rgba(249, 248, 243, 0.4); /* Reduced from 0.75 to 0.4 */
+      }
+
+      /* Mobile: compact footer to save vertical space */
+      footer {
+        padding: 8px 0; /* Reduced from 20px to 8px */
+        font-size: 0.75rem; /* Reduced from 0.9rem */
+      }
+
+      /* Mobile: smaller footer logo */
+      footer::after {
+        width: 60px; /* Reduced from 100px */
+        height: 24px; /* Reduced from 40px */
+        margin: 6px auto 0; /* Reduced from 10px */
+      }
     }
 
     @media (min-width: 640px) {
