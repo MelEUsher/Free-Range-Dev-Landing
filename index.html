@@ -19,11 +19,11 @@
     /* Base layout kept to preserve existing centered/full-height look,
        but update colors and font fallbacks for better rendering. */
     body {
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Kalam', cursive, 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       margin: 0;
       padding: 0.6em 0 0 0;
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: #f9faf9; /* very light gray background */
+      color: #333333;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -40,11 +40,10 @@
       justify-content: center;
       gap: 0.5rem 1rem; /* reduce vertical gap to half line approx */
     }
-    }
 
     header {
       max-width: 600px;
-      padding: 20px;
+      padding: 60px 20px 40px;
     }
 
     header img {
@@ -58,17 +57,19 @@
        so layout doesn't shift drastically. */
     h1 {
       font-family: 'Kalam', cursive;
-      font-size: 3.2rem; /* reduced from 3.5rem to fit on one line */
-      margin: 0.5rem 0;
-      line-height: 1.1; /* reduced line height for less vertical space */
+      font-size: 3.5rem;
+      margin: 0 0 10px;
+      line-height: 1.1;
+      color: #333333;
     }
 
     h2 {
       font-family: 'Kalam', cursive;
-      font-size: 1.2rem; /* decreased font size */
+      font-size: 1.5rem;
       line-height: 1.3;
-      max-width: 600px; /* limit width to control line breaks */
-      margin: 0.5rem auto;
+      max-width: 600px;
+      margin: 0 0 30px;
+      color: #333333;
     }
 
     /* Tagline and Subtagline use Comfortaa bold; only define family/weight here
@@ -76,8 +77,9 @@
     .tagline {
       font-family: 'Comfortaa', cursive;
       font-weight: 700;
-      font-size: 1.25rem;
-      margin: 0;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #333333;
       display: block;
       padding-bottom: 0.6rem;
     }
