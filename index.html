@@ -83,7 +83,17 @@
     /* CTA buttons */
     .cta .btn,
     .cta button {
-      background-color: #a8bdb0;
+      /* Updated to use the new #a8bdb0 color scheme with gradient and matching shadow */
+      background: linear-gradient(180deg, #a8bdb0 0%, #95a89d 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      box-shadow: 0 6px 16px rgba(168, 189, 176, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      cursor: pointer;
     }
       place-items: center;
       justify-items: center;
