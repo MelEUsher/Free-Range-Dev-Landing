@@ -110,6 +110,48 @@
       display: inline-block;
     }
 
+    /* Call-to-action container with spaced buttons */
+    .cta {
+      margin-top: 0.3em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem 2rem;
+    }
+
+    /* Button styles: muted green, rounded, prominent */
+    .btn {
+      background-color: #a4b5aa; /* muted green */
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.08s ease;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      background-color: #8a9a8a;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    /* Simple footer style to match screenshot */
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      background: transparent;
+    }
+    }
+
     /* Support Squad Modal Styles */
     .modal {
       display: none;
