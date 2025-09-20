@@ -82,20 +82,37 @@
       width: 100%;
       max-width: 220px;
       padding: 0.55rem 0.9rem;
-      background: linear-gradient(180deg,#34c77a 0%, #27a65d 100%);
+      /* Preferred green gradient with white text */
+      background: linear-gradient(180deg, #34c77a 0%, #27a65d 100%);
       color: #ffffff;
       text-decoration: none;
       border-radius: 8px;
       font-weight: 700;
-      box-shadow: 0 6px 16px rgba(39,166,93,0.12), inset 0 -1px 0 rgba(0,0,0,0.06);
+      box-shadow: 0 6px 16px rgba(39, 166, 93, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.06);
       transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .cta .btn:hover,
     .cta .btn:focus {
       transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(39,166,93,0.18);
-      filter: brightness(0.98);
+      box-shadow: 0 10px 26px rgba(39, 166, 93, 0.18);
+      /* Slightly darken on hover to give a subtle depth change */
+      filter: brightness(0.95);
+      outline: none;
+    }
+
+    .cta .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(39, 166, 93, 0.12);
+      filter: brightness(0.92);
+    }
+
+    /* Visible focus state for keyboard users */
+    .cta .btn:focus-visible {
+      outline: 3px solid rgba(52, 199, 122, 0.14);
+      outline-offset: 2px;
     }
 
     /* Ensure the Support Squad button (or any CTA) that links within the page
