@@ -37,27 +37,22 @@
       margin-top: 0.3em;
       display: flex;
       flex-wrap: wrap;
-      /* prefer a compact grid so buttons form two rows (3 columns) on wider
-         screens but wrap down responsively on smaller devices */
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      place-items: center;
-      justify-items: center;
-      gap: 0.75rem 1rem;
-      width: 100%;
-      max-width: 560px;
     }
 
-    header {
-      max-width: 600px;
-      padding: 60px 20px 40px;
-    }
+  <header>
+    <img src="assets/freerange-logo.svg" alt="The Free Range Dev Logo" />
+    <h1>The Free Range Dev</h1>
+    <h2 class="tagline">Portfolio and brand hub for The Free Range Dev project</h2>
 
-    header img {
-      display: block;
-      margin: 0 auto 20px auto;
-      max-width: 150px;
-      height: auto;
+    <div class="cta">
+      <a href="https://www.youtube.com/c/TheFreeRangeDev" class="btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://www.tiktok.com/@thefreerangedev" class="btn" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="https://www.instagram.com/thefreerangedev/" class="btn" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://shop.thefreerangedev.com" class="btn" target="_blank" rel="noopener noreferrer">Shop</a>
+      <a href="https://skool.thefreerangedev.com" class="btn" target="_blank" rel="noopener noreferrer">Skool Community</a>
+      <a href="#supportModal" class="btn" id="supportSquadBtn">Support Squad</a>
+    </div>
+  </header>
     }
 
     /* Use Kalam for the main brand heading but keep size conservative
@@ -93,26 +88,43 @@
     }
 
     .cta .btn:hover,
-    .cta .btn:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(39,166,93,0.18);
-      filter: brightness(0.98);
-    }
+  .cta {
+    margin-top: 0.3em;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    place-items: center;
+    justify-items: center;
+    gap: 0.75rem 1rem;
+    width: 100%;
+    max-width: 560px;
+  }
 
-    /* Ensure the Support Squad button (or any CTA) that links within the page
-       behaves like the others when opened modally */
-    .cta .btn#supportSquadBtn {
-      cursor: pointer;
-    }
-      margin: 0 0 10px;
-      line-height: 1.1;
-      color: #333333;
-    }
+  .cta .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    padding: 0.55rem 0.9rem;
+    background: linear-gradient(180deg,#34c77a 0%, #27a65d 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    box-shadow: 0 6px 16px rgba(39,166,93,0.12), inset 0 -1px 0 rgba(0,0,0,0.06);
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  }
 
-    h2 {
-      font-family: 'Kalam', cursive;
-      font-size: 1.5rem;
-      line-height: 1.3;
+  .cta .btn:hover,
+  .cta .btn:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(39,166,93,0.18);
+    filter: brightness(0.98);
+  }
+
+  .cta .btn#supportSquadBtn {
+    cursor: pointer;
+  }
       max-width: 600px;
       margin: 0 0 30px;
       color: #333333;
