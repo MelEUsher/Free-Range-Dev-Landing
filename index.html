@@ -112,7 +112,38 @@
       cursor: pointer;
     }
 
+    /* Support Squad button - half size and different color */
+    #supportSquadBtn {
+      max-width: 165px; /* Half of 330px */
+      padding: 1.65rem 1.35rem; /* Half of 3.3rem and 2.7rem */
+      background: linear-gradient(180deg, #a8bdb0 0%, #95a89d 100%);
+      box-shadow: 0 6px 16px rgba(168, 189, 176, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    #supportSquadBtn:hover,
+    #supportSquadBtn:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(168, 189, 176, 0.18);
+      filter: brightness(0.95);
+      outline: none;
+    }
+
+    #supportSquadBtn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(168, 189, 176, 0.12);
+      filter: brightness(0.92);
+    }
+
+    #supportSquadBtn:focus-visible {
+      outline: 3px solid rgba(168, 189, 176, 0.14);
+      outline-offset: 2px;
+    }
+
     /* Make the green buttons (all except support squad) slightly larger */
+    .cta .btn:not(#supportSquadBtn) {
+      max-width: 495px; /* 1.5 times wider than support squad: 330px * 1.5 = 495px */
+      padding: 9.9rem 2.7rem; /* 3 times taller: 3.3rem * 3 = 9.9rem, keep same horizontal padding */
+    }
     .cta .btn:not(#supportSquadBtn) {
       max-width: 495px; /* 1.5 times wider than support squad: 330px * 1.5 = 495px */
       padding: 9.9rem 2.7rem; /* 3 times taller: 3.3rem * 3 = 9.9rem, keep same horizontal padding */
