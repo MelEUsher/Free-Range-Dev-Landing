@@ -294,7 +294,7 @@
 
     @keyframes fill {
       100% {
-        box-shadow: inset 0px 0px 0px 30px #a8bdb0;
+        box-shadow: inset 0px 0px 0px 30px transparent;
       }
     }
 
@@ -304,8 +304,19 @@
       line-height: 1.4;
       color: #333;
     }
-      cursor: pointer;
+
+    .success-message .thank-you-main {
+      margin-bottom: 8px;
+      font-size: 1rem;
+      font-weight: 600;
     }
+
+
+    /* Form styles */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
 
     /* Form styles */
     form {
@@ -429,7 +440,8 @@
             <path class="checkmark-check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
           </svg>
         </div>
-        <p>Thank you for contacting The Free Range Dev Support Squad. Expect to hear from us within the next 24 business hours.</p>
+        <p class="thank-you-main">Thank you for contacting The Free Range Dev Support Squad.</p>
+        <p class="thank-you-sub">Expect to hear from us within the next 24 business hours.</p>
       </div>
     </div>
   </div>
