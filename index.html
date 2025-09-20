@@ -11,29 +11,12 @@
   <meta name="twitter:card" content="summary_large_image" />
   <title>The Free Range Dev</title>
 
-  <!-- Load fonts once: Inter for UI, Kalam for heading, Comfortaa for taglines, Alan Sans for sublines -->
+  <!-- Load fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kalam&family=Comfortaa:wght@700&family=Alans+Sans&display=swap" rel="stylesheet" />
 
   <style>
-    /* Base layout kept to preserve existing centered/full-height look,
-       but update colors and font fallbacks for better rendering. */
-
-    /* New subline styles using Alan Sans */
-    .subline1, .subline2 {
-      font-family: 'Alans Sans', sans-serif;
-      font-weight: 400;
-      font-size: 1.1rem;
-      margin: 0.2rem 0;
-      color: #444;
-    }
-
+    /* Base styles */
     body {
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      margin: 0;
-      padding: 0.6em 0 0 0;
-      background-color: #f9f9f9;
-      color: #333;
-      display: flex;
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       margin: 0;
       padding: 0.6em 0 0 0;
@@ -48,6 +31,44 @@
       text-align: center;
     }
 
+    /* Header styles */
+    header {
+      max-width: 760px;
+      padding: 48px 20px 28px;
+      text-align: center;
+    }
+
+    header img {
+      display: none;
+    }
+
+    h1 {
+      font-family: 'Kalam', cursive;
+      font-size: 3.75rem;
+      margin: 0 0 12px;
+      line-height: 1.1;
+      color: #333333;
+    }
+
+    h2.tagline {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: #56606a;
+      text-align: center;
+      margin: 0 0 0.6rem;
+      white-space: nowrap;
+    }
+
+    .subline1, .subline2 {
+      font-family: 'Alans Sans', sans-serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin: 0.2rem 0;
+      color: #444;
+    }
+
+    /* CTA grid */
     .cta {
       margin-top: 0.3em;
       display: grid;
@@ -59,20 +80,71 @@
       max-width: 720px;
     }
 
-    header {
-      max-width: 760px;
-      padding: 48px 20px 28px;
-      text-align: center;
+    .cta .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 220px;
+      padding: 0.55rem 0.9rem;
+      background: linear-gradient(180deg, #34c77a 0%, #27a65d 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      box-shadow: 0 6px 16px rgba(39, 166, 93, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      cursor: pointer;
     }
 
-    header img {
-      display: none;
-  <style>
+    .cta .btn:hover,
+    .cta .btn:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(39, 166, 93, 0.18);
+      filter: brightness(0.95);
+      outline: none;
+    }
+
+    .cta .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(39, 166, 93, 0.12);
+      filter: brightness(0.92);
+    }
+
+    .cta .btn:focus-visible {
+      outline: 3px solid rgba(52, 199, 122, 0.14);
+      outline-offset: 2px;
+    }
+
+    /* Footer styles */
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      position: relative;
+    }
+
+    footer::after {
+      content: "";
+      display: block;
+      margin: 10px auto 0;
+      width: 100px;
+      height: 40px;
+      background-image: url('assets/freerange-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
     /* Modal styles */
     .modal {
       display: none;
       position: fixed;
-      z-index: 1;
+      z-index: 1000;
       left: 0;
       top: 0;
       width: 100%;
@@ -83,7 +155,7 @@
     }
 
     .modal-content {
-      background-color: #dce8f2 !important;
+      background-color: #dce8f2;
       margin: 10% auto;
       padding: 20px;
       border: 1px solid #888;
@@ -92,6 +164,14 @@
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       font-family: 'Inter', sans-serif;
+    }
+
+    .modal-content h3 {
+      margin: 0 0 20px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #1f2d3d;
+      text-align: center;
     }
 
     .close {
@@ -109,18 +189,17 @@
       cursor: pointer;
     }
 
+    /* Form styles */
     form {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 15px;
-      align-items: center;
     }
 
     .form-row {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex: 1 1 100%;
     }
 
     label {
@@ -173,406 +252,13 @@
       color: green;
       font-weight: 600;
     }
-  </style>
 
-  <div id="supportModal" class="modal">
-    <div class="modal-content">
-      <span class="close">×</span>
-      <h3>Contact Support Squad</h3>
-      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST">
-        <div class="form-row">
-          <label for="name">Your name:</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required />
-        </div>
-        <div class="form-row">
-          <label for="email">Your email:</label>
-          <input type="email" id="email" name="email" placeholder="Your email" required />
-        </div>
-        <div class="form-row">
-          <label for="message">Your message:</label>
-          <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
-        </div>
-        <button type="submit">Send</button>
-      </form>
-      <div id="successMessage" class="success-message"></div>
-    </div>
-  </div>
-
-  <script>
-    // JavaScript to handle modal display, form submission, and success message
-    // Event listeners for button clicks and form submission
-    // Uses Formspree for form handling
-  </script>
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(3px);
-    }
-
-    .modal-content {
-      background-color: #dce8f2;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      font-family: 'Inter', sans-serif;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    form.modal-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .form-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    label {
-      flex: 0 0 100px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #333;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      flex: 1;
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-family: 'Inter', sans-serif;
-      transition: border-color 0.3s ease, box-shadow 0.15s ease;
-    }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #ffbd59;
-      box-shadow: 0 0 5px #ffbd59;
-    }
-
-    button[type="submit"].modal-submit {
-      background-color: #ffbd59;
-      color: #333;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.08s ease;
-      align-self: flex-start;
-    }
-
-    button[type="submit"].modal-submit:hover {
-      background-color: #e6a84b;
-    }
-
-    .success-message {
-      margin-top: 10px;
-      color: green;
-      font-weight: 600;
-    }
-
-    header h3 {
-      font-family: 'Comfortaa', cursive;
-      font-size: 1.2rem;
-      margin: 0.1rem 0 0.3rem;
-      font-weight: 700;
-      color: #7f8c8d;
-    }
-
-    header h4 {
-      font-family: 'Comfortaa', cursive;
-      font-size: 1rem;
-      margin: 0.1rem 0 0.3rem;
-      font-weight: 700;
-      color: #95a5a6;
-    }
-
-    .cta-links {
-      margin-top: 1rem;
-    }
-
-    .cta-links a {
-      margin: 0 0.5rem;
-      text-decoration: none;
-      color: #007acc;
-      font-weight: bold;
-    }
-
-    .cta-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Secondary headings */
-    h2 {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      font-size: 1.25rem;
-      margin: 6px 0 8px;
-      font-weight: 600;
-      color: #0f172a;
-    }
-
-    h3 {
-      font-size: 1rem;
-      margin: 6px 0;
-      font-weight: 500;
-      color: #334155;
-    }
-
-    h4 {
-      font-size: 0.9rem;
-      margin: 4px 0 12px;
-      font-weight: 400;
-      color: #475569;
-    }
-
-    /* Call-to-action links (social / support) */
-    .cta-links {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 0.6rem;
-    }
-
-    .cta-links a {
-      display: inline-block;
-      padding: 8px 12px;
-      background: linear-gradient(180deg, #34c77a 0%, #22a86b 100%);
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
-      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
-      outline: none;
-    }
-
-    .cta-links a:hover {
-      transform: translateY(-2px);
-      filter: brightness(0.95);
-    }
-
-    .cta-links a:active {
-      transform: translateY(0);
-      filter: brightness(0.92);
-    }
-
-    .cta-links a:focus {
-      box-shadow: 0 10px 30px rgba(16,24,40,0.08);
-      outline: 3px solid rgba(52, 199, 122, 0.14);
-    }
-
-    h1 {
-      font-family: 'Kalam', cursive;
-      font-size: 3.75rem;
-      margin: 0 0 12px;
-      line-height: 1.1;
-      color: #333333;
-    }
-
-    /* Tagline (h2.tagline) styling */
-    h2.tagline {
-      font-weight: 700;
-      font-size: 1.75rem;
-      color: #56606a;
-      text-align: center;
-      margin: 0 0 0.6rem;
-      white-space: nowrap;
-    }
-    }
-
-    /* Green button styles for CTA links */
-    .cta .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      max-width: 220px;
-      padding: 0.55rem 0.9rem;
-      /* Preferred green gradient with white text */
-      background: linear-gradient(180deg, #34c77a 0%, #27a65d 100%);
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 700;
-      box-shadow: 0 6px 16px rgba(39, 166, 93, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.06);
-      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .cta .btn:hover,
-    .cta .btn:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(39, 166, 93, 0.18);
-      /* Slightly darken on hover to give a subtle depth change */
-      filter: brightness(0.95);
-      outline: none;
-    }
-
-    .cta .btn:active {
-      transform: translateY(0);
-      box-shadow: 0 6px 16px rgba(39, 166, 93, 0.12);
-      filter: brightness(0.92);
-    }
-
-    /* Visible focus state for keyboard users */
-    .cta .btn:focus-visible {
-      outline: 3px solid rgba(52, 199, 122, 0.14);
-      outline-offset: 2px;
-    }
-
-    /* Ensure the Support Squad button (or any CTA) that links within the page
-       behaves like the others when opened modally */
-    .cta .btn#supportSquadBtn {
-      cursor: pointer;
-    }
-
-    footer {
-      border-top: 1px solid #ddd;
-      padding: 20px 0;
-      font-size: 0.9rem;
-      color: #666;
-      text-align: center;
-      position: relative;
-    }
-
-    /* Visually add the Free Range logo inside the footer below the copyright line
-       without changing the HTML by using a pseudo-element that loads the SVG. */
-    footer::after {
-      content: "";
-      display: block;
-      margin: 10px auto 0;
-      width: 100px;
-      height: 40px;
-      background-image: url('assets/freerange-logo.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    footer img {
-      margin-top: 10px;
-      max-width: 100px;
-      height: auto;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    h2 {
-      font-family: 'Kalam', cursive;
-      font-size: 1.5rem;
-      line-height: 1.3;
-      max-width: 600px;
-      margin: 0 0 30px;
-      color: #333333;
-    }
-
-    /* Tagline and Subtagline use Comfortaa bold; only define family/weight here
-       so the existing .tagline size/margins (that follow after this block) remain intact. */
-    .tagline {
-      font-family: 'Comfortaa', cursive;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      color: #333333;
-      display: block;
-    }
-
-    footer {
-      border-top: 1px solid #ddd;
-      padding: 20px 0;
-      font-size: 0.9rem;
-      color: #666;
-      text-align: center;
-    }
-
-    /* Modal styles for Support Squad contact form */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 8px;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .success-message {
-      color: green;
-      margin-top: 10px;
-      font-weight: bold;
-      animation: fadeInOut 3s ease forwards;
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
+    /* Responsive design */
+    @media (min-width: 640px) {
+      .modal-content {
+        margin: 8% auto;
+        padding: 24px;
+      }
     }
   </style>
 </head>
@@ -581,7 +267,7 @@
     <img src="assets/freerange-logo.svg" alt="The Free Range Dev Logo" />
     <h1>The Free Range Dev</h1>
     <h2 class="tagline">From Command Line to Coast Line</h2>
-    <p class="subline1">Breaking Stuff, Building Income, Living Free0130Together</p>
+    <p class="subline1">Breaking Stuff, Building Income, Living Free0130Together</p>
     <p class="subline2">Dev & Entrepreneur Hacks | Join the squad & build your freedom.</p>
 
     <div class="cta">
@@ -598,151 +284,24 @@
     © 2023 The Free Range Dev. All rights reserved.
   </footer>
 
-  <style>
-    /* Modal styles for Support Squad contact form */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 6% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 94%;
-      max-width: 480px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      outline: none;
-    }
-
-    .modal-content h3 {
-      margin: 0 0 12px;
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: #1f2d3d;
-      text-align: center;
-    }
-
-    form#supportForm {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    form#supportForm label {
-      font-weight: 600;
-      color: #34495e;
-      font-size: 0.95rem;
-    }
-
-    form#supportForm input,
-    form#supportForm textarea {
-      padding: 10px 12px;
-      border: 1px solid #e1e4e8;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-      background: #fbfdfe;
-      transition: box-shadow 0.15s ease, border-color 0.15s ease;
-      resize: vertical;
-    }
-
-    form#supportForm input:focus,
-    form#supportForm textarea:focus {
-      border-color: rgba(52, 199, 122, 0.5);
-      box-shadow: 0 4px 14px rgba(52, 199, 122, 0.08);
-      outline: none;
-    }
-
-    form#supportForm button {
-      background-color: #27a65d;
-      color: white;
-      border: none;
-      padding: 10px 14px;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.08s ease, filter 0.15s ease;
-      box-shadow: 0 6px 18px rgba(39, 166, 93, 0.14);
-    }
-
-    form#supportForm button:hover {
-      background-color: #34c77a;
-      transform: translateY(-2px);
-      filter: brightness(0.95);
-    }
-
-    form#supportForm button:active {
-      transform: translateY(0);
-      filter: brightness(0.92);
-    }
-
-    .close {
-      color: #9aa6b2;
-      float: right;
-      font-size: 26px;
-      font-weight: 700;
-      cursor: pointer;
-      line-height: 1;
-      border-radius: 6px;
-      padding: 2px 6px;
-      transition: background-color 0.12s ease, color 0.12s ease;
-    }
-
-    .close:hover,
-    .close:focus {
-      background-color: rgba(0, 0, 0, 0.04);
-      color: #222;
-      text-decoration: none;
-      cursor: pointer;
-      outline: 3px solid rgba(52, 199, 122, 0.14);
-    }
-
-    .success-message {
-      color: #27a65d;
-      font-weight: 600;
-      text-align: center;
-      margin-top: 10px;
-      font-size: 0.95rem;
-    }
-
-    @media (min-width: 640px) {
-      .modal-content {
-        margin: 8% auto;
-        padding: 24px;
-      }
-
-      form#supportForm button {
-        padding: 12px 16px;
-      }
-    }
-  </style>
-
-  <!-- Support Squad modal -->
+  <!-- Support Squad Modal -->
   <div id="supportModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="supportModalTitle" aria-hidden="true">
     <div class="modal-content" role="document" tabindex="-1">
       <span class="close" id="closeModal" aria-label="Close contact form">×</span>
       <h3 id="supportModalTitle">Contact Support Squad</h3>
-      <form action="https://formspree.io/f/xdklvjpn" method="POST">
-        <label>
-          Your email:
-          <input type="email" name="email" required>
-        </label>
-        <label>
-          Your message:
-          <textarea name="message" required></textarea>
-        </label>
+      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST">
+        <div class="form-row">
+          <label for="name">Your name:</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-row">
+          <label for="email">Your email:</label>
+          <input type="email" id="email" name="email" placeholder="Your email" required />
+        </div>
+        <div class="form-row">
+          <label for="message">Your message:</label>
+          <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
+        </div>
         <button type="submit">Send</button>
       </form>
       <div id="successMessage" class="success-message" style="display:none;">Thank you for contacting us!</div>
@@ -750,34 +309,38 @@
   </div>
 
   <script>
+    // Modal functionality
     const supportSquadBtn = document.getElementById('supportSquadBtn');
     const supportModal = document.getElementById('supportModal');
     const closeModal = document.getElementById('closeModal');
     const successMessage = document.getElementById('successMessage');
+    const supportForm = document.getElementById('supportForm');
 
-    supportSquadBtn.addEventListener('click', () => {
+    // Open modal
+    supportSquadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       supportModal.style.display = 'block';
     });
 
+    // Close modal
     closeModal.addEventListener('click', () => {
       supportModal.style.display = 'none';
     });
 
+    // Close modal when clicking outside
     window.addEventListener('click', (event) => {
       if (event.target === supportModal) {
         supportModal.style.display = 'none';
       }
     });
 
-    // Handle form submission with fetch
-    const supportForm = supportModal.querySelector('form');
+    // Handle form submission
     supportForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       const formData = new FormData(supportForm);
 
       try {
-        console.log('Submitting form data:', Array.from(formData.entries()));
         const response = await fetch(supportForm.action, {
           method: 'POST',
           body: formData,
@@ -785,8 +348,6 @@
             'Accept': 'application/json'
           }
         });
-        console.log('Response status:', response.status);
-        console.log('Response ok:', response.ok);
 
         if (response.ok) {
           successMessage.style.display = 'block';
@@ -796,16 +357,8 @@
             supportModal.style.display = 'none';
           }, 3000);
         } else {
-          const errorData = await response.json();
-          console.error('Form submission error:', errorData);
           alert('Oops! There was a problem submitting your form.');
         }
-      } catch (error) {
-        console.error('Fetch error:', error);
-        alert('Oops! There was a problem submitting your form.');
-      }
-    });
-  </script>
       } catch (error) {
         console.error('Fetch error:', error);
         alert('Oops! There was a problem submitting your form.');
