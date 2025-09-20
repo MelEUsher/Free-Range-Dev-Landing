@@ -397,16 +397,148 @@
     © 2023 The Free Range Dev. All rights reserved.
   </footer>
 
-  <div id="supportModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">×</span>
-      <h3>Contact Support Squad</h3>
-      <form id="supportForm" action="https://formspree.io/f/xayzvovk" method="POST">
+  <style>
+    /* Modal styles for Support Squad contact form */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 6% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 94%;
+      max-width: 480px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      outline: none;
+    }
+
+    .modal-content h3 {
+      margin: 0 0 12px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #1f2d3d;
+      text-align: center;
+    }
+
+    form#supportForm {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    form#supportForm label {
+      font-weight: 600;
+      color: #34495e;
+      font-size: 0.95rem;
+    }
+
+    form#supportForm input,
+    form#supportForm textarea {
+      padding: 10px 12px;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fbfdfe;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+      resize: vertical;
+    }
+
+    form#supportForm input:focus,
+    form#supportForm textarea:focus {
+      border-color: rgba(52, 199, 122, 0.5);
+      box-shadow: 0 4px 14px rgba(52, 199, 122, 0.08);
+      outline: none;
+    }
+
+    form#supportForm button {
+      background-color: #27a65d;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.08s ease, filter 0.15s ease;
+      box-shadow: 0 6px 18px rgba(39, 166, 93, 0.14);
+    }
+
+    form#supportForm button:hover {
+      background-color: #34c77a;
+      transform: translateY(-2px);
+      filter: brightness(0.95);
+    }
+
+    form#supportForm button:active {
+      transform: translateY(0);
+      filter: brightness(0.92);
+    }
+
+    .close {
+      color: #9aa6b2;
+      float: right;
+      font-size: 26px;
+      font-weight: 700;
+      cursor: pointer;
+      line-height: 1;
+      border-radius: 6px;
+      padding: 2px 6px;
+      transition: background-color 0.12s ease, color 0.12s ease;
+    }
+
+    .close:hover,
+    .close:focus {
+      background-color: rgba(0, 0, 0, 0.04);
+      color: #222;
+      text-decoration: none;
+      cursor: pointer;
+      outline: 3px solid rgba(52, 199, 122, 0.14);
+    }
+
+    .success-message {
+      color: #27a65d;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    @media (min-width: 640px) {
+      .modal-content {
+        margin: 8% auto;
+        padding: 24px;
+      }
+
+      form#supportForm button {
+        padding: 12px 16px;
+      }
+    }
+  </style>
+
+  <!-- Support Squad modal -->
+  <div id="supportModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="supportModalTitle" aria-hidden="true">
+    <div class="modal-content" role="document" tabindex="-1">
+      <span class="close" id="closeModal" aria-label="Close contact form">×</span>
+      <h3 id="supportModalTitle">Contact Support Squad</h3>
+      <form id="supportForm" action="https://formspree.io/f/xayzvovk" method="POST" novalidate>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
+        <input type="text" id="name" name="name" autocomplete="name" required />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" autocomplete="email" required />
 
         <label for="message">Message:</label>
         <textarea id="message" name="message" rows="4" required></textarea>
