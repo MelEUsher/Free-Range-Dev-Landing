@@ -38,26 +38,29 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       place-items: center;
       justify-items: center;
-      gap: 0.75rem 1rem;
+      gap: 0.85rem 1rem;
       width: 100%;
-      max-width: 560px;
+      max-width: 720px;
     }
 
     header {
-      max-width: 600px;
-      padding: 60px 20px 40px;
+      max-width: 760px;
+      padding: 48px 20px 28px;
+      text-align: center;
     }
 
     header img {
       display: none;
     }
 
-    /* Use Kalam for the main brand heading but keep size conservative
-       so layout doesn't shift drastically. */
+    /* Main brand heading (h1) — use Kalam for a friendly, hand-drawn look.
+       Size is slightly increased to comfortably lead the new multi-line
+       header structure (h1, h2, h3, h4). Keep margins small so the
+       subsequent headings remain visually grouped. */
     h1 {
       font-family: 'Kalam', cursive;
-      font-size: 3.5rem;
-      margin: 0 0 10px;
+      font-size: 3.75rem;
+      margin: 0 0 12px;
       line-height: 1.1;
       color: #333333;
     }
