@@ -21,7 +21,7 @@
       margin: 0;
       padding: 0.6em 0 80px 0;
       background-color: #f9f8f3;
-      background-image: url('assets/Image saved for website use.svg?v=3');
+      background-image: url("assets/Image%20saved%20for%20website%20use.svg?v=3");
       background-repeat: no-repeat;
       background-position: center top 50px; /* Moved closer to top for mobile visibility */
       background-size: 80% auto; /* Increased from 50% to 80% for better mobile visibility */
@@ -165,20 +165,20 @@
 
       /* Mobile: reduce overlay opacity to make background image more visible */
       body::before {
-        background-color: rgba(249, 248, 243, 0.4); /* Reduced from 0.75 to 0.4 */
+        background-color: rgba(249, 248, 243, 0.3) !important; /* Further reduced to 0.3 and added !important */
       }
 
       /* Mobile: compact footer to save vertical space */
       footer {
-        padding: 8px 0; /* Reduced from 20px to 8px */
-        font-size: 0.75rem; /* Reduced from 0.9rem */
+        padding: 8px 0 !important; /* Added !important to override base styles */
+        font-size: 0.75rem !important; /* Added !important */
       }
 
       /* Mobile: smaller footer logo */
       footer::after {
-        width: 60px; /* Reduced from 100px */
-        height: 24px; /* Reduced from 40px */
-        margin: 6px auto 0; /* Reduced from 10px */
+        width: 60px !important; /* Added !important */
+        height: 24px !important; /* Added !important */
+        margin: 6px auto 0 !important; /* Added !important */
       }
     }
 
