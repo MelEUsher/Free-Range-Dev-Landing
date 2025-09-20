@@ -107,7 +107,28 @@
       width: 100%;
       height: 100%;
       max-height: 100vh;
+      /* Allow the overlay to scroll to prevent cutoff of modal actions */
       overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem 1rem 1rem;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      background-color: #d0e4f4;
+      padding: 2rem 2rem 3rem 2rem; /* added extra bottom padding */
+      border-radius: 8px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Ensure the modal content can scroll internally if tall */
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
       background-color: rgba(0, 0, 0, 0.5);
       display: flex;
       align-items: flex-start;
