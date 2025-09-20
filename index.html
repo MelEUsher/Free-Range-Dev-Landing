@@ -184,6 +184,48 @@
         background-color: #f9f8f3 !important; /* Ensure background color is set */
       }
 
+      /* Mobile: Fix form layout - stack labels above inputs */
+      .form-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 5px !important;
+      }
+
+      /* Mobile: labels above inputs, left-aligned */
+      label {
+        text-align: left !important;
+        flex: none !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 3px !important;
+      }
+
+      /* Mobile: full-width inputs and textarea, prevent iOS zoom */
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 12px !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+      }
+
+      /* Mobile: full-width submit button variant */
+      button[type="submit"].alt {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 14px 20px !important;
+        font-size: 1.1rem !important;
+        margin-top: 10px !important;
+      }
+
+      /* Mobile: improve modal sizing */
+      .modal-content {
+        margin: 5% auto !important;
+        width: 90% !important;
+        max-width: none !important;
+        padding: 20px !important;
+      }
+
       /* Mobile: compact footer to save vertical space */
       footer {
         padding: 8px 0 !important;
