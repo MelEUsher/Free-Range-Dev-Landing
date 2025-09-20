@@ -11,13 +11,29 @@
   <meta name="twitter:card" content="summary_large_image" />
   <title>The Free Range Dev</title>
 
-  <!-- Load fonts once: Inter for UI, Kalam for heading, Comfortaa for taglines -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kalam&family=Comfortaa:wght@700&display=swap" rel="stylesheet" />
+  <!-- Load fonts once: Inter for UI, Kalam for heading, Comfortaa for taglines, Alan Sans for sublines -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kalam&family=Comfortaa:wght@700&family=Alans+Sans&display=swap" rel="stylesheet" />
 
   <style>
     /* Base layout kept to preserve existing centered/full-height look,
        but update colors and font fallbacks for better rendering. */
+
+    /* New subline styles using Alan Sans */
+    .subline1, .subline2 {
+      font-family: 'Alans Sans', sans-serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin: 0.2rem 0;
+      color: #444;
+    }
+
     body {
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 0.6em 0 0 0;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       margin: 0;
       padding: 0.6em 0 0 0;
