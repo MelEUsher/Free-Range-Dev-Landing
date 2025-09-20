@@ -67,47 +67,142 @@
 
     header img {
       display: none;
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(3px);
     }
 
-    /* Typography for brand headings: ensure Comfortaa is used, bold weight,
-       and prevent wrapping so the brand lines stay on a single line. */
-    h1,
-    h2 {
-      font-family: 'Comfortaa', cursive;
+    .modal-content {
+      background-color: #dce8f2 !important;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1 1 100%;
+    }
+
+    label {
+      flex: 0 0 120px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #333;
+      text-align: right;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #ffbd59;
+      box-shadow: 0 0 5px #ffbd59;
+    }
+
+    button[type="submit"] {
+      background-color: #ffbd59;
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
       font-weight: 700;
-      white-space: nowrap;
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: 130px;
     }
 
-    /* Main brand heading (h1) — use Kalam for a friendly, hand-drawn look.
-       Size is slightly increased to comfortably lead the new multi-line
-       header structure (h1, h2, h3, h4). Keep margins small so the
-       subsequent headings remain visually grouped. */
-
-    /* Header styles for the multi-line brand heading and CTAs */
-    header h1 {
-      font-family: 'Comfortaa', cursive;
-      font-size: 3.5rem;
-      margin: 0.2rem 0 0.4rem;
-      font-weight: 700;
-      white-space: nowrap;
-      color: #2c3e50;
+    button[type="submit"]:hover {
+      background-color: #e6a84b;
     }
 
-    header h2 {
-      font-family: 'Comfortaa', cursive;
-      font-size: 2.0rem;
-      margin: 0.1rem 0 0.3rem;
-      font-weight: 700;
-      white-space: nowrap;
-      color: #34495e;
+    .success-message {
+      margin-top: 10px;
+      color: green;
+      font-weight: 600;
     }
+  </style>
 
-    /* Modal styles (added) — placed inside the main stylesheet so no extra
-       <style> tags are needed. These styles power the modal overlay,
-       content panel, close control, and basic form input focus states. */
+  <div id="supportModal" class="modal">
+    <div class="modal-content">
+      <span class="close">×</span>
+      <h3>Contact Support Squad</h3>
+      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST">
+        <div class="form-row">
+          <label for="name">Your name:</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-row">
+          <label for="email">Your email:</label>
+          <input type="email" id="email" name="email" placeholder="Your email" required />
+        </div>
+        <div class="form-row">
+          <label for="message">Your message:</label>
+          <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
+        </div>
+        <button type="submit">Send</button>
+      </form>
+      <div id="successMessage" class="success-message"></div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle modal display, form submission, and success message
+    // Event listeners for button clicks and form submission
+    // Uses Formspree for form handling
+  </script>
     /* Modal styles */
     .modal {
       display: none;
