@@ -449,6 +449,17 @@
     console.log('successMessage:', successMessage);
     console.log('supportForm:', supportForm);
 
+    // Open modal
+    if (supportSquadBtn) {
+      supportSquadBtn.addEventListener('click', (e) => {
+        console.log('Support Squad button clicked!');
+        e.preventDefault();
+        supportModal.style.display = 'block';
+      });
+    } else {
+      console.error('Support Squad button not found!');
+    }
+
     // Close modal
     if (closeModal) {
       closeModal.addEventListener('click', () => {
