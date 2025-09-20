@@ -25,7 +25,7 @@
       background-repeat: no-repeat;
       background-position: center top 50px;
       background-size: 80% auto;
-      background-attachment: scroll; /* Changed from fixed to scroll for mobile compatibility */
+      background-attachment: fixed; /* Restored to fixed for desktop */
       color: #333;
       text-align: center;
       min-height: 100vh;
@@ -163,16 +163,17 @@
         font-size: 1.4rem;
       }
 
-      /* Mobile: make background image very visible for testing */
+      /* Mobile: COMPLETELY REMOVE overlay to test if image exists */
       body::before {
-        background-color: rgba(249, 248, 243, 0.1) !important; /* Very transparent for testing */
+        display: none !important; /* Completely hide the overlay */
       }
 
       /* Mobile: ensure background image is positioned correctly */
       body {
         background-position: center top 20px !important;
-        background-size: 90% auto !important;
-        background-attachment: scroll !important;
+        background-size: 100% auto !important; /* Make it huge to see if it's there */
+        background-attachment: scroll !important; /* Mobile-only scroll */
+        background-color: #f9f8f3 !important; /* Ensure background color is set */
       }
 
       /* Mobile: compact footer to save vertical space */
