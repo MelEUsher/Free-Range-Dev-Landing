@@ -576,6 +576,7 @@
       const formData = new FormData(supportForm);
 
       try {
+        console.log('Submitting form data:', Array.from(formData.entries()));
         const response = await fetch(supportForm.action, {
           method: 'POST',
           body: formData,
@@ -583,6 +584,8 @@
             'Accept': 'application/json'
           }
         });
+        console.log('Response status:', response.status);
+        console.log('Response ok:', response.ok);
 
         if (response.ok) {
           successMessage.style.display = 'block';
@@ -592,9 +595,12 @@
             supportModal.style.display = 'none';
           }, 3000);
         } else {
+          const errorData = await response.json();
+          console.error('Form submission error:', errorData);
           alert('Oops! There was a problem submitting your form.');
         }
       } catch (error) {
+        console.error('Fetch error:', error);
         alert('Oops! There was a problem submitting your form.');
       }
     });
