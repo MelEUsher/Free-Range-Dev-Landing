@@ -57,6 +57,67 @@
        Size is slightly increased to comfortably lead the new multi-line
        header structure (h1, h2, h3, h4). Keep margins small so the
        subsequent headings remain visually grouped. */
+
+    /* Secondary headings */
+    h2 {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      font-size: 1.25rem;
+      margin: 6px 0 8px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin: 6px 0;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    h4 {
+      font-size: 0.9rem;
+      margin: 4px 0 12px;
+      font-weight: 400;
+      color: #475569;
+    }
+
+    /* Call-to-action links (social / support) */
+    .cta-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.6rem;
+    }
+
+    .cta-links a {
+      display: inline-block;
+      padding: 8px 12px;
+      background: linear-gradient(180deg, #34c77a 0%, #22a86b 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+      outline: none;
+    }
+
+    .cta-links a:hover {
+      transform: translateY(-2px);
+      filter: brightness(0.95);
+    }
+
+    .cta-links a:active {
+      transform: translateY(0);
+      filter: brightness(0.92);
+    }
+
+    .cta-links a:focus {
+      box-shadow: 0 10px 30px rgba(16,24,40,0.08);
+      outline: 3px solid rgba(52, 199, 122, 0.14);
+    }
+
     h1 {
       font-family: 'Kalam', cursive;
       font-size: 3.75rem;
