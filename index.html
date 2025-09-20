@@ -21,11 +21,11 @@
       margin: 0;
       padding: 0.6em 0 80px 0;
       background-color: #f9f8f3;
-      background-image: url("assets/Image%20saved%20for%20website%20use.svg?v=3");
+      background-image: url("assets/Image%20saved%20for%20website%20use.svg?v=4");
       background-repeat: no-repeat;
-      background-position: center top 50px; /* Moved closer to top for mobile visibility */
-      background-size: 80% auto; /* Increased from 50% to 80% for better mobile visibility */
-      background-attachment: fixed;
+      background-position: center top 50px;
+      background-size: 80% auto;
+      background-attachment: scroll; /* Changed from fixed to scroll for mobile compatibility */
       color: #333;
       text-align: center;
       min-height: 100vh;
@@ -163,22 +163,29 @@
         font-size: 1.4rem;
       }
 
-      /* Mobile: reduce overlay opacity to make background image more visible */
+      /* Mobile: make background image very visible for testing */
       body::before {
-        background-color: rgba(249, 248, 243, 0.3) !important; /* Further reduced to 0.3 and added !important */
+        background-color: rgba(249, 248, 243, 0.1) !important; /* Very transparent for testing */
+      }
+
+      /* Mobile: ensure background image is positioned correctly */
+      body {
+        background-position: center top 20px !important;
+        background-size: 90% auto !important;
+        background-attachment: scroll !important;
       }
 
       /* Mobile: compact footer to save vertical space */
       footer {
-        padding: 8px 0 !important; /* Added !important to override base styles */
-        font-size: 0.75rem !important; /* Added !important */
+        padding: 8px 0 !important;
+        font-size: 0.75rem !important;
       }
 
       /* Mobile: smaller footer logo */
       footer::after {
-        width: 60px !important; /* Added !important */
-        height: 24px !important; /* Added !important */
-        margin: 6px auto 0 !important; /* Added !important */
+        width: 60px !important;
+        height: 24px !important;
+        margin: 6px auto 0 !important;
       }
     }
 
