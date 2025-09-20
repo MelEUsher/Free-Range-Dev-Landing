@@ -1,4 +1,3 @@
-<!-- Free Range Dev Landing Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +18,11 @@
     /* Base layout kept to preserve existing centered/full-height look,
        but update colors and font fallbacks for better rendering. */
     body {
-      font-family: 'Kalam', cursive, 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       margin: 0;
       padding: 0.6em 0 0 0;
-      background-color: #f9faf9; /* very light gray background */
-      color: #333333;
+      background-color: #f9f9f9;
+      color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -44,20 +43,16 @@
       max-width: 560px;
     }
 
-  <header>
-    <img src="assets/freerange-logo.svg" alt="The Free Range Dev Logo" />
-    <h1>The Free Range Dev</h1>
-    <h2 class="tagline">Portfolio and brand hub for The Free Range Dev project</h2>
+    header {
+      max-width: 600px;
+      padding: 60px 20px 40px;
+    }
 
-    <div class="cta">
-      <a href="https://www.youtube.com/c/TheFreeRangeDev" class="btn" target="_blank" rel="noopener noreferrer">YouTube</a>
-      <a href="https://www.tiktok.com/@thefreerangedev" class="btn" target="_blank" rel="noopener noreferrer">TikTok</a>
-      <a href="https://www.instagram.com/thefreerangedev/" class="btn" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://shop.thefreerangedev.com" class="btn" target="_blank" rel="noopener noreferrer">Shop</a>
-      <a href="https://skool.thefreerangedev.com" class="btn" target="_blank" rel="noopener noreferrer">Skool Community</a>
-      <a href="#supportModal" class="btn" id="supportSquadBtn">Support Squad</a>
-    </div>
-  </header>
+    header img {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 150px;
+      height: auto;
     }
 
     /* Use Kalam for the main brand heading but keep size conservative
@@ -65,6 +60,10 @@
     h1 {
       font-family: 'Kalam', cursive;
       font-size: 3.5rem;
+      margin: 0 0 10px;
+      line-height: 1.1;
+      color: #333333;
+    }
 
     /* Tagline (h2.tagline) styling */
     h2.tagline {
@@ -93,43 +92,22 @@
     }
 
     .cta .btn:hover,
-  .cta {
-    margin-top: 0.3em;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    place-items: center;
-    justify-items: center;
-    gap: 0.75rem 1rem;
-    width: 100%;
-    max-width: 560px;
-  }
+    .cta .btn:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(39,166,93,0.18);
+      filter: brightness(0.98);
+    }
 
-  .cta .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 220px;
-    padding: 0.55rem 0.9rem;
-    background: linear-gradient(180deg,#34c77a 0%, #27a65d 100%);
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
-    box-shadow: 0 6px 16px rgba(39,166,93,0.12), inset 0 -1px 0 rgba(0,0,0,0.06);
-    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
-  }
+    /* Ensure the Support Squad button (or any CTA) that links within the page
+       behaves like the others when opened modally */
+    .cta .btn#supportSquadBtn {
+      cursor: pointer;
+    }
 
-  .cta .btn:hover,
-  .cta .btn:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 26px rgba(39,166,93,0.18);
-    filter: brightness(0.98);
-  }
-
-  .cta .btn#supportSquadBtn {
-    cursor: pointer;
-  }
+    h2 {
+      font-family: 'Kalam', cursive;
+      font-size: 1.5rem;
+      line-height: 1.3;
       max-width: 600px;
       margin: 0 0 30px;
       color: #333333;
@@ -144,78 +122,17 @@
       margin-bottom: 40px;
       color: #333333;
       display: block;
-      padding-bottom: 0.6rem;
     }
 
-    /* Subtagline sits under the tagline with a 0.5px separating line */
-    .subtagline {
-      font-family: 'Comfortaa', cursive;
-      font-weight: 700;
-      font-size: 1rem;
-      margin: 0;
-      display: block;
-      padding-top: 0.6rem;
-      border-top: 0.5px solid rgba(0,0,0,0.6);
-      width: 100%;
-    }
-
-    /* Logo placement:
-       Hide any logo placed in the header and ensure the footer logo
-       is displayed at a smaller size. Targets both elements with a
-       .logo class or the logo filename in the src attribute. */
-    header img[src*="freerange-logo"], header .logo {
-      display: none;
-    }
-
-    footer img[src*="freerange-logo"], footer .logo {
-      max-width: 50px;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-
-    /* Call-to-action container with spaced buttons */
-    .cta {
-      margin-top: 0.3em;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem 2rem;
-    }
-
-    /* Button styles: muted green, rounded, prominent */
-    .btn {
-      background-color: #a4b5aa; /* muted green */
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s ease, transform 0.08s ease;
-    }
-
-    .btn:hover,
-    .btn:focus {
-      background-color: #8a9a8a;
-      outline: none;
-      transform: translateY(-1px);
-    }
-
-    /* Simple footer style to match screenshot */
     footer {
       border-top: 1px solid #ddd;
       padding: 20px 0;
       font-size: 0.9rem;
       color: #666;
       text-align: center;
-      background: transparent;
-    }
     }
 
-    /* Support Squad Modal Styles */
+    /* Modal styles for Support Squad contact form */
     .modal {
       display: none;
       position: fixed;
@@ -224,379 +141,139 @@
       top: 0;
       width: 100%;
       height: 100%;
-      max-height: 100vh;
-      /* Allow the overlay to scroll to prevent cutoff of modal actions */
-      overflow-y: auto;
+      overflow: auto;
       background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 2rem 1rem 1rem 1rem;
-      box-sizing: border-box;
     }
 
     .modal-content {
-      background-color: #d0e4f4;
-      padding: 2rem 2rem 3rem 2rem; /* added extra bottom padding */
-      border-radius: 8px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      /* Ensure the modal content can scroll internally if tall */
-      max-height: calc(100vh - 4rem);
-      overflow-y: auto;
-      margin-bottom: 1rem;
-    }
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 2rem 1rem 1rem 1rem;
-      box-sizing: border-box;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-height: calc(100vh - 4rem);
-      overflow-y: auto;
-      margin-bottom: 1rem;
-    }
-      display: flex;
-      align-items: flex-start; /* align content near the top so buttons remain visible */
-      justify-content: center;
-      padding: 2rem 1rem 1rem 1rem; /* extra top padding to offset from the viewport top */
-      box-sizing: border-box;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      box-sizing: border-box;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      padding: 2rem; /* added padding for better visibility of the contact form */
-      border-radius: 8px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .cta a {
-      background-color: #a8bdb0 !important; /* Updated to the green color from Canva */
-      color: white;
-      font-weight: 700;
-      padding: 1em 2em;
-      border-radius: 10px;
-      text-decoration: none;
-      margin: 0.5em;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    /* Footer styling: place logo next to copyright, reduce size */
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      border-top: 1px solid #ddd;
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    footer img {
-      max-width: 50px;
-      height: auto;
-    }
-
-    .cta {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-      align-items: center;
-    }
-
-    .cta-row {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .cta-row:last-child {
-      margin-bottom: 0;
-    }
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .cta a:hover {
-      background-color: #ffbd59 !important; /* Change to Canva color on hover */
-      transform: translateY(-5px); /* Raise effect */
-      box-shadow: 0 8px 15px rgba(255, 189, 89, 0.4); /* Subtle shadow */
-      color: black; /* Optional: change text color for contrast */
-    }
-      gap: 1rem;
-    }
-
-    .cta a {
-      background: #111;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .cta a:hover {
-      background: #333;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.875rem;
-      color: #666;
-    }
-
-    /* Success animation */
-    @keyframes stroke {
-      100% { stroke-dashoffset: 0; }
-    }
-
-    @keyframes scale {
-      0%, 100% { transform: none; }
-      50% { transform: scale3d(1.1, 1.1, 1); }
-    }
-
-    .checkmark-container {
-      animation: scale 0.3s ease-in-out 0.9s both;
-    }
-
-    /* Modal + Form Styling */
-    #supportBox {
-      background: #d5e6f3; /* brand light blue */
-      margin: 5% auto;
-      padding: 30px;
-      border-radius: 12px;
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
       width: 90%;
-      max-width: 450px;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: opacity 0.5s ease;
-      transition: opacity 0.5s ease;
-    }
-
-    /* Heading uses relaxed boho font */
-    #supportBox h2 {
-      margin-bottom: 1rem;
-      width: 100%;
-      font-family: 'Kalam', cursive;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #111;
-      letter-spacing: 0.5px;
-    }
-
-    #supportForm {
-      width: 100%;
-      max-width: 380px;
-      text-align: left;
-    }
-
-    #supportForm input,
-    #supportForm textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      box-sizing: border-box;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    /* Branded orange highlight on focus */
-    #supportForm input:focus,
-    #supportForm textarea:focus {
-      border-color: #f9a54a;
-      box-shadow: 0 0 0 2px rgba(249, 165, 74, 0.2);
-    }
-
-    #supportForm button {
-      background: #111;
-      color: #fff;
-      padding: 12px 25px;
-      border: none;
+      max-width: 400px;
       border-radius: 8px;
-      cursor: pointer;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
       font-weight: bold;
-      width: 100%;
-      transition: background 0.3s;
+      cursor: pointer;
     }
 
-    #supportForm button:hover {
-      background: #333;
-    }
-  </style>
-
-  <style>
-    /* Responsive tweaks */
-    @media (max-width: 480px) {
-      #supportBox { padding: 20px; }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
     }
 
-    @media (min-width: 768px) {
-      header img { max-width: 200px; }
+    .success-message {
+      color: green;
+      margin-top: 10px;
+      font-weight: bold;
+      animation: fadeInOut 3s ease forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
     }
   </style>
 </head>
+<body>
   <header>
-    <img src="assets/freerange-logo.png" alt="The Free Range Dev Logo" />
+    <img src="assets/freerange-logo.svg" alt="The Free Range Dev Logo" />
     <h1>The Free Range Dev</h1>
-    <h2>
-      Breaking Stuff, Building Income, Living Free - Together<br />
-      Dev & Entrepreneur Hacks | Join the squad & build your freedom.
-    </h2>
+    <h2 class="tagline">Portfolio and brand hub for The Free Range Dev project</h2>
 
     <div class="cta">
-      <div class="cta-row" style="justify-content: center;">
-        <a href="https://skool.com/thefreerangedev" target="_blank" rel="noopener noreferrer" class="cta-button">Skool Community</a>
-        <a href="#" id="supportSquadButton" class="cta-button">Support Squad</a>
-      </div>
-    </div>
-        <a href="#" id="supportSquadButton" class="cta-button">Support Squad</a>
-      </div>
+      <a href="https://www.youtube.com/c/TheFreeRangeDev" class="btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://www.tiktok.com/@thefreerangedev" class="btn" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="https://www.instagram.com/thefreerangedev/" class="btn" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://shop.thefreerangedev.com" class="btn" target="_blank" rel="noopener noreferrer">Shop</a>
+      <a href="https://skool.thefreerangedev.com" class="btn" target="_blank" rel="noopener noreferrer">Skool Community</a>
+      <a href="#supportModal" class="btn" id="supportSquadBtn">Support Squad</a>
     </div>
   </header>
 
   <footer>
-    &copy; 2025 The Free Range Dev. All rights reserved.
-    <img src="assets/freerange-logo.svg" alt="Free Range Dev Logo" />
+    © 2023 The Free Range Dev. All rights reserved.
   </footer>
 
-  <!-- Support Squad Modal -->
-  <div id="supportModal" style="
-    display:none;
-    position:fixed;
-    z-index:1000;
-    left:0;top:0;
-    width:100%;height:100%;
-    background-color:rgba(0,0,0,0.6);
-  ">
-    <div id="supportBox">
-      <span onclick="document.getElementById('supportModal').style.display='none'" 
-            style="position:absolute;top:12px;right:18px;cursor:pointer;font-size:22px;font-weight:bold;">
-        &times;
-      </span>
-      <h2>Contact the Support Squad</h2>
-      
-      <form id="supportForm" action="https://formspree.io/f/xdklvjpn" method="POST">
-        <label for="name">Name</label><br>
-        <input type="text" name="name" id="name" required><br>
-        
-        <label for="email">Email</label><br>
-        <input type="email" name="_replyto" id="email" required><br>
-        
-        <label for="message">Message</label><br>
-        <textarea name="message" id="message" rows="5" required></textarea><br>
-        
+  <div id="supportModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">×</span>
+      <h3>Contact Support Squad</h3>
+      <form id="supportForm" action="https://formspree.io/f/xayzvovk" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
         <button type="submit">Send</button>
       </form>
-
-      <!-- Success Message -->
-      <div id="supportSuccess" style="display:none;color:#6ca16e;font-weight:bold;margin-top:1rem;text-align:center;">
-        <div class="checkmark-container" style="display:inline-block;margin-bottom:10px;">
-          <svg class="checkmark" width="60" height="60" viewBox="0 0 52 52" style="border-radius:50%;display:block;stroke-width:2;stroke:#6ca16e;stroke-miterlimit:10;margin:0 auto;">
-            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"
-              style="stroke-dasharray:166; stroke-dashoffset:166; animation: stroke 0.6s cubic-bezier(0.65,0,0.45,1) forwards;" />
-            <path class="checkmark-check" fill="none" d="m14.1,27.2 7.1,7.2 16.7-16.8"
-              style="stroke-dasharray:48; stroke-dashoffset:48; animation: stroke 0.3s cubic-bezier(0.65,0,0.45,1) 0.8s forwards;" />
-          </svg>
-        </div>
-        <p style="margin:0;">Thank you! Your message has been sent.</p>
-      </div>
+      <div id="successMessage" class="success-message" style="display:none;">Thank you for contacting us!</div>
     </div>
   </div>
 
   <script>
-    const form = document.getElementById("supportForm");
-    const successMsg = document.getElementById("supportSuccess");
-    const modal = document.getElementById("supportModal");
-    const box = document.getElementById("supportBox");
+    const supportSquadBtn = document.getElementById('supportSquadBtn');
+    const supportModal = document.getElementById('supportModal');
+    const closeModal = document.getElementById('closeModal');
+    const supportForm = document.getElementById('supportForm');
+    const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      try {
-        await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        form.style.display = "none";
-        successMsg.style.display = "block";
-        setTimeout(() => {
-          box.style.opacity = "0";
-          setTimeout(() => {
-            modal.style.display = "none";
-            box.style.opacity = "1";
-            form.style.display = "block";
-            form.reset();
-            successMsg.style.display = "none";
-          }, 500);
-        }, 3000);
-      } catch (error) {
-        successMsg.innerHTML = '<p style="margin:0;color:red;">❌ Oops! Something went wrong.</p>';
-        successMsg.style.display = "block";
+    supportSquadBtn.addEventListener('click', () => {
+      supportModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+      supportModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === supportModal) {
+        supportModal.style.display = 'none';
       }
     });
 
-    window.onclick = function(e) {
-      if (e.target === modal) {
-        modal.style.display = "none";
+    supportForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(supportForm);
+
+      try {
+        const response = await fetch(supportForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          successMessage.style.display = 'block';
+          supportForm.reset();
+          setTimeout(() => {
+            successMessage.style.display = 'none';
+            supportModal.style.display = 'none';
+          }, 3000);
+        } else {
+          alert('Oops! There was a problem submitting your form.');
+        }
+      } catch (error) {
+        alert('Oops! There was a problem submitting your form.');
       }
-    }
+    });
   </script>
 </body>
 </html>
