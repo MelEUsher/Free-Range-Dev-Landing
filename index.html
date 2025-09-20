@@ -121,6 +121,38 @@
       cursor: pointer;
     }
 
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Visually add the Free Range logo inside the footer below the copyright line
+       without changing the HTML by using a pseudo-element that loads the SVG. */
+    footer::after {
+      content: "";
+      display: block;
+      margin: 10px auto 0;
+      width: 100px;
+      height: 40px;
+      background-image: url('assets/freerange-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    footer img {
+      margin-top: 10px;
+      max-width: 100px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     h2 {
       font-family: 'Kalam', cursive;
       font-size: 1.5rem;
