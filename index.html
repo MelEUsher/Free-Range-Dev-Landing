@@ -208,6 +208,31 @@
     .close:focus {
       color: black;
       text-decoration: none;
+    }
+
+    /* Submit button and success message colors updated to #a8bdb0 scheme */
+    button[type="submit"] {
+      background-color: #a8bdb0; /* Changed to match button color */
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: 130px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #95a89d; /* Darker shade for hover */
+    }
+
+    .success-message {
+      margin-top: 10px;
+      color: #a8bdb0; /* Changed to match button color */
+      font-weight: 600;
+    }
       cursor: pointer;
     }
 
