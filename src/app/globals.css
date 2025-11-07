@@ -32,3 +32,66 @@ body {
   outline: 2px solid #333333;
   outline-offset: 3px;
 }
+
+.checkmark-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.checkmark {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #a8bdb0;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0 0 0 #a8bdb0;
+  animation: support-checkmark-fill 0.4s ease-in-out 0.4s forwards,
+    support-checkmark-scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #a8bdb0;
+  fill: none;
+  animation: support-checkmark-stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1)
+    forwards;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: #a8bdb0;
+  stroke-width: 3;
+  animation: support-checkmark-stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1)
+    0.8s forwards;
+}
+
+@keyframes support-checkmark-stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes support-checkmark-scale {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes support-checkmark-fill {
+  to {
+    box-shadow: inset 0 0 0 30px transparent;
+  }
+}
