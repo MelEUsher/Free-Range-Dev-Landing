@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { CtaGrid } from "@/app/components/CtaGrid";
 
 const Hero = () => {
   return (
@@ -25,6 +26,7 @@ const Hero = () => {
       <p className="font-alans font-semibold sm:font-normal text-[1.1rem] text-[#9c7f6e] mt-[0.2rem] mb-5">
         Dev &amp; Entrepreneur Hacks | Join the squad &amp; build your freedom.
       </p>
+      <CtaGrid />
     </header>
   );
 };
