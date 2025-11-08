@@ -235,7 +235,7 @@ const SupportModal = () => {
     <div
       id="supportModal"
       aria-hidden={!isOpen}
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.4)] backdrop-blur-sm px-4 py-8 md:py-[10%] transition-opacity duration-300 ease-out ${overlayStateClasses}`}
+      className={`fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-[rgba(0,0,0,0.4)] backdrop-blur-sm px-4 sm:px-6 md:px-8 py-6 sm:py-10 md:py-[10%] transition-opacity duration-300 ease-out overflow-y-auto overscroll-contain ${overlayStateClasses}`}
       onPointerDown={(event) => {
         if (event.target === event.currentTarget) {
           closeModal();
@@ -247,14 +247,14 @@ const SupportModal = () => {
         ref={modalRef}
         aria-modal="true"
         aria-labelledby={MODAL_TITLE_ID}
-        className={`w-[90%] max-w-[600px] rounded-[10px] border border-[#888888] bg-[#dce8f2] p-5 sm:p-6 shadow-[0_4px_8px_rgba(0,0,0,0.2)] transition-all duration-300 ease-out my-8 md:my-[10%] ${modalStateClasses}`}
+        className={`w-[90%] max-w-[600px] rounded-[10px] border border-[#888888] bg-[#dce8f2] p-5 sm:p-6 md:p-7 shadow-[0_4px_8px_rgba(0,0,0,0.2)] transition-all duration-300 ease-out my-6 sm:my-8 max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] overflow-y-auto ${modalStateClasses}`}
         role="dialog"
         tabIndex={-1}
       >
-        <div className="flex justify-end">
+        <div className="flex justify-end -mt-2 -mr-2 sm:-mt-3 sm:-mr-3">
           <button
             aria-label="Close Support Squad modal"
-            className="text-[#aaaaaa] hover:text-black focus-visible:text-black"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-3xl text-[#aaaaaa] transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffbd59]"
             onClick={closeModal}
             ref={closeButtonRef}
             type="button"
@@ -385,7 +385,7 @@ const SupportModal = () => {
         {isSuccess && (
           <div
             aria-live="polite"
-            className="mt-4 flex flex-col items-center text-center text-[#a8bdb0]"
+            className="mt-4 flex flex-col items-center text-center text-[#a8bdb0] text-pretty"
           >
             <div className="checkmark-container" role="presentation">
               <svg
