@@ -1,3 +1,9 @@
+# Netlify configuration file for The Free Range Dev
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
