@@ -1,23 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Comfortaa, Inter, Kalam } from "next/font/google";
 import "./globals.css";
+import { comfortaa, inter, kalam } from "./fonts";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const kalam = Kalam({
-  weight: ["300", "400", "700"],
-  subsets: ["latin"],
-  variable: "--font-kalam",
-});
-
-const comfortaa = Comfortaa({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-comfortaa",
-});
+const PRELOAD_FONTS = [
+  "/fonts/Inter-Regular.ttf",
+  "/fonts/Inter-SemiBold.ttf",
+  "/fonts/Inter-Bold.ttf",
+  "/fonts/Kalam-Regular.ttf",
+  "/fonts/Kalam-Bold.ttf",
+  "/fonts/Comfortaa-Regular.ttf",
+  "/fonts/Comfortaa-SemiBold.ttf",
+  "/fonts/Comfortaa-Bold.ttf",
+];
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thefreerangedev.com"),
@@ -59,6 +53,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {PRELOAD_FONTS.map((href) => (
+          <link
+            key={href}
+            rel="preload"
+            as="font"
+            type="font/ttf"
+            href={href}
+            crossOrigin="anonymous"
+          />
+        ))}
+      </head>
       <body
         className={`${inter.variable} ${kalam.variable} ${comfortaa.variable} bg-base-bg text-base-text font-sans antialiased`}
       >
