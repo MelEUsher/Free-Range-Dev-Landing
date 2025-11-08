@@ -5,8 +5,8 @@
       "numberOfRuns": 1,
       "staticDistDir": ".next",
       "settings": {
-        "formFactor": "mobile",
-        "emulatedFormFactor": "mobile"
+        "formFactor": "desktop",
+        "emulatedFormFactor": "desktop"
       }
     },
     "assert": {
@@ -19,7 +19,7 @@
     },
     "upload": {
       "target": "filesystem",
-      "outputDir": ".lighthouseci/mobile"
+      "outputDir": ".lighthouseci/desktop"
     }
   }
 }

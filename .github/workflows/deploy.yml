@@ -65,21 +65,17 @@ jobs:
           npm run start &
           sleep 5
 
-      - name: 🔍 Run Lighthouse CI (mobile)
+      - name: 🔍 Run Lighthouse CI (Mobile)
         uses: treosh/lighthouse-ci-action@v10
         with:
           configPath: .lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
 
-      - name: 🔍 Run Lighthouse CI (desktop)
+      - name: 🔍 Run Lighthouse CI (Desktop)
         uses: treosh/lighthouse-ci-action@v10
-        env:
-          LHCI_COLLECT__SETTINGS__PRESET: desktop
-          LHCI_COLLECT__SETTINGS__EMULATEDFORMFACTOR: desktop
-          LHCI_UPLOAD__OUTPUT_DIR: .lighthouseci/desktop
         with:
-          configPath: .lighthouserc.json
+          configPath: .lighthouserc.desktop.json
           uploadArtifacts: true
           temporaryPublicStorage: true
 
@@ -146,4 +142,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lighthouse-report
-          path: .lighthouseci
+          path: |
+            .lighthouseci/mobile
+            .lighthouseci/desktop
