@@ -9,14 +9,21 @@ const contactSchema = z.object({
   message: z.string().trim().min(1).max(1000),
 });
 
-type ContactPayload = z.infer<typeof contactSchema>;
+type ContactPayload = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 const SECURITY_HEADERS: Record<string, string> = {
   "Content-Security-Policy":
-    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';",
-  "X-Frame-Options": "DENY",
+    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://formspree.io; frame-src https://www.youtube.com https://www.tiktok.com;",
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  "Referrer-Policy": "no-referrer",
+  "X-Frame-Options": "DENY",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy":
+    "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+  "X-Content-Type-Options": "nosniff",
 };
 
 const JSON_SUCCESS = { ok: true };
