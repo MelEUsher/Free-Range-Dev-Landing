@@ -69,14 +69,12 @@ jobs:
         uses: treosh/lighthouse-ci-action@v10
         with:
           configPath: .lighthouserc.json
-          uploadArtifacts: true
           temporaryPublicStorage: true
 
       - name: 🔍 Run Lighthouse CI (Desktop)
         uses: treosh/lighthouse-ci-action@v10
         with:
           configPath: .lighthouserc.desktop.json
-          uploadArtifacts: true
           temporaryPublicStorage: true
 
       - name: ✅ Check Lighthouse thresholds
