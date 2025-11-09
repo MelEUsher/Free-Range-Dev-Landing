@@ -6,7 +6,13 @@
       "staticDistDir": ".next",
       "settings": {
         "formFactor": "desktop",
-        "emulatedFormFactor": "desktop"
+        "screenEmulation": { "mobile": false },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 10240,
+          "cpuSlowdownMultiplier": 1
+        }
       }
     },
     "assert": {

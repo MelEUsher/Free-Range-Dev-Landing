@@ -3,7 +3,17 @@
     "collect": {
       "startServerCommand": "PORT=4000 npm run start",
       "url": ["http://localhost:4000"],
-      "numberOfRuns": 1
+      "numberOfRuns": 1,
+      "settings": {
+        "formFactor": "desktop",
+        "screenEmulation": { "mobile": false },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 10240,
+          "cpuSlowdownMultiplier": 1
+        }
+      }
     },
     "assert": {
       "assertions": {
