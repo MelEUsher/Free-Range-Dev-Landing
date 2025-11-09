@@ -1,90 +1,83 @@
-import { readFile, readdir } from "node:fs/promises";
-import path from "node:path";
+import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
-
-const isErrnoException = (error: unknown): error is NodeJS.ErrnoException => {
-  return (
-    typeof error === "object" &&
-    error !== null &&
-    "code" in error &&
-    typeof (error as Partial<NodeJS.ErrnoException>).code === "string"
-  );
-};
+import type { PostFrontmatter, PostMeta } from "../../types/blog";
 
 const POSTS_DIRECTORY = path.join(process.cwd(), "content", "posts");
-const POST_EXTENSIONS = [".md", ".mdx"];
+const ALLOWED_EXTENSIONS = new Set([".md", ".mdx"]);
 
-export type PostFrontmatter = {
-  title: string;
-  description?: string;
-  excerpt?: string;
-  publishedAt?: string;
-  updatedAt?: string;
-};
-
-export type MarkdownPost = {
-  slug: string;
-  content: string;
-  frontmatter: PostFrontmatter;
-};
-
-export async function getPostSlugs(): Promise<string[]> {
-  try {
-    const dirEntries = await readdir(POSTS_DIRECTORY, { withFileTypes: true });
-
-    return dirEntries
-      .filter(
-        (entry) =>
-          entry.isFile() &&
-          POST_EXTENSIONS.includes(path.extname(entry.name).toLowerCase())
-      )
-      .map((entry) => entry.name.replace(path.extname(entry.name), ""));
-  } catch (error: unknown) {
-    if (isErrnoException(error) && error.code === "ENOENT") {
-      return [];
-    }
-
-    throw error;
-  }
+export function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
-export async function getPostBySlug(
-  slug: string
-): Promise<MarkdownPost | null> {
-  for (const extension of POST_EXTENSIONS) {
-    const filePath = path.join(POSTS_DIRECTORY, `${slug}${extension}`);
+export function toExcerpt(markdownBody: string, max = 160) {
+  const text = markdownBody
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`[^`]*`/g, " ")
+    .replace(/\!\[[^\]]*\]\([^)]*\)/g, " ")
+    .replace(/\[[^\]]*\]\([^)]*\)/g, " ")
+    .replace(/[#>*_~\-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return text.length > max ? text.slice(0, max - 1).trimEnd() + "…" : text;
+}
 
-    try {
-      const file = await readFile(filePath, "utf8");
-      const { content, data } = matter(file);
+function isMarkdownFile(fileName: string) {
+  return ALLOWED_EXTENSIONS.has(path.extname(fileName).toLowerCase());
+}
 
-      if (typeof data.title !== "string" || data.title.trim() === "") {
-        throw new Error(
-          `Post "${slug}" is missing a required 'title' in its frontmatter.`
-        );
-      }
+function isValidFrontmatter(
+  frontmatter: Partial<PostFrontmatter>
+): frontmatter is PostFrontmatter {
+  return Boolean(frontmatter?.title && frontmatter?.date);
+}
 
-      const frontmatter: PostFrontmatter = {
-        title: data.title.trim(),
-        description:
-          typeof data.description === "string" ? data.description.trim() : undefined,
-        excerpt:
-          typeof data.excerpt === "string" ? data.excerpt.trim() : undefined,
-        publishedAt:
-          typeof data.date === "string" ? data.date.trim() : undefined,
-        updatedAt:
-          typeof data.updated === "string" ? data.updated.trim() : undefined,
-      };
-
-      return { slug, content, frontmatter };
-    } catch (error: unknown) {
-      if (isErrnoException(error) && error.code === "ENOENT") {
-        continue;
-      }
-
-      throw error;
-    }
+export function getAllPosts(): PostMeta[] {
+  if (!fs.existsSync(POSTS_DIRECTORY)) {
+    return [];
   }
 
-  return null;
+  const entries = fs.readdirSync(POSTS_DIRECTORY, { withFileTypes: true });
+
+  const posts = entries.reduce<PostMeta[]>((acc, entry) => {
+    if (!entry.isFile() || !isMarkdownFile(entry.name)) {
+      return acc;
+    }
+
+    const fullPath = path.join(POSTS_DIRECTORY, entry.name);
+    const fileContent = fs.readFileSync(fullPath, "utf8");
+    const { data, content } = matter(fileContent);
+    const frontmatter = data as Partial<PostFrontmatter>;
+
+    if (!isValidFrontmatter(frontmatter)) {
+      return acc;
+    }
+
+    const parsedDate = new Date(frontmatter.date);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+      return acc;
+    }
+
+    const dateISO = parsedDate.toISOString();
+
+    acc.push({
+      slug: path.basename(entry.name, path.extname(entry.name)),
+      title: frontmatter.title,
+      dateISO,
+      dateDisplay: formatDate(dateISO),
+      excerpt: toExcerpt(content),
+    });
+
+    return acc;
+  }, []);
+
+  return posts.sort(
+    (a, b) =>
+      new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
+  );
 }
