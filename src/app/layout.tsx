@@ -3,17 +3,6 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { comfortaa, inter, kalam } from "./fonts";
 
-const PRELOAD_FONTS = [
-  "/fonts/Inter-Regular.ttf",
-  "/fonts/Inter-SemiBold.ttf",
-  "/fonts/Inter-Bold.ttf",
-  "/fonts/Kalam-Regular.ttf",
-  "/fonts/Kalam-Bold.ttf",
-  "/fonts/Comfortaa-Regular.ttf",
-  "/fonts/Comfortaa-SemiBold.ttf",
-  "/fonts/Comfortaa-Bold.ttf",
-];
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://thefreerangedev.com"),
   title: "The Free Range Dev",
@@ -47,27 +36,15 @@ export const viewport: Viewport = {
   themeColor: "#f9f8f3",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const nonce = headers().get("x-nonce") ?? undefined;
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
     <html lang="en">
-      <head>
-        {PRELOAD_FONTS.map((href) => (
-          <link
-            key={href}
-            rel="preload"
-            as="font"
-            type="font/ttf"
-            href={href}
-            crossOrigin="anonymous"
-          />
-        ))}
-      </head>
       <body
         data-csp-nonce={nonce ?? undefined}
         className={`${inter.variable} ${kalam.variable} ${comfortaa.variable} bg-base-bg text-base-text font-sans antialiased`}

@@ -1,4 +1,3 @@
-import { randomBytes } from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
 
 type Bucket = {
@@ -20,6 +19,14 @@ const ADDITIONAL_SECURITY_HEADERS: Record<string, string> = {
 
 const CSP_TEMPLATE =
   "default-src 'self'; script-src 'self' 'nonce-${nonce}'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self';";
+
+function generateNonce() {
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join(
+    "",
+  );
+}
 
 function getClientKey(request: NextRequest) {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -106,7 +113,7 @@ function applySecurityHeaders(response: NextResponse, nonce: string) {
 }
 
 export function middleware(request: NextRequest) {
-  const nonce = randomBytes(16).toString("base64");
+  const nonce = generateNonce();
   const rateLimitResponse = rateLimit(request);
   if (rateLimitResponse) {
     return applySecurityHeaders(rateLimitResponse, nonce);
@@ -123,4 +130,3 @@ export function middleware(request: NextRequest) {
 
   return applySecurityHeaders(response, nonce);
 }
-
