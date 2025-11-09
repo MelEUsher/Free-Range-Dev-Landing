@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { randomBytes } from "node:crypto";
+import { NextResponse, type NextRequest } from "next/server";
 
 type Bucket = {
   tokens: number;
@@ -9,6 +9,17 @@ type Bucket = {
 const WINDOW_MS = 5 * 60 * 1000;
 const MAX_REQUESTS = 60;
 const buckets = new Map<string, Bucket>();
+
+const ADDITIONAL_SECURITY_HEADERS: Record<string, string> = {
+  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+};
+
+const CSP_TEMPLATE =
+  "default-src 'self'; script-src 'self' 'nonce-${nonce}'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self';";
 
 function getClientKey(request: NextRequest) {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -48,9 +59,9 @@ function refill(bucket: Bucket, now: number) {
   return bucket;
 }
 
-export function middleware(request: NextRequest) {
+function rateLimit(request: NextRequest) {
   if (!request.nextUrl.pathname.startsWith("/api/")) {
-    return NextResponse.next();
+    return null;
   }
 
   const now = Date.now();
@@ -77,10 +88,39 @@ export function middleware(request: NextRequest) {
 
   bucket.tokens -= 1;
   buckets.set(key, bucket);
-
-  return NextResponse.next();
+  return null;
 }
 
-export const config = {
-  matcher: "/api/:path*",
-};
+function applySecurityHeaders(response: NextResponse, nonce: string) {
+  response.headers.set(
+    "Content-Security-Policy",
+    CSP_TEMPLATE.replace("${nonce}", nonce),
+  );
+  response.headers.set("x-nonce", nonce);
+
+  for (const [key, value] of Object.entries(ADDITIONAL_SECURITY_HEADERS)) {
+    response.headers.set(key, value);
+  }
+
+  return response;
+}
+
+export function middleware(request: NextRequest) {
+  const nonce = randomBytes(16).toString("base64");
+  const rateLimitResponse = rateLimit(request);
+  if (rateLimitResponse) {
+    return applySecurityHeaders(rateLimitResponse, nonce);
+  }
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-nonce", nonce);
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  return applySecurityHeaders(response, nonce);
+}
+
