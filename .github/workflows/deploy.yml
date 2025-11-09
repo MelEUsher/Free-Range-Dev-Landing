@@ -62,7 +62,7 @@ jobs:
 
       - name: 🌍 Start server in background
         run: |
-          npm run start &
+          PORT=4000 npm run start &
           sleep 5
 
       - name: 🔍 Run Lighthouse CI (Mobile)

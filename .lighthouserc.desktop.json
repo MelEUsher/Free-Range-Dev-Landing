@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "url": ["http://127.0.0.1:3000/"],
+      "url": ["http://localhost:4000/"],
       "numberOfRuns": 1,
       "staticDistDir": ".next",
       "settings": {

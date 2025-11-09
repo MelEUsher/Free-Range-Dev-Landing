@@ -1,8 +1,8 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "npm run start",
-      "url": ["http://localhost:3000"],
+      "startServerCommand": "PORT=4000 npm run start",
+      "url": ["http://localhost:4000"],
       "numberOfRuns": 1
     },
     "assert": {
