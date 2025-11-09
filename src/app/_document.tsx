@@ -18,6 +18,7 @@ type DocumentPropsWithNonce = DocumentProps & { nonce: string };
 class AppDocument extends Document<DocumentPropsWithNonce> {
   static async getInitialProps(ctx: DocumentContext) {
     const nonce = generateNonce();
+    const cspNonceValue = "'nonce-" + nonce + "'";
     const response = ctx.res;
     if (response) {
       const originalSetHeader = response.setHeader.bind(response);
@@ -29,7 +30,7 @@ class AppDocument extends Document<DocumentPropsWithNonce> {
           if (typeof value === "string") {
             return originalSetHeader(
               name,
-              value.replaceAll(CSP_NONCE_PLACEHOLDER, `'nonce-${nonce}'`),
+              value.replaceAll(CSP_NONCE_PLACEHOLDER, cspNonceValue),
             );
           }
 
@@ -37,7 +38,7 @@ class AppDocument extends Document<DocumentPropsWithNonce> {
             return originalSetHeader(
               name,
               value.map((entry) =>
-                entry.replaceAll(CSP_NONCE_PLACEHOLDER, `'nonce-${nonce}'`),
+                entry.replaceAll(CSP_NONCE_PLACEHOLDER, cspNonceValue),
               ),
             );
           }

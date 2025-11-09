@@ -32,6 +32,6 @@ export const securityHeaders = [
 export function buildCspWithNonce(nonce) {
   return cspHeaderValue.replaceAll(
     CSP_NONCE_PLACEHOLDER,
-    `'nonce-${nonce}'`,
+    "'nonce-" + nonce + "'",
   );
 }
