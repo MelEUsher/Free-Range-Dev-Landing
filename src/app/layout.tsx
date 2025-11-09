@@ -1,23 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Comfortaa, Inter, Kalam } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const kalam = Kalam({
-  weight: ["300", "400", "700"],
-  subsets: ["latin"],
-  variable: "--font-kalam",
-});
-
-const comfortaa = Comfortaa({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-comfortaa",
-});
+import { comfortaa, inter, kalam } from "./fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thefreerangedev.com"),
@@ -52,14 +36,26 @@ export const viewport: Viewport = {
   themeColor: "#f9f8f3",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+      </head>
       <body
+        data-csp-nonce={nonce ?? undefined}
         className={`${inter.variable} ${kalam.variable} ${comfortaa.variable} bg-base-bg text-base-text font-sans antialiased`}
       >
         {children}

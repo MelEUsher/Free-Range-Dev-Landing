@@ -1,0 +1,150 @@
+name: CI/CD + Lighthouse Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.MD'
+      - '**/*.json'
+      - 'README'
+      - 'README.md'
+      - '**/README'
+      - '**/README.md'
+      - 'public/**'
+      - '**/*.png'
+      - '**/*.PNG'
+      - '**/*.jpg'
+      - '**/*.JPG'
+      - '**/*.jpeg'
+      - '**/*.JPEG'
+      - '**/*.gif'
+      - '**/*.GIF'
+      - '**/*.svg'
+      - '**/*.SVG'
+      - '**/*.webp'
+      - '**/*.WEBP'
+      - '**/*.avif'
+      - '**/*.AVIF'
+      - '**/*.ico'
+      - '**/*.ICO'
+
+jobs:
+  build-and-audit:
+    name: Build + Lighthouse CI
+    runs-on: ubuntu-latest
+
+    # Skip workflow if commit only changes content files
+    if: >
+      !contains(join(github.event.head_commit.message, ' '), '[skip ci]') &&
+      !endsWith(github.ref, '/skip') &&
+      !contains(github.event.head_commit.message, 'docs:') &&
+      !contains(github.event.head_commit.message, 'content:') &&
+      !contains(github.event.head_commit.message, 'readme')
+
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build Next.js app
+        run: npm run build
+
+      - name: 🌍 Start server in background
+        run: |
+          PORT=4000 npm run start &
+          sleep 5
+
+      - name: 🔁 Warm Lighthouse cache
+        run: curl -s -o /dev/null http://localhost:4000/
+
+      - name: 🔍 Run Lighthouse CI (Mobile)
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: .lighthouserc.json
+          temporaryPublicStorage: true
+          args: --collect.settings.preset=desktop
+
+      - name: 🔍 Run Lighthouse CI (Desktop)
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: .lighthouserc.desktop.json
+          temporaryPublicStorage: true
+          args: --collect.settings.preset=desktop
+
+      - name: ✅ Check Lighthouse thresholds
+        run: |
+          echo "Evaluating Lighthouse scores..."
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const reportsDir = '.lighthouseci';
+          if (!fs.existsSync(reportsDir)) {
+            console.error('No Lighthouse reports found.');
+            process.exit(1);
+          }
+          const reportFiles = [];
+          const gather = dir => {
+            for (const entry of fs.readdirSync(dir)) {
+              const fullPath = path.join(dir, entry);
+              const stat = fs.statSync(fullPath);
+              if (stat.isDirectory()) {
+                gather(fullPath);
+              } else if (/lhr-.*\\.json$/i.test(entry)) {
+                reportFiles.push(fullPath);
+              }
+            }
+          };
+          gather(reportsDir);
+          if (!reportFiles.length) {
+            console.error('No Lighthouse JSON reports detected.');
+            process.exit(1);
+          }
+          const tracked = {
+            performance: 'Performance',
+            accessibility: 'Accessibility',
+            'best-practices': 'Best Practices',
+            seo: 'SEO'
+          };
+          const thresholds = new Set(['performance', 'accessibility', 'best-practices']);
+          const failures = [];
+          const desktopMarker = path.join('.lighthouseci', 'desktop');
+          for (const file of reportFiles) {
+            const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const variant = file.includes(desktopMarker) ? 'desktop' : 'mobile';
+            console.log('\\nReport:', file);
+            for (const [key, label] of Object.entries(tracked)) {
+              const category = data.categories?.[key];
+              if (!category) continue;
+              const score = Math.round((category.score || 0) * 100);
+              console.log(\`[\${variant}] \${label}: \${score}\`);
+              if (thresholds.has(key) && score < 90) {
+                failures.push(\`\${variant} \${label}: \${score}\`);
+              }
+            }
+          }
+          if (failures.length) {
+            console.error('❌ Failing scores:', failures.join(', '));
+            process.exit(1);
+          }
+          console.log('✅ All Lighthouse thresholds passed.');
+          "
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: |
+            .lighthouseci/mobile
+            .lighthouseci/desktop

@@ -16,7 +16,7 @@ const Footer = () => {
           width={100}
           height={40}
           className="mt-2.5 w-[60px] sm:w-[100px]"
-          priority
+          loading="lazy"
         />
       </div>
     </footer>

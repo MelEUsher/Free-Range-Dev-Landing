@@ -38,7 +38,7 @@ const CTA_LINKS: CtaLink[] = [
 ];
 
 const buttonBaseClasses =
-  "inline-flex items-center justify-center w-full max-w-[148.5px] min-h-[3rem] px-[1.215rem] py-[1.485rem] text-[1.1rem] font-bold text-white rounded-[8px] bg-[linear-gradient(180deg,_#a8bdb0_0%,_#95a89d_100%)] shadow-[0_6px_16px_rgba(168,189,176,0.12),_inset_0_-1px_0_rgba(0,0,0,0.06)] antialiased outline-none filter transition-[transform,box-shadow,filter] duration-[120ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]";
+  "inline-flex items-center justify-center w-full max-w-[148.5px] min-h-[3rem] px-[1.215rem] py-[1.485rem] text-[1.1rem] font-bold text-[#1f2d3d] rounded-[8px] bg-[linear-gradient(180deg,_#a8bdb0_0%,_#95a89d_100%)] shadow-[0_6px_16px_rgba(168,189,176,0.12),_inset_0_-1px_0_rgba(0,0,0,0.06)] antialiased outline-none filter transition-[transform,box-shadow,filter] duration-[120ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]";
 
 const buttonInteractiveClasses =
   "hover:-translate-y-[2px] hover:shadow-[0_10px_26px_rgba(168,189,176,0.18)] hover:outline-2 hover:outline-[#ffbd59] hover:outline-offset-2 hover:brightness-[0.95] focus-visible:-translate-y-[2px] focus-visible:shadow-[0_10px_26px_rgba(168,189,176,0.18)] focus-visible:outline-2 focus-visible:outline-[#ffbd59] focus-visible:outline-offset-2 focus-visible:brightness-[0.95] active:translate-y-0 active:shadow-[0_6px_16px_rgba(168,189,176,0.12),_inset_0_-1px_0_rgba(0,0,0,0.06)] active:brightness-[0.92]";

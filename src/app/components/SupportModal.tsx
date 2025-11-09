@@ -138,8 +138,7 @@ const SupportModal = () => {
         setIsSuccess(true);
         setSuccessAnimationKey((prev) => prev + 1);
         resetFormState();
-      } catch (error) {
-        console.error("Support form submission failed", error);
+      } catch {
         setSubmissionError("Oops! There was a problem submitting your form.");
       } finally {
         setIsSubmitting(false);
@@ -385,7 +384,7 @@ const SupportModal = () => {
         {isSuccess && (
           <div
             aria-live="polite"
-            className="mt-4 flex flex-col items-center text-center text-[#a8bdb0] text-pretty"
+            className="mt-4 flex flex-col items-center text-center text-[#4f6156] text-pretty"
           >
             <div className="checkmark-container" role="presentation">
               <svg
@@ -408,7 +407,7 @@ const SupportModal = () => {
                 />
               </svg>
             </div>
-            <p className="mb-2 font-semibold text-[#a8bdb0]">
+            <p className="mb-2 font-semibold text-[#4f6156]">
               Thank you for connecting with The Free Range Dev Support Squad.
             </p>
             <p>Expect to hear from us within the next 24 business hours.</p>
