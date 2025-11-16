@@ -5,14 +5,7 @@
       "numberOfRuns": 1,
       "staticDistDir": ".next",
       "settings": {
-        "formFactor": "desktop",
-        "screenEmulation": { "mobile": false },
-        "throttlingMethod": "simulate",
-        "throttling": {
-          "rttMs": 150,
-          "throughputKbps": 10240,
-          "cpuSlowdownMultiplier": 1
-        }
+        "preset": "desktop"
       }
     },
     "assert": {

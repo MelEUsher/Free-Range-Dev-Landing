@@ -11,12 +11,13 @@ const Footer = () => {
           © 2025 The Free Range Dev. All rights reserved.
         </p>
         <Image
-          src="/assets/freerange-logo.svg"
+          src="/assets/freerange-logo.png"
           alt="The Free Range Dev logo"
           width={100}
-          height={40}
+          height={100}
           className="mt-2.5 w-[60px] sm:w-[100px]"
           loading="lazy"
+          sizes="(max-width: 640px) 60px, 100px"
         />
       </div>
     </footer>
