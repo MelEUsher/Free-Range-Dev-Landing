@@ -3,17 +3,17 @@ import localFont from "next/font/local";
 export const inter = localFont({
   src: [
     {
-      path: "../../public/fonts/Inter-Regular.woff2",
+      path: "../fonts/Inter-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Inter-SemiBold.woff2",
+      path: "../fonts/Inter-SemiBold.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Inter-Bold.woff2",
+      path: "../fonts/Inter-Bold.woff2",
       weight: "700",
       style: "normal",
     },
@@ -26,13 +26,8 @@ export const inter = localFont({
 export const kalam = localFont({
   src: [
     {
-      path: "../../public/fonts/Kalam-Regular.woff2",
+      path: "../fonts/Kalam-Regular.woff2",
       weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Kalam-Bold.woff2",
-      weight: "700",
       style: "normal",
     },
   ],
@@ -44,17 +39,12 @@ export const kalam = localFont({
 export const comfortaa = localFont({
   src: [
     {
-      path: "../../public/fonts/Comfortaa-Regular.woff2",
+      path: "../fonts/Comfortaa-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Comfortaa-SemiBold.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Comfortaa-Bold.woff2",
+      path: "../fonts/Comfortaa-Bold.woff2",
       weight: "700",
       style: "normal",
     },
