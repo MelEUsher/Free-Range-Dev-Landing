@@ -4,6 +4,7 @@ import type { MarkdownPost } from "@/lib/posts";
 import { loadPostBySlug, loadPosts } from "@/lib/posts";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { JSX } from "react";
 import type { Components } from "react-markdown";
 import ReactMarkdown from "react-markdown";
 
@@ -15,7 +16,7 @@ type BlogPageParams = {
 };
 
 type BlogPageProps = {
-  params: BlogPageParams;
+  params: Promise<BlogPageParams>;
 };
 
 const mergeClassNames = (base: string, extra?: string) =>
@@ -131,7 +132,10 @@ const markdownComponents: Components = {
       />
     );
   },
-  code: ({ inline, className, children, ...props }) => {
+  code: ({ node, className, children, ...rest }) => {
+    void node;
+    const { inline, ...props } = rest as typeof rest & { inline?: boolean };
+
     if (inline) {
       return (
         <code
@@ -148,7 +152,6 @@ const markdownComponents: Components = {
 
     return (
       <pre
-        {...props}
         className={mergeClassNames(
           "overflow-x-auto rounded-xl bg-[#1f2d3d] px-5 py-4 text-sm text-[#f9f8f3]",
           className
@@ -183,9 +186,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: BlogPageParams;
+  params: Promise<BlogPageParams>;
 }): Promise<Metadata> {
-  const post = await loadPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await loadPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -224,7 +228,8 @@ const deriveDescription = (post: MarkdownPost) => {
 export default async function BlogPostPage({
   params,
 }: BlogPageProps): Promise<JSX.Element> {
-  const post = await loadPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await loadPostBySlug(slug);
 
   if (!post) {
     notFound();
