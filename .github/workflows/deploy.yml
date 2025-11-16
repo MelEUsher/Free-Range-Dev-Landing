@@ -67,8 +67,15 @@ jobs:
 
       - name: Warm Next.js cache
         run: |
-          # hit homepage to generate and cache SSR output
+          # Warm SSR output
           curl -s http://localhost:4000/ > /dev/null
+
+          # Warm static CSS and JS chunks (ignore failures if subpaths differ)
+          curl -s http://localhost:4000/_next/static/css/ > /dev/null || true
+          curl -s http://localhost:4000/_next/static/chunks/ > /dev/null || true
+
+          # Warm public assets (fonts, watermark images, etc.)
+          curl -s http://localhost:4000/assets/ > /dev/null || true
 
       - name: 🔍 Run Lighthouse CI (Mobile)
         uses: treosh/lighthouse-ci-action@v10
