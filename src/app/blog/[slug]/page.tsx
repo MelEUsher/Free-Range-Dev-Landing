@@ -15,7 +15,7 @@ type BlogPageParams = {
 };
 
 type BlogPageProps = {
-  params: Promise<BlogPageParams> | BlogPageParams;
+  params: BlogPageParams;
 };
 
 const mergeClassNames = (base: string, extra?: string) =>
@@ -183,10 +183,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<BlogPageParams> | BlogPageParams;
+  params: BlogPageParams;
 }): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params);
-  const post = await loadPostBySlug(resolvedParams.slug);
+  const post = await loadPostBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -225,8 +224,7 @@ const deriveDescription = (post: MarkdownPost) => {
 export default async function BlogPostPage({
   params,
 }: BlogPageProps): Promise<JSX.Element> {
-  const resolvedParams = await Promise.resolve(params);
-  const post = await loadPostBySlug(resolvedParams.slug);
+  const post = await loadPostBySlug(params.slug);
 
   if (!post) {
     notFound();
