@@ -9,6 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "format": "prettier --check .",
+    "test": "tsx --test tests/contact_test.ts",
     "verify": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.13",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }

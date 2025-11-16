@@ -17,17 +17,18 @@ type ContactPayload = {
 
 const SECURITY_HEADERS: Record<string, string> = {
   "Content-Security-Policy":
-    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://formspree.io; frame-src https://www.youtube.com https://www.tiktok.com;",
+    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; frame-src https://www.youtube.com https://www.tiktok.com;",
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
   "X-Frame-Options": "DENY",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy":
     "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
   "X-Content-Type-Options": "nosniff",
+  "X-XSS-Protection": "1; mode=block",
 };
 
 const JSON_SUCCESS = { ok: true };
-const JSON_INVALID = { ok: false, error: "Invalid input" };
+const JSON_INVALID = { ok: false, error: "Invalid or missing fields" };
 
 const respond = (body: Record<string, unknown>, init?: ResponseInit) => {
   const response = NextResponse.json(body, init);
@@ -62,8 +63,11 @@ export async function POST(request: Request) {
       {
         status: 429,
         headers: {
-          "Retry-After": Math.ceil(
-            Math.max(0, limitResult.reset - Date.now()) / 1000
+          "Retry-After": Math.max(
+            1,
+            Math.ceil(
+              Math.max(0, limitResult.reset - Date.now()) / 1000
+            )
           ).toString(),
         },
       }
@@ -72,7 +76,7 @@ export async function POST(request: Request) {
 
   const payload = await parsePayload(request);
   if (!payload) {
-    return respond(JSON_INVALID, { status: 400 });
+    return respond(JSON_INVALID, { status: 422 });
   }
 
   try {

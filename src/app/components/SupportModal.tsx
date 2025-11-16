@@ -17,7 +17,7 @@ type FormFields = {
 
 type FieldErrors = Partial<FormFields>;
 
-const FORM_ENDPOINT = "https://formspree.io/f/xdklvjpn";
+const CONTACT_ENDPOINT = "/api/contact";
 const FOCUSABLE_ELEMENTS =
   'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -123,23 +123,34 @@ const SupportModal = () => {
       payload.append("message", formFields.message.trim());
 
       try {
-        const response = await fetch(FORM_ENDPOINT, {
+        const response = await fetch(CONTACT_ENDPOINT, {
           method: "POST",
-          headers: {
-            Accept: "application/json",
-          },
           body: payload,
         });
 
         if (!response.ok) {
-          throw new Error("Network response was not ok.");
+          const errorBody: unknown = await response.json().catch(() => null);
+          const errorMessage =
+            errorBody &&
+            typeof errorBody === "object" &&
+            "error" in errorBody &&
+            typeof (errorBody as { error?: unknown }).error === "string"
+              ? ((errorBody as { error: string }).error || "").trim()
+              : "";
+          throw new Error(
+            errorMessage || "There was a problem submitting your form."
+          );
         }
 
         setIsSuccess(true);
         setSuccessAnimationKey((prev) => prev + 1);
         resetFormState();
-      } catch {
-        setSubmissionError("Oops! There was a problem submitting your form.");
+      } catch (error) {
+        if (error instanceof Error && error.message) {
+          setSubmissionError(error.message);
+        } else {
+          setSubmissionError("Oops! There was a problem submitting your form.");
+        }
       } finally {
         setIsSubmitting(false);
       }
@@ -273,8 +284,6 @@ const SupportModal = () => {
           <form
             aria-describedby={submissionError ? "support-form-error" : undefined}
             className="flex flex-col gap-4"
-            action={FORM_ENDPOINT}
-            method="POST"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-1">
