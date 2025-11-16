@@ -1,0 +1,37 @@
+repository:
+  name: Free-Range-Dev-Landing
+  private: false
+  default_branch: main
+
+branches:
+  - name: main
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+      required_status_checks:
+        strict: true
+        contexts:
+          - lint
+          - test
+          - build
+      required_linear_history: true
+      allow_force_pushes: false
+      allow_deletions: false
+      enforce_admins: true
+      restrictions:
+        users:
+          - melissausher
+        teams: []
+        apps: []
+  - pattern: "feature/*"
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+      allow_force_pushes: false
+      allow_deletions: false
+  - pattern: "chore/*"
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+      allow_force_pushes: false
+      allow_deletions: false
