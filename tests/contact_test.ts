@@ -148,7 +148,7 @@ describe("contact API", () => {
   });
 
   it("rejects unsupported methods with 405", async () => {
-    const response = await GET(new Request(API_URL));
+    const response = await GET();
     assert.equal(response.status, 405);
     assert.equal(response.headers.get("Allow"), "POST");
   });
