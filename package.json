@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --check .",
     "test": "tsx --test tests/contact_test.ts",
@@ -20,7 +20,9 @@
     "react-markdown": "^10.1.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@netlify/plugin-nextjs": "^5.14.5",
+    "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -32,6 +34,7 @@
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "tailwindcss": "^4.1.17",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }
