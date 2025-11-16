@@ -73,14 +73,12 @@ jobs:
         with:
           configPath: .lighthouserc.json
           temporaryPublicStorage: true
-          args: --collect.settings.preset=desktop
 
       - name: 🔍 Run Lighthouse CI (Desktop)
         uses: treosh/lighthouse-ci-action@v10
         with:
           configPath: .lighthouserc.desktop.json
           temporaryPublicStorage: true
-          args: --collect.settings.preset=desktop
 
       - name: ✅ Check Lighthouse thresholds
         run: |

@@ -5,14 +5,7 @@
       "url": ["http://localhost:4000"],
       "numberOfRuns": 1,
       "settings": {
-        "formFactor": "desktop",
-        "screenEmulation": { "mobile": false },
-        "throttlingMethod": "simulate",
-        "throttling": {
-          "rttMs": 150,
-          "throughputKbps": 10240,
-          "cpuSlowdownMultiplier": 1
-        }
+        "preset": "mobile"
       }
     },
     "assert": {
