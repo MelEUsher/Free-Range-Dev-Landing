@@ -23,13 +23,13 @@ branches:
           - melissausher
         teams: []
         apps: []
-  - pattern: "feature/*"
+  - pattern: 'feature/*'
     protection:
       required_pull_request_reviews:
         required_approving_review_count: 1
       allow_force_pushes: false
       allow_deletions: false
-  - pattern: "chore/*"
+  - pattern: 'chore/*'
     protection:
       required_pull_request_reviews:
         required_approving_review_count: 1

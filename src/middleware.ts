@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from 'next/server';
 
 type Bucket = {
   tokens: number;
@@ -10,11 +10,11 @@ const MAX_REQUESTS = 60;
 const buckets = new Map<string, Bucket>();
 
 const ADDITIONAL_SECURITY_HEADERS: Record<string, string> = {
-  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
-  "X-Content-Type-Options": "nosniff",
-  "X-Frame-Options": "DENY",
-  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
 };
 
 const CSP_TEMPLATE =
@@ -23,22 +23,20 @@ const CSP_TEMPLATE =
 function generateNonce() {
   const bytes = new Uint8Array(16);
   crypto.getRandomValues(bytes);
-  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join(
-    "",
-  );
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
 function getClientKey(request: NextRequest) {
-  const forwarded = request.headers.get("x-forwarded-for");
+  const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
-    return forwarded.split(",")[0]?.trim() ?? "unknown";
+    return forwarded.split(',')[0]?.trim() ?? 'unknown';
   }
 
   const headerFallbacks = [
-    "x-real-ip",
-    "cf-connecting-ip",
-    "x-client-ip",
-    "fastly-client-ip",
+    'x-real-ip',
+    'cf-connecting-ip',
+    'x-client-ip',
+    'fastly-client-ip',
   ];
 
   for (const header of headerFallbacks) {
@@ -48,7 +46,7 @@ function getClientKey(request: NextRequest) {
     }
   }
 
-  return request.nextUrl.hostname ?? "unknown";
+  return request.nextUrl.hostname ?? 'unknown';
 }
 
 function refill(bucket: Bucket, now: number) {
@@ -67,7 +65,7 @@ function refill(bucket: Bucket, now: number) {
 }
 
 function rateLimit(request: NextRequest) {
-  if (!request.nextUrl.pathname.startsWith("/api/")) {
+  if (!request.nextUrl.pathname.startsWith('/api/')) {
     return null;
   }
 
@@ -79,17 +77,9 @@ function rateLimit(request: NextRequest) {
   );
 
   if (bucket.tokens <= 0) {
-    const retryAfterSeconds = Math.ceil(
-      (bucket.lastRefill + WINDOW_MS - now) / 1000,
-    );
-    const response = NextResponse.json(
-      { error: "Too many requests" },
-      { status: 429 },
-    );
-    response.headers.set(
-      "Retry-After",
-      String(Math.max(retryAfterSeconds, 1)),
-    );
+    const retryAfterSeconds = Math.ceil((bucket.lastRefill + WINDOW_MS - now) / 1000);
+    const response = NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+    response.headers.set('Retry-After', String(Math.max(retryAfterSeconds, 1)));
     return response;
   }
 
@@ -100,10 +90,10 @@ function rateLimit(request: NextRequest) {
 
 function applySecurityHeaders(response: NextResponse, nonce: string) {
   response.headers.set(
-    "Content-Security-Policy",
-    CSP_TEMPLATE.replace("${nonce}", nonce),
+    'Content-Security-Policy',
+    CSP_TEMPLATE.replace('${nonce}', nonce),
   );
-  response.headers.set("x-nonce", nonce);
+  response.headers.set('x-nonce', nonce);
 
   for (const [key, value] of Object.entries(ADDITIONAL_SECURITY_HEADERS)) {
     response.headers.set(key, value);
@@ -120,7 +110,7 @@ export function middleware(request: NextRequest) {
   }
 
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-nonce", nonce);
+  requestHeaders.set('x-nonce', nonce);
 
   const response = NextResponse.next({
     request: {

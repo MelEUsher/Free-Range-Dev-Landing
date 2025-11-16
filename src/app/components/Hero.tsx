@@ -1,4 +1,4 @@
-import { CtaGrid } from "@/app/components/CtaGrid";
+import { CtaGrid } from '@/app/components/CtaGrid';
 
 const Hero = () => {
   return (

@@ -18,7 +18,7 @@ export type RateLimitResult = {
  */
 export const enforceRateLimit = (
   identifier: string,
-  limit = MAX_REQUESTS
+  limit = MAX_REQUESTS,
 ): RateLimitResult => {
   const now = Date.now();
   const existing = VISITS.get(identifier);

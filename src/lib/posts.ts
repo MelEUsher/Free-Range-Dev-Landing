@@ -1,33 +1,33 @@
-import fs from "fs";
-import { promises as fsPromises } from "fs";
-import path from "path";
-import matter from "gray-matter";
-import type { PostFrontmatter, PostMeta } from "../../types/blog";
+import fs from 'fs';
+import { promises as fsPromises } from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import type { PostFrontmatter, PostMeta } from '../../types/blog';
 
-const POSTS_DIRECTORY = path.join(process.cwd(), "content", "posts");
-const ALLOWED_EXTENSIONS = new Set([".md", ".mdx"]);
+const POSTS_DIRECTORY = path.join(process.cwd(), 'content', 'posts');
+const ALLOWED_EXTENSIONS = new Set(['.md', '.mdx']);
 
 export function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   });
 }
 
 export function toExcerpt(markdownBody: string, max = 160) {
   const text = markdownBody
-    .replace(/```[\s\S]*?```/g, " ")
-    .replace(/`[^`]*`/g, " ")
-    .replace(/\!\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/[#>*_~\-]+/g, " ")
-    .replace(/\s+/g, " ")
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`]*`/g, ' ')
+    .replace(/\!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/[#>*_~\-]+/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
-  return text.length > max ? text.slice(0, max - 1).trimEnd() + "…" : text;
+  return text.length > max ? text.slice(0, max - 1).trimEnd() + '…' : text;
 }
 
-const POST_FILE_EXTENSIONS = [".mdx", ".md"];
+const POST_FILE_EXTENSIONS = ['.mdx', '.md'];
 
 export type MarkdownFrontmatter = PostFrontmatter & {
   description?: string;
@@ -47,7 +47,7 @@ function isMarkdownFile(fileName: string) {
 }
 
 function isValidFrontmatter(
-  frontmatter: Partial<PostFrontmatter>
+  frontmatter: Partial<PostFrontmatter>,
 ): frontmatter is PostFrontmatter {
   return Boolean(frontmatter?.title && frontmatter?.date);
 }
@@ -65,7 +65,7 @@ export function getAllPosts(): PostMeta[] {
     }
 
     const fullPath = path.join(POSTS_DIRECTORY, entry.name);
-    const fileContent = fs.readFileSync(fullPath, "utf8");
+    const fileContent = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContent);
     const frontmatter = data as Partial<PostFrontmatter>;
 
@@ -93,13 +93,12 @@ export function getAllPosts(): PostMeta[] {
   }, []);
 
   return posts.sort(
-    (a, b) =>
-      new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
+    (a, b) => new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime(),
   );
 }
 
 function resolvePostPath(slug: string) {
-  const normalized = slug.replace(/\.mdx?$/, "");
+  const normalized = slug.replace(/\.mdx?$/, '');
 
   for (const ext of POST_FILE_EXTENSIONS) {
     const candidate = path.join(POSTS_DIRECTORY, `${normalized}${ext}`);
@@ -128,7 +127,7 @@ export async function loadPosts(): Promise<MarkdownPost[]> {
     }
 
     const fullPath = path.join(POSTS_DIRECTORY, entry.name);
-    const fileContent = await fsPromises.readFile(fullPath, "utf8");
+    const fileContent = await fsPromises.readFile(fullPath, 'utf8');
     const { data, content } = matter(fileContent);
     const frontmatter = data as Partial<MarkdownFrontmatter>;
 
@@ -146,16 +145,14 @@ export async function loadPosts(): Promise<MarkdownPost[]> {
   return posts;
 }
 
-export async function loadPostBySlug(
-  slug: string
-): Promise<MarkdownPost | null> {
+export async function loadPostBySlug(slug: string): Promise<MarkdownPost | null> {
   const fullPath = resolvePostPath(slug);
 
   if (!fullPath) {
     return null;
   }
 
-  const fileContent = await fsPromises.readFile(fullPath, "utf8");
+  const fileContent = await fsPromises.readFile(fullPath, 'utf8');
   const { data, content } = matter(fileContent);
   const frontmatter = data as Partial<MarkdownFrontmatter>;
 
