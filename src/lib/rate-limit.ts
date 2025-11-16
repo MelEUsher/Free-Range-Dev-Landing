@@ -42,3 +42,10 @@ export const enforceRateLimit = (
     reset: existing.expiresAt,
   };
 };
+
+/**
+ * Clears the in-memory buckets. Intended for tests.
+ */
+export const resetRateLimit = () => {
+  VISITS.clear();
+};
