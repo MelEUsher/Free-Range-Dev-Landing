@@ -1,7 +1,7 @@
 import Footer from "@/app/components/Footer";
 import SupportModalRoot from "@/app/components/SupportModalRoot";
 import type { MarkdownPost } from "@/lib/posts";
-import { getPostBySlug, getPostSlugs } from "@/lib/posts";
+import { loadPostBySlug, loadPosts } from "@/lib/posts";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { Components } from "react-markdown";
@@ -176,8 +176,8 @@ const markdownComponents: Components = {
 };
 
 export async function generateStaticParams() {
-  const slugs = await getPostSlugs();
-  return slugs.map((slug) => ({ slug }));
+  const posts = await loadPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -186,7 +186,7 @@ export async function generateMetadata({
   params: Promise<BlogPageParams> | BlogPageParams;
 }): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
-  const post = await getPostBySlug(resolvedParams.slug);
+  const post = await loadPostBySlug(resolvedParams.slug);
 
   if (!post) {
     notFound();
@@ -226,7 +226,7 @@ export default async function BlogPostPage({
   params,
 }: BlogPageProps): Promise<JSX.Element> {
   const resolvedParams = await Promise.resolve(params);
-  const post = await getPostBySlug(resolvedParams.slug);
+  const post = await loadPostBySlug(resolvedParams.slug);
 
   if (!post) {
     notFound();
