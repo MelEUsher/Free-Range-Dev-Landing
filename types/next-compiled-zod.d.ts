@@ -1,4 +1,4 @@
-declare module "next/dist/compiled/zod" {
+declare module 'next/dist/compiled/zod' {
   /**
    * Next bundles a vendored copy of zod that ships without TypeScript
    * declarations. We only need the runtime API, so a minimal shim keeps the

@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 type FormFields = {
   name: string;
@@ -17,22 +10,21 @@ type FormFields = {
 
 type FieldErrors = Partial<FormFields>;
 
-const CONTACT_ENDPOINT = "/api/contact";
+const CONTACT_ENDPOINT = '/api/contact';
 const FOCUSABLE_ELEMENTS =
   'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 const INITIAL_FORM_FIELDS: FormFields = {
-  name: "",
-  email: "",
-  message: "",
+  name: '',
+  email: '',
+  message: '',
 };
 
-const NAME_INPUT_ID = "supportModalName";
-const EMAIL_INPUT_ID = "supportModalEmail";
-const MESSAGE_INPUT_ID = "supportModalMessage";
-const MODAL_TITLE_ID = "supportModalTitle";
-const TRIGGER_SELECTOR =
-  '[data-support-modal-trigger], a[href="#supportModal"]';
+const NAME_INPUT_ID = 'supportModalName';
+const EMAIL_INPUT_ID = 'supportModalEmail';
+const MESSAGE_INPUT_ID = 'supportModalMessage';
+const MODAL_TITLE_ID = 'supportModalTitle';
+const TRIGGER_SELECTOR = '[data-support-modal-trigger], a[href="#supportModal"]';
 
 const validateEmail = (value: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,7 +35,7 @@ const SupportModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [formFields, setFormFields] = useState<FormFields>(INITIAL_FORM_FIELDS);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
-  const [submissionError, setSubmissionError] = useState("");
+  const [submissionError, setSubmissionError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [successAnimationKey, setSuccessAnimationKey] = useState(0);
@@ -65,15 +57,15 @@ const SupportModal = () => {
         delete nextErrors[fieldName];
         return nextErrors;
       });
-      setSubmissionError("");
+      setSubmissionError('');
     },
-    []
+    [],
   );
 
   const resetFormState = useCallback(() => {
     setFormFields(INITIAL_FORM_FIELDS);
     setFieldErrors({});
-    setSubmissionError("");
+    setSubmissionError('');
     setIsSubmitting(false);
   }, []);
 
@@ -84,23 +76,22 @@ const SupportModal = () => {
   }, [resetFormState]);
 
   const openModal = useCallback(() => {
-    previouslyFocusedElement.current =
-      (document.activeElement as HTMLElement) ?? null;
+    previouslyFocusedElement.current = (document.activeElement as HTMLElement) ?? null;
     setIsOpen(true);
   }, []);
 
   const validateForm = useCallback(() => {
     const errors: FieldErrors = {};
     if (!formFields.name.trim()) {
-      errors.name = "Please enter your name.";
+      errors.name = 'Please enter your name.';
     }
     if (!formFields.email.trim()) {
-      errors.email = "Please enter your email.";
+      errors.email = 'Please enter your email.';
     } else if (!validateEmail(formFields.email.trim())) {
-      errors.email = "Please enter a valid email address.";
+      errors.email = 'Please enter a valid email address.';
     }
     if (!formFields.message.trim()) {
-      errors.message = "Please enter your message.";
+      errors.message = 'Please enter your message.';
     }
 
     setFieldErrors(errors);
@@ -115,16 +106,16 @@ const SupportModal = () => {
       }
 
       setIsSubmitting(true);
-      setSubmissionError("");
+      setSubmissionError('');
 
       const payload = new FormData();
-      payload.append("name", formFields.name.trim());
-      payload.append("email", formFields.email.trim());
-      payload.append("message", formFields.message.trim());
+      payload.append('name', formFields.name.trim());
+      payload.append('email', formFields.email.trim());
+      payload.append('message', formFields.message.trim());
 
       try {
         const response = await fetch(CONTACT_ENDPOINT, {
-          method: "POST",
+          method: 'POST',
           body: payload,
         });
 
@@ -132,14 +123,12 @@ const SupportModal = () => {
           const errorBody: unknown = await response.json().catch(() => null);
           const errorMessage =
             errorBody &&
-            typeof errorBody === "object" &&
-            "error" in errorBody &&
-            typeof (errorBody as { error?: unknown }).error === "string"
-              ? ((errorBody as { error: string }).error || "").trim()
-              : "";
-          throw new Error(
-            errorMessage || "There was a problem submitting your form."
-          );
+            typeof errorBody === 'object' &&
+            'error' in errorBody &&
+            typeof (errorBody as { error?: unknown }).error === 'string'
+              ? ((errorBody as { error: string }).error || '').trim()
+              : '';
+          throw new Error(errorMessage || 'There was a problem submitting your form.');
         }
 
         setIsSuccess(true);
@@ -149,13 +138,13 @@ const SupportModal = () => {
         if (error instanceof Error && error.message) {
           setSubmissionError(error.message);
         } else {
-          setSubmissionError("Oops! There was a problem submitting your form.");
+          setSubmissionError('Oops! There was a problem submitting your form.');
         }
       } finally {
         setIsSubmitting(false);
       }
     },
-    [formFields, resetFormState, validateForm]
+    [formFields, resetFormState, validateForm],
   );
 
   useEffect(() => {
@@ -169,18 +158,18 @@ const SupportModal = () => {
     }
 
     const focusableElements = Array.from(
-      modalNode.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENTS)
+      modalNode.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENTS),
     );
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         event.preventDefault();
         closeModal();
       }
 
-      if (event.key === "Tab" && focusableElements.length > 0) {
+      if (event.key === 'Tab' && focusableElements.length > 0) {
         if (event.shiftKey) {
           if (document.activeElement === firstElement) {
             event.preventDefault();
@@ -197,10 +186,10 @@ const SupportModal = () => {
       (closeButtonRef.current ?? firstElement)?.focus();
     });
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
       window.cancelAnimationFrame(focusTimeout);
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [closeModal, isOpen, isSuccess]);
 
@@ -219,27 +208,25 @@ const SupportModal = () => {
       openModal();
     };
 
-    triggers.forEach((trigger) =>
-      trigger.addEventListener("click", handleTriggerClick)
-    );
+    triggers.forEach((trigger) => trigger.addEventListener('click', handleTriggerClick));
 
     return () => {
       triggers.forEach((trigger) =>
-        trigger.removeEventListener("click", handleTriggerClick)
+        trigger.removeEventListener('click', handleTriggerClick),
       );
     };
   }, [openModal]);
 
   const overlayStateClasses = isOpen
-    ? "opacity-100 pointer-events-auto"
-    : "opacity-0 pointer-events-none";
+    ? 'opacity-100 pointer-events-auto'
+    : 'opacity-0 pointer-events-none';
   const modalStateClasses = isOpen
-    ? "opacity-100 translate-y-0"
-    : "opacity-0 translate-y-4";
+    ? 'opacity-100 translate-y-0'
+    : 'opacity-0 translate-y-4';
 
-  const nameErrorId = fieldErrors.name ? "support-name-error" : undefined;
-  const emailErrorId = fieldErrors.email ? "support-email-error" : undefined;
-  const messageErrorId = fieldErrors.message ? "support-message-error" : undefined;
+  const nameErrorId = fieldErrors.name ? 'support-name-error' : undefined;
+  const emailErrorId = fieldErrors.email ? 'support-email-error' : undefined;
+  const messageErrorId = fieldErrors.message ? 'support-message-error' : undefined;
 
   return (
     <div
@@ -282,7 +269,7 @@ const SupportModal = () => {
 
         {!isSuccess && (
           <form
-            aria-describedby={submissionError ? "support-form-error" : undefined}
+            aria-describedby={submissionError ? 'support-form-error' : undefined}
             className="flex flex-col gap-4"
             onSubmit={handleSubmit}
           >
@@ -402,13 +389,7 @@ const SupportModal = () => {
                 viewBox="0 0 52 52"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle
-                  className="checkmark-circle"
-                  cx="26"
-                  cy="26"
-                  r="25"
-                  fill="none"
-                />
+                <circle className="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
                 <path
                   className="checkmark-check"
                   d="m14.1 27.2 7.1 7.2 16.7-16.8"

@@ -1,6 +1,6 @@
-import Footer from "@/app/components/Footer";
-import Hero from "@/app/components/Hero";
-import SupportModalRoot from "@/app/components/SupportModalRoot";
+import Footer from '@/app/components/Footer';
+import Hero from '@/app/components/Hero';
+import SupportModalRoot from '@/app/components/SupportModalRoot';
 
 export default function Home() {
   return (

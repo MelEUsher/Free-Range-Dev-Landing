@@ -49,7 +49,6 @@ window.addEventListener('click', (event) => {
   }
 });
 
-
 // Handle form submission
 if (supportForm) {
   supportForm.addEventListener('submit', async (event) => {
@@ -63,8 +62,8 @@ if (supportForm) {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json'
-        }
+          Accept: 'application/json',
+        },
       });
 
       if (response.ok) {
@@ -92,7 +91,6 @@ if (supportForm) {
 } else {
   console.error('Support form element not found!');
 }
-  
 
 // Handle form submission
 supportForm.addEventListener('submit', async (event) => {
@@ -105,8 +103,8 @@ supportForm.addEventListener('submit', async (event) => {
       method: 'POST',
       body: formData,
       headers: {
-        'Accept': 'application/json'
-      }
+        Accept: 'application/json',
+      },
     });
 
     if (response.ok) {

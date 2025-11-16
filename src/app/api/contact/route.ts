@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { z } from "next/dist/compiled/zod";
+import { NextResponse } from 'next/server';
+import { z } from 'next/dist/compiled/zod';
 
-import { enforceRateLimit } from "@/lib/rate-limit";
+import { enforceRateLimit } from '@/lib/rate-limit';
 
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -16,19 +16,18 @@ type ContactPayload = {
 };
 
 const SECURITY_HEADERS: Record<string, string> = {
-  "Content-Security-Policy":
+  'Content-Security-Policy':
     "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; frame-src https://www.youtube.com https://www.tiktok.com;",
-  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  "X-Frame-Options": "DENY",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Permissions-Policy":
-    "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
-  "X-Content-Type-Options": "nosniff",
-  "X-XSS-Protection": "1; mode=block",
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+  'X-Content-Type-Options': 'nosniff',
+  'X-XSS-Protection': '1; mode=block',
 };
 
 const JSON_SUCCESS = { ok: true };
-const JSON_INVALID = { ok: false, error: "Invalid or missing fields" };
+const JSON_INVALID = { ok: false, error: 'Invalid or missing fields' };
 
 const respond = (body: Record<string, unknown>, init?: ResponseInit) => {
   const response = NextResponse.json(body, init);
@@ -40,8 +39,8 @@ const respond = (body: Record<string, unknown>, init?: ResponseInit) => {
 
 const methodNotAllowed = () =>
   respond(
-    { ok: false, error: "Method not allowed" },
-    { status: 405, headers: { Allow: "POST" } }
+    { ok: false, error: 'Method not allowed' },
+    { status: 405, headers: { Allow: 'POST' } },
   );
 
 export const GET = methodNotAllowed;
@@ -51,7 +50,7 @@ export const PATCH = methodNotAllowed;
 export const DELETE = methodNotAllowed;
 export const OPTIONS = methodNotAllowed;
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   const clientIp = extractClientIp(request);
@@ -59,18 +58,16 @@ export async function POST(request: Request) {
 
   if (!limitResult.success) {
     return respond(
-      { ok: false, error: "Too many requests" },
+      { ok: false, error: 'Too many requests' },
       {
         status: 429,
         headers: {
-          "Retry-After": Math.max(
+          'Retry-After': Math.max(
             1,
-            Math.ceil(
-              Math.max(0, limitResult.reset - Date.now()) / 1000
-            )
+            Math.ceil(Math.max(0, limitResult.reset - Date.now()) / 1000),
           ).toString(),
         },
-      }
+      },
     );
   }
 
@@ -82,10 +79,10 @@ export async function POST(request: Request) {
   try {
     await deliverMessage(payload);
   } catch (error) {
-    console.error("Failed to deliver support message", error);
+    console.error('Failed to deliver support message', error);
     return respond(
-      { ok: false, error: "Unable to send message right now" },
-      { status: 500 }
+      { ok: false, error: 'Unable to send message right now' },
+      { status: 500 },
     );
   }
 
@@ -93,25 +90,23 @@ export async function POST(request: Request) {
 }
 
 const extractClientIp = (request: Request) => {
-  const forwardedFor = request.headers.get("x-forwarded-for");
+  const forwardedFor = request.headers.get('x-forwarded-for');
   if (forwardedFor) {
-    return forwardedFor.split(",")[0]?.trim() || "unknown";
+    return forwardedFor.split(',')[0]?.trim() || 'unknown';
   }
-  const realIp = request.headers.get("x-real-ip");
-  return realIp ?? "unknown";
+  const realIp = request.headers.get('x-real-ip');
+  return realIp ?? 'unknown';
 };
 
-const parsePayload = async (
-  request: Request
-): Promise<ContactPayload | null> => {
-  const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
+const parsePayload = async (request: Request): Promise<ContactPayload | null> => {
+  const contentType = request.headers.get('content-type')?.toLowerCase() ?? '';
 
   let raw: Record<string, unknown> | null = null;
-  if (contentType.includes("application/json") || !contentType) {
+  if (contentType.includes('application/json') || !contentType) {
     raw = await parseJsonBody(request);
   } else if (
-    contentType.includes("multipart/form-data") ||
-    contentType.includes("application/x-www-form-urlencoded")
+    contentType.includes('multipart/form-data') ||
+    contentType.includes('application/x-www-form-urlencoded')
   ) {
     raw = await parseFormBody(request);
   }
@@ -127,7 +122,7 @@ const parsePayload = async (
 const parseJsonBody = async (request: Request) => {
   try {
     const data = await request.json();
-    if (typeof data !== "object" || data === null) {
+    if (typeof data !== 'object' || data === null) {
       return null;
     }
     return data as Record<string, unknown>;
@@ -141,19 +136,19 @@ const parseFormBody = async (request: Request) => {
     const formData = await request.formData();
     const getValue = (key: string) => {
       const value = formData.get(key);
-      if (typeof value === "string") {
+      if (typeof value === 'string') {
         return value;
       }
       if (value instanceof File) {
         return value.name;
       }
-      return "";
+      return '';
     };
 
     return {
-      name: getValue("name"),
-      email: getValue("email"),
-      message: getValue("message"),
+      name: getValue('name'),
+      email: getValue('email'),
+      message: getValue('message'),
     };
   } catch {
     return null;
@@ -172,7 +167,7 @@ const deliverMessage = async (payload: ContactPayload) => {
     return;
   }
 
-  console.log("[contact-form] stub delivery", {
+  console.log('[contact-form] stub delivery', {
     supportEmail,
     payload,
   });
@@ -181,20 +176,20 @@ const deliverMessage = async (payload: ContactPayload) => {
 const sendWithResend = async (
   payload: ContactPayload,
   apiKey: string,
-  supportEmail: string
+  supportEmail: string,
 ) => {
   const textBody = [
     `Name: ${payload.name}`,
     `Email: ${payload.email}`,
-    "",
+    '',
     payload.message,
-  ].join("\n");
+  ].join('\n');
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       from: `Free Range Dev <${supportEmail}>`,
@@ -208,9 +203,7 @@ const sendWithResend = async (
   if (!response.ok) {
     const errorText = await response.text();
     throw new Error(
-      `Resend delivery failed: ${
-        errorText || `status ${response.status}`
-      }`
+      `Resend delivery failed: ${errorText || `status ${response.status}`}`,
     );
   }
 };
