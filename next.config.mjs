@@ -1,3 +1,7 @@
+/**
+ * @type {import('next').NextConfig}
+ */
+
 const securityHeaders = [
   {
     key: "Strict-Transport-Security",
@@ -10,7 +14,14 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  // Disable Turbopack (fixes Tailwind/PostCSS/LightningCSS issues)
+  experimental: {
+    turbo: false,
+  },
+
   compress: true,
+
+  // Keep your existing security headers
   async headers() {
     return [
       {
