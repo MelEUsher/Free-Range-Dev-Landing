@@ -9,29 +9,23 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "format": "prettier --check .",
-    "test": "tsx --test tests/contact_test.ts",
     "verify": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3",
-    "next": "16.0.3",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-markdown": "^10.1.0"
+    "next": "15.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.14.5",
     "@tailwindcss/postcss": "^4.1.17",
-    "@types/node": "^24",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "15.5.6",
-    "eslint-module-utils": "^2.12.1",
-    "pnpm": "^10.22.0",
-    "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
+    "@types/node": "^22",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.0",
+    "postcss": "^8",
+    "prettier": "^3",
     "tailwindcss": "^4.1.17",
     "typescript": "^5"
   }

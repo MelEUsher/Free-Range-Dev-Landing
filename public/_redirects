@@ -1,2 +1,0 @@
-# Redirect dev to com
-https://thefreerangedev.dev/* https://thefreerangedev.com/:splat 301!
