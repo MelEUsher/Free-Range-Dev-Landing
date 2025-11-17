@@ -1,3 +1,2 @@
+# Domain redirect only - Next.js handles app routing
 https://thefreerangedev.dev/* https://thefreerangedev.com/:splat 301!
-
-/* /index.html 200
