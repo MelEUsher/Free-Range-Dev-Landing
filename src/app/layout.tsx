@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 import { comfortaa, inter, kalam } from "./fonts";
 
@@ -36,17 +35,14 @@ export const viewport: Viewport = {
   themeColor: "#f9f8f3",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const nonce = (await headers()).get("x-nonce") ?? undefined;
-
   return (
     <html lang="en">
       <body
-        data-csp-nonce={nonce ?? undefined}
         className={`${inter.variable} ${kalam.variable} ${comfortaa.variable} bg-base-bg text-base-text font-sans antialiased`}
       >
         {children}

@@ -8,7 +8,7 @@ export default function Home() {
       <main
         id="main"
         aria-label="Main content"
-        className="min-h-screen bg-[#f9f8f3] pb-24 sm:pb-28 lg:pb-36"
+        className="min-h-screen bg-[#f9f8f3] pb-24 sm:pb-28 lg:pb-36 brand-bg-mobile sm:brand-bg-desktop"
       >
         <Hero />
       </main>

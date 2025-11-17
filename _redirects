@@ -1,3 +1,3 @@
+# Domain redirect - force .dev to .com
 https://thefreerangedev.dev/* https://thefreerangedev.com/:splat 301!
-
-/* /index.html 200
+http://thefreerangedev.dev/* https://thefreerangedev.com/:splat 301!
