@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --check .",
-    "test": "tsx --test tests/contact_test.ts",
+    "test": "node --test --import tsx tests/contact_test.ts",
     "verify": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
