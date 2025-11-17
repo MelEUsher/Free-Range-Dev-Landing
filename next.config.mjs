@@ -40,21 +40,9 @@ const nextConfig = {
     ];
   },
 
-  // Handle domain redirects
+  // Domain redirects handled in _redirects file for Netlify
   async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'thefreerangedev.dev',
-          },
-        ],
-        destination: 'https://thefreerangedev.com/:path*',
-        permanent: true,
-      },
-    ];
+    return [];
   },
 };
 

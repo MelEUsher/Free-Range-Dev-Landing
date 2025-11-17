@@ -1,2 +1,3 @@
-# Domain redirect only - Next.js handles app routing
+# Domain redirect - force .dev to .com
 https://thefreerangedev.dev/* https://thefreerangedev.com/:splat 301!
+http://thefreerangedev.dev/* https://thefreerangedev.com/:splat 301!
