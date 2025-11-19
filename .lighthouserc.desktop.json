@@ -3,7 +3,6 @@
     "collect": {
       "url": ["http://localhost:4000/"],
       "numberOfRuns": 1,
-      "staticDistDir": ".next",
       "settings": {
         "preset": "desktop"
       }
