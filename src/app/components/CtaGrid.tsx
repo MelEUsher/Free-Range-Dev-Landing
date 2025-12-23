@@ -21,9 +21,9 @@ const CTA_LINKS: CtaLink[] = [
     label: "Instagram",
   },
   {
-    ariaLabel: "Shop The Free Range Dev store",
+    ariaLabel: "Explore Tools + Gear at The Free Range Dev store",
     href: "https://www.thefreerangedev.store/",
-    label: "Shop",
+    label: "Explore Tools + Gear",
   },
   {
     ariaLabel: "Visit The Free Range Dev Skool Community",
