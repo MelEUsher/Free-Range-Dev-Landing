@@ -38,6 +38,8 @@ body {
   position: relative;
 }
 
+/* WATERMARK DISABLED: To re-enable, remove the comment block around the ::before rules. */
+/*
 .brand-bg-desktop::before {
   content: '';
   position: fixed;
@@ -71,6 +73,7 @@ body {
   pointer-events: none;
   z-index: 0;
 }
+*/
 
 /* Ensure content appears above watermark */
 .brand-bg-desktop > *,
