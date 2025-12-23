@@ -41,7 +41,7 @@ body {
 .brand-bg-desktop::before {
   content: '';
   position: fixed;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70%;
@@ -50,7 +50,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  opacity: 0.12;
+  opacity: 1.0;
   pointer-events: none;
   z-index: 0;
 }
@@ -58,7 +58,7 @@ body {
 .brand-bg-mobile::before {
   content: '';
   position: fixed;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -67,7 +67,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  opacity: 0.12;
+  opacity: 1.0;
   pointer-events: none;
   z-index: 0;
 }
