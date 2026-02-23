@@ -27,7 +27,7 @@ const CTA_LINKS: CtaLink[] = [
   },
   {
     ariaLabel: "Visit The Free Range Dev Skool Community",
-    href: "https://www.skool.com/the-free-range-dev",
+    href: "https://www.skool.com/the-free-range-dev-4419",
     label: "Skool Community",
   },
   {
