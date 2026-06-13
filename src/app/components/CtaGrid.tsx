@@ -26,11 +26,6 @@ const CTA_LINKS: CtaLink[] = [
     label: "Explore Tools + Gear",
   },
   {
-    ariaLabel: "Visit The Free Range Dev Skool Community",
-    href: "https://www.skool.com/the-free-range-dev-4419",
-    label: "Skool Community",
-  },
-  {
     ariaLabel: "Open The Free Range Dev Support Squad modal",
     href: "#supportModal",
     label: "Support Squad",
