@@ -4,7 +4,7 @@ import { beforeEach, describe, it } from "node:test";
 import { NextRequest } from "next/server";
 
 import { resetRateLimit } from "../src/lib/rate-limit";
-import { middleware } from "../src/middleware";
+import { proxy } from "../src/proxy";
 
 const API_URL = "http://localhost/api/contact";
 
@@ -20,7 +20,7 @@ describe("global API rate limit middleware", () => {
     const headers = { "x-forwarded-for": "198.51.100.10" };
 
     for (let attempt = 0; attempt < 60; attempt += 1) {
-      const response = middleware(makeRequest(headers));
+      const response = proxy(makeRequest(headers));
       assert.equal(
         response.headers.get("x-middleware-next"),
         "1",
@@ -33,10 +33,10 @@ describe("global API rate limit middleware", () => {
     const headers = { "x-forwarded-for": "198.51.100.11" };
 
     for (let attempt = 0; attempt < 60; attempt += 1) {
-      middleware(makeRequest(headers));
+      proxy(makeRequest(headers));
     }
 
-    const blocked = middleware(makeRequest(headers));
+    const blocked = proxy(makeRequest(headers));
 
     assert.equal(blocked.status, 429);
     assert.equal(blocked.headers.has("Retry-After"), true);
@@ -47,13 +47,13 @@ describe("global API rate limit middleware", () => {
     const headersB = { "x-forwarded-for": "198.51.100.13" };
 
     for (let attempt = 0; attempt < 60; attempt += 1) {
-      middleware(makeRequest(headersA));
+      proxy(makeRequest(headersA));
     }
 
-    const blockedA = middleware(makeRequest(headersA));
+    const blockedA = proxy(makeRequest(headersA));
     assert.equal(blockedA.status, 429);
 
-    const allowedB = middleware(makeRequest(headersB));
+    const allowedB = proxy(makeRequest(headersB));
     assert.equal(allowedB.headers.get("x-middleware-next"), "1");
   });
 });

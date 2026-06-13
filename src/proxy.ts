@@ -28,7 +28,7 @@ function getClientKey(request: NextRequest) {
   return request.nextUrl.hostname || "unknown";
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const key = `global:${getClientKey(request)}`;
   const result = enforceRateLimit(key, GLOBAL_MAX_REQUESTS, GLOBAL_WINDOW_MS);
 
