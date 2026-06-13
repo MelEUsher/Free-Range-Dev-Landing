@@ -245,7 +245,7 @@ const SupportModal = () => {
     <div
       id="supportModal"
       aria-hidden={!isOpen}
-      className={`fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-[rgba(0,0,0,0.4)] backdrop-blur-sm px-4 sm:px-6 md:px-8 py-6 sm:py-10 md:py-[10%] transition-opacity duration-300 ease-out overflow-y-auto overscroll-contain ${overlayStateClasses}`}
+      className={`fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-[rgba(0,0,0,0.4)] backdrop-blur-xs px-4 sm:px-6 md:px-8 py-6 sm:py-10 md:py-[10%] transition-opacity duration-300 ease-out overflow-y-auto overscroll-contain ${overlayStateClasses}`}
       onPointerDown={(event) => {
         if (event.target === event.currentTarget) {
           closeModal();
@@ -264,7 +264,7 @@ const SupportModal = () => {
         <div className="flex justify-end -mt-2 -mr-2 sm:-mt-3 sm:-mr-3">
           <button
             aria-label="Close Support Squad modal"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-3xl text-[#aaaaaa] transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffbd59]"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-3xl text-[#aaaaaa] transition-colors hover:text-black focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffbd59]"
             onClick={closeModal}
             ref={closeButtonRef}
             type="button"
@@ -297,7 +297,7 @@ const SupportModal = () => {
                 aria-describedby={nameErrorId}
                 aria-invalid={Boolean(fieldErrors.name)}
                 autoComplete="name"
-                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-none focus:ring-2 focus:ring-[#95a89d]"
+                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
                 id={NAME_INPUT_ID}
                 maxLength={120}
                 name="name"
@@ -325,7 +325,7 @@ const SupportModal = () => {
                 aria-describedby={emailErrorId}
                 aria-invalid={Boolean(fieldErrors.email)}
                 autoComplete="email"
-                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-none focus:ring-2 focus:ring-[#95a89d]"
+                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
                 id={EMAIL_INPUT_ID}
                 maxLength={254}
                 name="email"
@@ -352,7 +352,7 @@ const SupportModal = () => {
               <textarea
                 aria-describedby={messageErrorId}
                 aria-invalid={Boolean(fieldErrors.message)}
-                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-none focus:ring-2 focus:ring-[#95a89d]"
+                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
                 id={MESSAGE_INPUT_ID}
                 maxLength={1500}
                 name="message"
@@ -371,7 +371,7 @@ const SupportModal = () => {
 
             <button
               aria-busy={isSubmitting}
-              className="w-full rounded-md border border-transparent bg-[#a8bdb0] px-5 py-3 text-base font-bold uppercase tracking-wide text-[#333333] transition-colors duration-200 hover:bg-[#95a89d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffbd59] disabled:cursor-not-allowed disabled:opacity-70"
+              className="w-full rounded-md border border-transparent bg-[#a8bdb0] px-5 py-3 text-base font-bold uppercase tracking-wide text-base-text transition-colors duration-200 hover:bg-[#95a89d] focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffbd59] disabled:cursor-not-allowed disabled:opacity-70"
               disabled={isSubmitting}
               type="submit"
             >

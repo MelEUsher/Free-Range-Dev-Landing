@@ -29,7 +29,7 @@ const markdownComponents: Components = {
       <h1
         {...props}
         className={mergeClassNames(
-          "font-hand text-[2.5rem] sm:text-[3rem] leading-[1.1] text-[#333333] text-balance",
+          "font-hand text-[2.5rem] sm:text-[3rem] leading-[1.1] text-base-text text-balance",
           className
         )}
       />
@@ -65,7 +65,7 @@ const markdownComponents: Components = {
       <p
         {...props}
         className={mergeClassNames(
-          "font-sans text-base sm:text-lg leading-relaxed text-[#333333] text-pretty",
+          "font-sans text-base sm:text-lg leading-relaxed text-base-text text-pretty",
           className
         )}
       />
@@ -81,7 +81,7 @@ const markdownComponents: Components = {
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
         className={mergeClassNames(
-          "font-semibold text-[#58786a] underline decoration-[#a8bdb0] underline-offset-4 transition duration-150 ease-out hover:text-[#1f2d3d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#ffbd59] focus-visible:outline-offset-2",
+          "font-semibold text-[#58786a] underline decoration-[#a8bdb0] underline-offset-4 transition duration-150 ease-out hover:text-[#1f2d3d] focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-[#ffbd59] focus-visible:outline-offset-2",
           className
         )}
       />
@@ -93,7 +93,7 @@ const markdownComponents: Components = {
       <ul
         {...props}
         className={mergeClassNames(
-          "ml-6 list-disc space-y-2 text-pretty text-[#333333]",
+          "ml-6 list-disc space-y-2 text-pretty text-base-text",
           className
         )}
       />
@@ -105,7 +105,7 @@ const markdownComponents: Components = {
       <ol
         {...props}
         className={mergeClassNames(
-          "ml-6 list-decimal space-y-2 text-pretty text-[#333333]",
+          "ml-6 list-decimal space-y-2 text-pretty text-base-text",
           className
         )}
       />
@@ -153,7 +153,7 @@ const markdownComponents: Components = {
     return (
       <pre
         className={mergeClassNames(
-          "overflow-x-auto rounded-xl bg-[#1f2d3d] px-5 py-4 text-sm text-[#f9f8f3]",
+          "overflow-x-auto rounded-xl bg-[#1f2d3d] px-5 py-4 text-sm text-base-bg",
           className
         )}
       >
@@ -242,26 +242,26 @@ export default async function BlogPostPage({
       <main
         id="main"
         aria-label="Blog post content"
-        className="relative min-h-screen bg-[#f9f8f3] pb-24 sm:pb-28 lg:pb-36"
+        className="relative min-h-screen bg-base-bg pb-24 sm:pb-28 lg:pb-36"
       >
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10"
         >
-          <div className="absolute inset-0 bg-[#f9f8f3]" />
+          <div className="absolute inset-0 bg-base-bg" />
           <div
             className="brand-bg-desktop absolute inset-0 hidden opacity-85 sm:block"
           />
           <div
-            className="brand-bg-mobile absolute inset-0 bg-[#f9f8f3]/90 sm:hidden"
+            className="brand-bg-mobile absolute inset-0 bg-base-bg/90 sm:hidden"
           />
         </div>
 
-        <section className="mx-auto flex w-full max-w-[760px] flex-col items-center px-5 pt-12 pb-7 text-center text-[#333333]">
+        <section className="mx-auto flex w-full max-w-[760px] flex-col items-center px-5 pt-12 pb-7 text-center text-base-text">
           <p className="font-display text-[1.1rem] uppercase tracking-[0.2em] text-[#a8bdb0] text-balance">
             The Free Range Dev
           </p>
-          <h1 className="mt-3 font-hand text-[3rem] leading-[1.1] text-[#333333] text-balance sm:text-[3.5rem]">
+          <h1 className="mt-3 font-hand text-[3rem] leading-[1.1] text-base-text text-balance sm:text-[3.5rem]">
             {post.frontmatter.title}
           </h1>
           {description && (
@@ -300,7 +300,7 @@ export default async function BlogPostPage({
           aria-label="Markdown post body"
           className="mx-auto mt-4 w-full max-w-[760px] px-5"
         >
-          <div className="rounded-[32px] border border-[#d7d1c4] bg-white/85 px-6 py-8 text-left shadow-[0_25px_85px_rgba(79,67,55,0.08)] backdrop-blur-sm sm:px-10 sm:py-12">
+          <div className="rounded-[32px] border border-[#d7d1c4] bg-white/85 px-6 py-8 text-left shadow-[0_25px_85px_rgba(79,67,55,0.08)] backdrop-blur-xs sm:px-10 sm:py-12">
             <ReactMarkdown components={markdownComponents}>
               {post.content}
             </ReactMarkdown>
