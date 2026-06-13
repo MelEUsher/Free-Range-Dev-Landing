@@ -74,7 +74,6 @@ export default function Home() {
             className="home-nav-check"
             id="home-nav-toggle"
             type="checkbox"
-            aria-hidden="true"
           />
           <label
             className="home-nav-toggle"
@@ -230,7 +229,7 @@ export default function Home() {
               </p>
             </div>
             <div className="home-foot-col">
-              <h4>Explore</h4>
+              <h3>Explore</h3>
               <a href="/studio">Free Range Studio</a>
               <a
                 href="https://www.thefreerangedev.store/"
@@ -242,7 +241,7 @@ export default function Home() {
               <a href="#building">What I&apos;m Building</a>
             </div>
             <div className="home-foot-col">
-              <h4>Connect</h4>
+              <h3>Connect</h3>
               <a
                 href="https://www.youtube.com/@TheFreeRangeDev"
                 rel="noopener noreferrer"
@@ -272,7 +271,7 @@ export default function Home() {
               </a>
             </div>
             <div className="home-foot-col">
-              <h4>Support</h4>
+              <h3>Support</h3>
               <a href="mailto:squad@thefreerangedev.dev">Support Squad</a>
               <a href="mailto:squad@thefreerangedev.dev">Say hello</a>
             </div>
