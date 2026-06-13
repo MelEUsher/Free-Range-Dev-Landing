@@ -11,7 +11,7 @@ const Footer = () => {
           © 2025 The Free Range Dev. All rights reserved.
         </p>
         <Image
-          src="/assets/freerange-logo.png"
+          src="/assets/free-range-dev-logo-no-background.png"
           alt="The Free Range Dev logo"
           width={100}
           height={100}

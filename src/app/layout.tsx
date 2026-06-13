@@ -1,6 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { comfortaa, inter, kalam } from "./fonts";
+import {
+  comfortaa,
+  cormorantGaramond,
+  inter,
+  jost,
+  kalam,
+} from "./fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thefreerangedev.com"),
@@ -13,7 +19,7 @@ export const metadata: Metadata = {
     siteName: "The Free Range Dev",
     images: [
       {
-        url: "https://thefreerangedev.com/assets/freerange-logo.png",
+        url: "/assets/free-range-dev-logo-no-background.png",
         width: 1200,
         height: 630,
         alt: "The Free Range Dev logomark",
@@ -24,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Free Range Dev",
     description: "Portfolio and brand hub for The Free Range Dev project",
-    images: ["https://thefreerangedev.com/assets/freerange-logo.png"],
+    images: ["/assets/free-range-dev-logo-no-background.png"],
   },
 };
 
@@ -43,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${kalam.variable} ${comfortaa.variable} bg-base-bg text-base-text font-sans antialiased`}
+        className={`${inter.variable} ${kalam.variable} ${comfortaa.variable} ${cormorantGaramond.variable} ${jost.variable} bg-base-bg text-base-text font-sans antialiased`}
       >
         {children}
       </body>

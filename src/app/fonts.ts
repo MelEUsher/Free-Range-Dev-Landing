@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 
 export const inter = localFont({
   src: [
@@ -52,4 +53,19 @@ export const comfortaa = localFont({
   variable: "--font-comfortaa",
   display: "swap",
   preload: true,
+});
+
+export const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant-garamond",
+  display: "swap",
+});
+
+export const jost = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-jost",
+  display: "swap",
 });
