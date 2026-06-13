@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer
       aria-label="Site footer"
-      className="fixed inset-x-0 bottom-0 z-[1000] w-full border-t border-[#dddddd] bg-[#f9f8f3]"
+      className="fixed inset-x-0 bottom-0 z-1000 w-full border-t border-[#dddddd] bg-base-bg"
     >
       <div className="mx-auto flex flex-col items-center justify-center px-6 py-5 text-center">
         <p className="font-['Inter',system-ui,-apple-system,'Segoe_UI',Roboto,'Helvetica_Neue',Arial,sans-serif] text-sm text-[#666666]">
