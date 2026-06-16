@@ -59,7 +59,6 @@ export default function StudioPage() {
           </div>
           <div className="home-hero-fade" />
         </header>
-        <SectionDivider />
 
         <section className="home-section" aria-labelledby="studio-offerings">
           <div className="home-wrap">
