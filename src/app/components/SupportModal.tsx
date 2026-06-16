@@ -27,6 +27,7 @@ const LAST_NAME_INPUT_ID = 'supportModalLastName';
 const EMAIL_INPUT_ID = 'supportModalEmail';
 const MESSAGE_INPUT_ID = 'supportModalMessage';
 const MODAL_TITLE_ID = 'supportModalTitle';
+const SUPPORT_MODAL_HASH = '#supportModal';
 const TRIGGER_SELECTOR = '[data-support-modal-trigger], a[href="#supportModal"]';
 const REQUIRED_FIELDS_ERROR = 'Please fill in all fields before submitting your message.';
 
@@ -210,19 +211,40 @@ const SupportModal = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    const triggers = document.querySelectorAll(TRIGGER_SELECTOR);
+    const openForSupportHash = () => {
+      if (window.location.hash === SUPPORT_MODAL_HASH) {
+        openModal();
+      }
+    };
 
-    const handleTriggerClick = (event: Event) => {
+    openForSupportHash();
+    window.addEventListener('hashchange', openForSupportHash);
+
+    return () => {
+      window.removeEventListener('hashchange', openForSupportHash);
+    };
+  }, [openModal]);
+
+  useEffect(() => {
+    const handleTriggerClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const trigger = target.closest(TRIGGER_SELECTOR);
+      if (!trigger) {
+        return;
+      }
+
       event.preventDefault();
       openModal();
     };
 
-    triggers.forEach((trigger) => trigger.addEventListener('click', handleTriggerClick));
+    document.addEventListener('click', handleTriggerClick);
 
     return () => {
-      triggers.forEach((trigger) =>
-        trigger.removeEventListener('click', handleTriggerClick),
-      );
+      document.removeEventListener('click', handleTriggerClick);
     };
   }, [openModal]);
 

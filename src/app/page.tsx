@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import SupportModalRoot from './components/SupportModalRoot';
 
 const LOGO_SRC = '/assets/free-range-dev-logo-no-background.png';
 
 const navLinks = [
   { href: '/studio', label: 'Studio' },
   { href: '#building', label: "What I'm Building" },
+  { href: 'https://thefreerangedev.com/store', label: 'Tools + Gear' },
   { href: '#join-the-squad', label: 'Content' },
 ];
 
@@ -43,6 +45,13 @@ const buildingCards = [
     body: 'Dev and entrepreneur hacks, build-in-public experiments, and honest lessons from designing a freer way to work.',
     action: 'Watch + follow',
   },
+  {
+    href: 'https://thefreerangedev.com/store',
+    label: 'Store',
+    title: 'Tools + Gear',
+    body: 'Free Range Dev resources, gear, and tools for building a more sustainable way to work.',
+    action: 'Visit the Store',
+  },
 ];
 
 const opensInNewTab = (href: string) => !href.startsWith('#');
@@ -58,8 +67,9 @@ const SectionDivider = () => (
 
 export default function Home() {
   return (
-    <main className="home-redesign">
-      <nav className="home-nav" aria-label="Primary navigation">
+    <>
+      <main className="home-redesign">
+        <nav className="home-nav" aria-label="Primary navigation">
         <div className="home-wrap home-nav-inner">
           <Link className="home-brand-lockup" href="/" {...newTabProps('/')}>
             <Image
@@ -113,7 +123,7 @@ export default function Home() {
               Explore the Studio <span className="home-arrow">→</span>
             </a>
             <a className="home-btn home-btn-ghost" href="#join-the-squad">
-              Watch on YouTube
+              Join the Journey
             </a>
           </div>
         </div>
@@ -126,9 +136,9 @@ export default function Home() {
           <div className="home-section-head">
             <span className="home-kicker">The Approach</span>
             <h2>
-              Freedom, built on <em>systems</em>
+              Freedom, Built on <em>systems</em>
             </h2>
-            <p>Practical pathways toward more autonomy and resilience.</p>
+            <p>Practical pathways toward more autonomy and resilience</p>
           </div>
           <div className="home-pillars">
             {pillars.map(({ number, title, body }) => (
@@ -173,7 +183,7 @@ export default function Home() {
         <div className="home-wrap">
           <span className="home-kicker">Join the Squad</span>
           <h2>
-            Build your <em>freedom</em>
+            Build Your <em>freedom</em>
           </h2>
           <p>
             Follow along as I fix broken things, build income, and create more sustainable
@@ -278,10 +288,12 @@ export default function Home() {
           </div>
           <div className="home-foot-bottom">
             <span>© 2026 The Free Range Dev, LLC</span>
-            <span>From the command line to the coast line</span>
+            <span>From Command Line to Coast Line</span>
           </div>
         </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
+      <SupportModalRoot />
+    </>
   );
 }
