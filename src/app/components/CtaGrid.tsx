@@ -22,7 +22,7 @@ const CTA_LINKS: CtaLink[] = [
   },
   {
     ariaLabel: "Explore Tools + Gear at The Free Range Dev store",
-    href: "https://thefreerangedev.com/store",
+    href: "/store",
     label: "Explore Tools + Gear",
   },
   {
@@ -47,7 +47,7 @@ export const CtaGrid = () => {
       className="grid w-full max-w-180 place-items-center gap-y-[0.85rem] sm:grid-cols-3 sm:gap-x-8 sm:gap-y-[0.85rem] mx-auto"
     >
       {CTA_LINKS.map(({ ariaLabel, href, label }) => {
-        const opensInNewTab = !href.startsWith("#");
+        const opensInNewTab = /^https?:\/\//.test(href);
         return (
           <a
             key={label}

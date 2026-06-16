@@ -6,7 +6,7 @@ const LOGO_SRC = '/assets/free-range-dev-logo-no-background.png';
 const navLinks = [
   { href: '/studio', label: 'Studio' },
   { href: '/#building', label: "What I'm Building" },
-  { href: 'https://thefreerangedev.com/store', label: 'Tools + Gear' },
+  { href: '/store', label: 'Tools + Gear' },
   { href: '/#join-the-squad', label: 'Content' },
 ];
 
@@ -82,13 +82,7 @@ export function HomeFooter({ tagline = 'From Command Line to Coast Line' }: Home
           <div className="home-foot-col">
             <h3>Explore</h3>
             <Link href="/studio">Free Range Studio</Link>
-            <a
-              href="https://thefreerangedev.com/store"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Tools + Gear
-            </a>
+            <Link href="/store">Tools + Gear</Link>
             <Link href="/#building">What I&apos;m Building</Link>
           </div>
           <div className="home-foot-col">

@@ -36,7 +36,7 @@ const buildingCards = [
     action: 'Watch + follow',
   },
   {
-    href: 'https://thefreerangedev.com/store',
+    href: '/store',
     label: 'Store',
     title: 'Tools + Gear',
     body: 'Free Range Dev resources, gear, and tools for building a more sustainable way to work.',
