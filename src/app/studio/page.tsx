@@ -86,7 +86,7 @@ export default function StudioPage() {
           <div className="home-wrap">
             <span className="home-kicker">Start Here</span>
             <h2>
-              Bring the manual work. <em>We&apos;ll map the system.</em>
+              You bring the manual work. <em>We&apos;ll map the system.</em>
             </h2>
             <p>
               Send over the workflow that is eating time, and we&apos;ll talk through
