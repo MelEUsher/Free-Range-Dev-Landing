@@ -6,14 +6,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://thefreerangedev.com'),
   title: 'The Free Range Dev',
   description: 'Portfolio and brand hub for The Free Range Dev project',
-  icons: {
-    icon: [
-      {
-        url: '/assets/free-range-dev-logo-no-background.png',
-        type: 'image/png',
-      },
-    ],
-  },
   openGraph: {
     title: 'The Free Range Dev',
     description: 'Portfolio and brand hub for The Free Range Dev project',
