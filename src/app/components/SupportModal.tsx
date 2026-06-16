@@ -5,6 +5,7 @@ import { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState } from
 type FormFields = {
   firstName: string;
   lastName: string;
+  businessName: string;
   email: string;
   message: string;
 };
@@ -18,12 +19,14 @@ const FOCUSABLE_ELEMENTS =
 const INITIAL_FORM_FIELDS: FormFields = {
   firstName: '',
   lastName: '',
+  businessName: '',
   email: '',
   message: '',
 };
 
 const FIRST_NAME_INPUT_ID = 'supportModalFirstName';
 const LAST_NAME_INPUT_ID = 'supportModalLastName';
+const BUSINESS_NAME_INPUT_ID = 'supportModalBusinessName';
 const EMAIL_INPUT_ID = 'supportModalEmail';
 const MESSAGE_INPUT_ID = 'supportModalMessage';
 const MODAL_TITLE_ID = 'supportModalTitle';
@@ -90,9 +93,6 @@ const SupportModal = () => {
     if (!formFields.firstName.trim()) {
       errors.firstName = REQUIRED_FIELDS_ERROR;
     }
-    if (!formFields.lastName.trim()) {
-      errors.lastName = REQUIRED_FIELDS_ERROR;
-    }
     if (!formFields.email.trim()) {
       errors.email = REQUIRED_FIELDS_ERROR;
     } else if (!validateEmail(formFields.email.trim())) {
@@ -120,6 +120,7 @@ const SupportModal = () => {
       const payload = new FormData();
       payload.append('firstName', formFields.firstName.trim());
       payload.append('lastName', formFields.lastName.trim());
+      payload.append('businessName', formFields.businessName.trim());
       payload.append('email', formFields.email.trim());
       payload.append('message', formFields.message.trim());
 
@@ -257,6 +258,9 @@ const SupportModal = () => {
 
   const firstNameErrorId = fieldErrors.firstName ? 'support-first-name-error' : undefined;
   const lastNameErrorId = fieldErrors.lastName ? 'support-last-name-error' : undefined;
+  const businessNameErrorId = fieldErrors.businessName
+    ? 'support-business-name-error'
+    : undefined;
   const emailErrorId = fieldErrors.email ? 'support-email-error' : undefined;
   const messageErrorId = fieldErrors.message ? 'support-message-error' : undefined;
 
@@ -329,6 +333,33 @@ const SupportModal = () => {
               {fieldErrors.firstName && (
                 <p className="text-sm text-red-600" id={firstNameErrorId}>
                   {fieldErrors.firstName}
+                </p>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label
+                className="text-sm font-semibold text-[#1f2d3d]"
+                htmlFor={BUSINESS_NAME_INPUT_ID}
+              >
+                Business name
+              </label>
+              <input
+                aria-describedby={businessNameErrorId}
+                aria-invalid={Boolean(fieldErrors.businessName)}
+                autoComplete="organization"
+                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
+                id={BUSINESS_NAME_INPUT_ID}
+                maxLength={120}
+                name="businessName"
+                onChange={handleInputChange}
+                placeholder="Business name"
+                type="text"
+                value={formFields.businessName}
+              />
+              {fieldErrors.businessName && (
+                <p className="text-sm text-red-600" id={businessNameErrorId}>
+                  {fieldErrors.businessName}
                 </p>
               )}
             </div>

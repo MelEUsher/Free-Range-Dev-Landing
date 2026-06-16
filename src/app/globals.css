@@ -603,6 +603,11 @@ body {
   padding: 36px 32px;
 }
 
+.home-card:not(a):hover {
+  border-color: var(--home-card-bd);
+  background: rgba(240, 176, 80, 0.06);
+}
+
 .home-card:hover {
   border-color: var(--home-amber);
   transform: translateY(-6px);
@@ -661,6 +666,14 @@ body {
 
 .home-card:hover .home-go .home-arrow {
   transform: translateX(5px);
+}
+
+.studio-hero .home-hero-inner {
+  max-width: 980px;
+}
+
+.studio-hero h1 {
+  font-size: clamp(46px, 7vw, 92px);
 }
 
 .home-join {
