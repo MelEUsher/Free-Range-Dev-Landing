@@ -15,7 +15,7 @@ const REQUIRED_SECURITY_HEADERS = [
   'X-XSS-Protection',
 ];
 
-const originalResendApiKey = process.env.RESEND_API_KEY;
+const originalResendApiKey = process.env.RESEND_EMAIL_API_KEY;
 const originalFetch = globalThis.fetch;
 
 const makeJsonRequest = (
@@ -48,23 +48,23 @@ const makeFormDataRequest = (
 };
 
 beforeEach(() => {
-  delete process.env.RESEND_API_KEY;
+  delete process.env.RESEND_EMAIL_API_KEY;
   globalThis.fetch = originalFetch;
   resetRateLimit();
 });
 
 after(() => {
   if (typeof originalResendApiKey === 'string') {
-    process.env.RESEND_API_KEY = originalResendApiKey;
+    process.env.RESEND_EMAIL_API_KEY = originalResendApiKey;
   } else {
-    delete process.env.RESEND_API_KEY;
+    delete process.env.RESEND_EMAIL_API_KEY;
   }
   globalThis.fetch = originalFetch;
 });
 
 describe('contact API', () => {
   it('responds with 200 and success JSON for a valid submission', async () => {
-    process.env.RESEND_API_KEY = 'test-api-key';
+    process.env.RESEND_EMAIL_API_KEY = 'test-api-key';
     const requests: Array<{ url: string; init?: RequestInit }> = [];
     globalThis.fetch = (async (url: string | URL | Request, init?: RequestInit) => {
       requests.push({ url: String(url), init });
@@ -123,7 +123,7 @@ describe('contact API', () => {
   });
 
   it('enforces the sliding window rate limit and returns 429 with Retry-After', async () => {
-    process.env.RESEND_API_KEY = 'test-api-key';
+    process.env.RESEND_EMAIL_API_KEY = 'test-api-key';
     globalThis.fetch = (async () =>
       new Response(JSON.stringify({ id: 'email_test' }), {
         status: 200,

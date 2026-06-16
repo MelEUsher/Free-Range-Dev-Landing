@@ -163,10 +163,10 @@ const parseFormBody = async (request: Request) => {
  * Sends form submissions through the already-present Resend integration.
  */
 const deliverMessage = async (payload: ContactPayload) => {
-  const resendApiKey = process.env.RESEND_API_KEY;
+  const resendApiKey = process.env.RESEND_EMAIL_API_KEY;
 
   if (!resendApiKey) {
-    throw new Error('RESEND_API_KEY is not configured');
+    throw new Error('RESEND_EMAIL_API_KEY is not configured');
   }
 
   await sendWithResend(payload, resendApiKey);

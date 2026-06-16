@@ -71,8 +71,8 @@ This is a **Next.js 15 App Router** application with strict TypeScript and Tailw
 - Dual rate limiting: middleware (global) + endpoint-specific (`src/lib/rate-limit.ts`, 5 req/min)
 - Accepts both JSON and form-data submissions
 - Zod validation for name/email/message fields
-- Sends via Resend API when `RESEND_API_KEY` and `SUPPORT_EMAIL` env vars are set
-- Falls back to console logging in development
+- Sends via Resend API when `RESEND_EMAIL_API_KEY` is set
+- Returns an error when email delivery is not configured
 - All responses include security headers
 
 ### Blog System
@@ -146,9 +146,8 @@ This is a **Next.js 15 App Router** application with strict TypeScript and Tailw
 - Do not hardcode nonces - always read from headers/attributes
 
 ### Environment Variables
-- `RESEND_API_KEY` - Required for sending contact form emails
-- `SUPPORT_EMAIL` - Destination email for contact submissions
-- Without these, contact API logs to console (dev/test mode)
+- `RESEND_EMAIL_API_KEY` - Required for sending contact form emails
+- Without this, contact API returns an email delivery error
 
 ## File References
 
