@@ -1,16 +1,16 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import Footer from "@/app/components/Footer";
-import Hero from "@/app/components/Hero";
-import SupportModalRoot from "@/app/components/SupportModalRoot";
-import { CTA_BUTTON_SIZE_CLASSES } from "@/app/components/CtaGrid";
-import { getAllPosts } from "@/lib/posts";
-import type { PostMeta } from "../../../types/blog";
+import Footer from '@/app/components/Footer';
+import Hero from '@/app/components/Hero';
+import SupportModalRoot from '@/app/components/SupportModalRoot';
+import { CTA_BUTTON_SIZE_CLASSES } from '@/app/components/CtaGrid';
+import { getAllPosts } from '@/lib/posts';
+import type { PostMeta } from '../../../types/blog';
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 
 const cardFocusClasses =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a8bdb0] focus-visible:ring-offset-2";
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a8bdb0] focus-visible:ring-offset-2';
 
 const gradientButtonClasses = `${CTA_BUTTON_SIZE_CLASSES} text-[#1f2d3d] bg-[linear-gradient(180deg,_#a8bdb0_0%,_#95a89d_100%)] shadow-[0_6px_16px_rgba(168,189,176,0.14)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(168,189,176,0.22)] focus-visible:-translate-y-0.5 focus-visible:shadow-[0_12px_30px_rgba(168,189,176,0.22)] active:translate-y-0 active:shadow-[0_6px_16px_rgba(168,189,176,0.14)]`;
 
@@ -83,6 +83,8 @@ const BlogCard = ({ post }: { post: PostMeta }) => {
           href={href}
           aria-label={`Read more: ${post.title}`}
           className={`mt-2 inline-flex min-h-[44px] items-center text-left font-display text-[1.35rem] leading-tight text-[#333333] text-balance transition hover:text-[#58786a] ${cardFocusClasses}`}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           {post.title}
         </Link>
@@ -95,6 +97,8 @@ const BlogCard = ({ post }: { post: PostMeta }) => {
           href={href}
           aria-label={`Read more: ${post.title}`}
           className={`${gradientButtonClasses} ${cardFocusClasses}`}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           Read More →
         </Link>

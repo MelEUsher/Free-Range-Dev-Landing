@@ -1,51 +1,54 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-const LOGO_SRC = "/assets/free-range-dev-logo-no-background.png";
+const LOGO_SRC = '/assets/free-range-dev-logo-no-background.png';
 
 const navLinks = [
-  { href: "/studio", label: "Studio" },
-  { href: "#building", label: "What I'm Building" },
-  { href: "#join-the-squad", label: "Content" },
+  { href: '/studio', label: 'Studio' },
+  { href: '#building', label: "What I'm Building" },
+  { href: '#join-the-squad', label: 'Content' },
 ];
 
 const pillars = [
   {
-    number: "01",
-    title: "Build Systems",
+    number: '01',
+    title: 'Build Systems',
     body: "Software, automation, and developer tooling that do the heavy lifting - so you're not babysitting your business.",
   },
   {
-    number: "02",
-    title: "Earn Freely",
-    body: "Sustainable income systems - services, products, and leverage built to last instead of burn you out.",
+    number: '02',
+    title: 'Earn Freely',
+    body: 'Sustainable income systems - services, products, and leverage built to last instead of burn you out.',
   },
   {
-    number: "03",
-    title: "Live and Build Intentionally",
-    body: "Location fluidity, low-overhead building, and designing a business with room to breathe.",
+    number: '03',
+    title: 'Live and Build Intentionally',
+    body: 'Location fluidity, low-overhead building, and designing a business with room to breathe.',
   },
 ];
 
 const buildingCards = [
   {
-    href: "/studio",
-    label: "Studio",
-    title: "Free Range Studio",
+    href: '/studio',
+    label: 'Studio',
+    title: 'Free Range Studio',
     live: true,
-    body: "AI workflow automation built fast, CRM integrations, accounting workflows, and custom API orchestration.",
-    action: "Explore the Studio",
+    body: 'AI workflow automation built fast, CRM integrations, accounting workflows, and custom API orchestration.',
+    action: 'Explore the Studio',
   },
   {
-    href: "#join-the-squad",
-    label: "Content",
-    title: "The Squad",
-    body: "Dev and entrepreneur hacks, build-in-public experiments, and honest lessons from designing a freer way to work.",
-    action: "Watch + follow",
+    href: '#join-the-squad',
+    label: 'Content',
+    title: 'The Squad',
+    body: 'Dev and entrepreneur hacks, build-in-public experiments, and honest lessons from designing a freer way to work.',
+    action: 'Watch + follow',
   },
 ];
 
-const isExternal = (href: string) => href.startsWith("http");
+const opensInNewTab = (href: string) => !href.startsWith('#');
+
+const newTabProps = (href: string) =>
+  opensInNewTab(href) ? { rel: 'noopener noreferrer', target: '_blank' } : {};
 
 const SectionDivider = () => (
   <div className="home-wrap" aria-hidden="true">
@@ -58,7 +61,7 @@ export default function Home() {
     <main className="home-redesign">
       <nav className="home-nav" aria-label="Primary navigation">
         <div className="home-wrap home-nav-inner">
-          <Link className="home-brand-lockup" href="/">
+          <Link className="home-brand-lockup" href="/" {...newTabProps('/')}>
             <Image
               src={LOGO_SRC}
               alt="The Free Range Dev logo"
@@ -68,11 +71,7 @@ export default function Home() {
             />
             <span className="home-brand-name">The Free Range Dev</span>
           </Link>
-          <input
-            className="home-nav-check"
-            id="home-nav-toggle"
-            type="checkbox"
-          />
+          <input className="home-nav-check" id="home-nav-toggle" type="checkbox" />
           <label
             className="home-nav-toggle"
             htmlFor="home-nav-toggle"
@@ -82,16 +81,11 @@ export default function Home() {
           </label>
           <div className="home-nav-links" id="home-navlinks">
             {navLinks.map(({ href, label }) => (
-              <a
-                key={label}
-                href={href}
-                rel={isExternal(href) ? "noopener noreferrer" : undefined}
-                target={isExternal(href) ? "_blank" : undefined}
-              >
+              <a key={label} href={href} {...newTabProps(href)}>
                 {label}
               </a>
             ))}
-            <a className="home-nav-cta" href="/studio">
+            <a className="home-nav-cta" href="/studio" {...newTabProps('/studio')}>
               Work with me
             </a>
           </div>
@@ -107,17 +101,18 @@ export default function Home() {
             to <em>Coast Line</em>
           </h1>
           <p className="home-lede">
-            Software, automations, and systems for designing a more sustainable
-            way to build, earn, and live.
+            Software, automations, and systems for designing a more sustainable way to
+            build, earn, and live.
           </p>
           <div className="home-actions">
-            <a className="home-btn home-btn-primary" href="/studio">
+            <a
+              className="home-btn home-btn-primary"
+              href="/studio"
+              {...newTabProps('/studio')}
+            >
               Explore the Studio <span className="home-arrow">→</span>
             </a>
-            <a
-              className="home-btn home-btn-ghost"
-              href="#join-the-squad"
-            >
+            <a className="home-btn home-btn-ghost" href="#join-the-squad">
               Watch on YouTube
             </a>
           </div>
@@ -133,9 +128,7 @@ export default function Home() {
             <h2>
               Freedom, built on <em>systems</em>
             </h2>
-            <p>
-              Practical pathways toward more autonomy and resilience.
-            </p>
+            <p>Practical pathways toward more autonomy and resilience.</p>
           </div>
           <div className="home-pillars">
             {pillars.map(({ number, title, body }) => (
@@ -160,17 +153,10 @@ export default function Home() {
           </div>
           <div className="home-cards">
             {buildingCards.map(({ href, label, title, live, body, action }) => (
-              <a
-                className="home-card"
-                href={href}
-                key={title}
-                rel={isExternal(href) ? "noopener noreferrer" : undefined}
-                target={isExternal(href) ? "_blank" : undefined}
-              >
+              <a className="home-card" href={href} key={title} {...newTabProps(href)}>
                 <span className="home-clabel">{label}</span>
                 <h3>
-                  {title}{" "}
-                  {live ? <span className="home-live">LIVE</span> : null}
+                  {title} {live ? <span className="home-live">LIVE</span> : null}
                 </h3>
                 <p>{body}</p>
                 <span className="home-go">
@@ -190,8 +176,8 @@ export default function Home() {
             Build your <em>freedom</em>
           </h2>
           <p>
-            Follow along as I fix broken things, build income, and create more
-            sustainable ways to build.
+            Follow along as I fix broken things, build income, and create more sustainable
+            ways to build.
           </p>
           <div className="home-actions">
             <a
@@ -221,6 +207,8 @@ export default function Home() {
             <a
               className="home-btn home-btn-ghost"
               href="https://thefreerangedev.com/studio"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               Work with the Studio
             </a>
@@ -239,16 +227,17 @@ export default function Home() {
                 height={96}
               />
               <p>
-                Systems-first builder making freer ways to build, earn, and
-                live. Calm truth from someone figuring it out honestly while
-                building.
+                Systems-first builder creating more sustainable ways to build, earn, and
+                live.
               </p>
             </div>
             <div className="home-foot-col">
               <h3>Explore</h3>
-              <a href="/studio">Free Range Studio</a>
+              <a href="/studio" {...newTabProps('/studio')}>
+                Free Range Studio
+              </a>
               <a
-                href="https://www.thefreerangedev.store/"
+                href="https://thefreerangedev.com/store"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -279,17 +268,12 @@ export default function Home() {
               >
                 Instagram
               </a>
-              <a href="#" data-fill="linkedin">
-                LinkedIn
-              </a>
-              <a href="#" data-fill="github">
-                GitHub
-              </a>
             </div>
             <div className="home-foot-col">
               <h3>Support</h3>
-              <a href="mailto:squad@thefreerangedev.dev">Support Squad</a>
-              <a href="mailto:squad@thefreerangedev.dev">Say hello</a>
+              <a href="#supportModal" data-support-modal-trigger>
+                Support Squad
+              </a>
             </div>
           </div>
           <div className="home-foot-bottom">
