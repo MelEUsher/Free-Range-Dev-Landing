@@ -18,13 +18,14 @@ export type RateLimitResult = {
  */
 export const enforceRateLimit = (
   identifier: string,
-  limit = MAX_REQUESTS
+  limit = MAX_REQUESTS,
+  windowMs = WINDOW_MS
 ): RateLimitResult => {
   const now = Date.now();
   const existing = VISITS.get(identifier);
 
   if (!existing || existing.expiresAt <= now) {
-    const expiresAt = now + WINDOW_MS;
+    const expiresAt = now + windowMs;
     VISITS.set(identifier, { count: 1, expiresAt });
     return { success: true, remaining: limit - 1, reset: expiresAt };
   }

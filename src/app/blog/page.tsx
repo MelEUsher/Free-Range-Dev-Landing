@@ -1,18 +1,18 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import Footer from '@/app/components/Footer';
-import Hero from '@/app/components/Hero';
-import SupportModalRoot from '@/app/components/SupportModalRoot';
-import { CTA_BUTTON_SIZE_CLASSES } from '@/app/components/CtaGrid';
-import { getAllPosts } from '@/lib/posts';
-import type { PostMeta } from '../../../types/blog';
+import Footer from "@/app/components/Footer";
+import Hero from "@/app/components/Hero";
+import SupportModalRoot from "@/app/components/SupportModalRoot";
+import { CTA_BUTTON_SIZE_CLASSES } from "@/app/components/CtaGrid";
+import { getAllPosts } from "@/lib/posts";
+import type { PostMeta } from "../../../types/blog";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
 const cardFocusClasses =
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a8bdb0] focus-visible:ring-offset-2';
+  "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#a8bdb0] focus-visible:ring-offset-2";
 
-const gradientButtonClasses = `${CTA_BUTTON_SIZE_CLASSES} text-[#1f2d3d] bg-[linear-gradient(180deg,_#a8bdb0_0%,_#95a89d_100%)] shadow-[0_6px_16px_rgba(168,189,176,0.14)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(168,189,176,0.22)] focus-visible:-translate-y-0.5 focus-visible:shadow-[0_12px_30px_rgba(168,189,176,0.22)] active:translate-y-0 active:shadow-[0_6px_16px_rgba(168,189,176,0.14)]`;
+const gradientButtonClasses = `${CTA_BUTTON_SIZE_CLASSES} text-[#1f2d3d] bg-[linear-gradient(180deg,#a8bdb0_0%,#95a89d_100%)] shadow-[0_6px_16px_rgba(168,189,176,0.14)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(168,189,176,0.22)] focus-visible:-translate-y-0.5 focus-visible:shadow-[0_12px_30px_rgba(168,189,176,0.22)] active:translate-y-0 active:shadow-[0_6px_16px_rgba(168,189,176,0.14)]`;
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -22,7 +22,7 @@ export default function BlogPage() {
       <main
         id="main"
         aria-label="Blog index"
-        className="min-h-screen bg-[#f9f8f3] pb-24 text-[#333333] sm:pb-28 lg:pb-36"
+        className="min-h-screen bg-base-bg pb-24 text-base-text sm:pb-28 lg:pb-36"
       >
         <Hero />
         <section
@@ -35,13 +35,13 @@ export default function BlogPage() {
               className="pointer-events-none absolute inset-0 -z-10 opacity-30"
             >
               <div className="absolute inset-0 bg-[url('/assets/Image%20saved%20for%20website%20use.svg')] bg-cover bg-center"></div>
-              <div className="absolute inset-0 bg-[#f9f8f3]/80"></div>
+              <div className="absolute inset-0 bg-base-bg/80"></div>
             </div>
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-display text-lg uppercase tracking-[0.2em] text-[#8a6f5a]">
                 Notes from the road
               </p>
-              <h2 className="mt-3 font-hand text-4xl leading-tight text-[#333333] text-balance">
+              <h2 className="mt-3 font-hand text-4xl leading-tight text-base-text text-balance">
                 Fresh drops from The Free Range Dev
               </h2>
               <p className="mt-4 font-alans text-lg text-[#5c4c3f] text-pretty">
@@ -82,7 +82,7 @@ const BlogCard = ({ post }: { post: PostMeta }) => {
         <Link
           href={href}
           aria-label={`Read more: ${post.title}`}
-          className={`mt-2 inline-flex min-h-[44px] items-center text-left font-display text-[1.35rem] leading-tight text-[#333333] text-balance transition hover:text-[#58786a] ${cardFocusClasses}`}
+          className={`mt-2 inline-flex min-h-[44px] items-center text-left font-display text-[1.35rem] leading-tight text-base-text text-balance transition hover:text-[#58786a] ${cardFocusClasses}`}
           rel="noopener noreferrer"
           target="_blank"
         >

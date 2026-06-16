@@ -6,30 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --check .",
     "verify": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "^15.5.6",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "react-markdown": "^10.1.0",
-    "zod": "^4.1.13"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.14.5",
+    "@netlify/plugin-nextjs": "^5.15.11",
+    "@tailwindcss/postcss": "^4.3.1",
     "@types/node": "^22",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "15.1.0",
-    "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.9",
+    "postcss": "^8.5.15",
+    "prettier": "^3.8.4",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^6.0.3"
   }
 }

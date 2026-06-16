@@ -47,28 +47,77 @@ This is a **Next.js 15 App Router** application with strict TypeScript and Tailw
 
 ### Security Architecture
 
-**Middleware (`src/middleware.ts`):**
-- Generates cryptographic nonces for CSP on every request
-- Applies Content-Security-Policy and security headers to all routes
+**Proxy (`src/proxy.ts`):**
 - Implements token bucket rate limiting (60 req/5 min) for `/api/*` endpoints
 - IP detection via `x-forwarded-for`, `x-real-ip`, and CDN headers
 - Returns 429 with `Retry-After` header on rate limit violation
+- Matcher: `/api/:path*` only — does not currently run on page routes
 
-**Security headers applied globally:**
+**Security headers applied globally (`next.config.mjs`):**
 - Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options
 - Referrer-Policy, Permissions-Policy
-- CSP with nonce-based script execution
+- Static Content-Security-Policy with `script-src 'self' 'unsafe-inline'` and
+  `style-src 'self' 'unsafe-inline'` (see "CSP Nonce Rollout" below for the
+  planned hardening path)
 
-**Nonce flow:**
-1. Middleware generates nonce → sets `x-nonce` header
-2. `layout.tsx` reads nonce from headers → adds to `data-csp-nonce` attribute
-3. Components can access nonce for inline scripts/styles if needed
+### CSP Nonce Rollout (Planned — Not Yet Enforced)
+
+**Current state:** the CSP above is fully static and enforced for every
+route. `src/proxy.ts` does not generate nonces or set any CSP headers.
+`src/lib/nonce.ts` (`generateNonce()`, Node `crypto.randomBytes(16).toString("base64")`)
+is currently unused — **intentionally retained** for the rollout below, not
+accidental dead code.
+
+**Stage 1 findings (validated via a report-only CSP, since reverted):**
+- Nonce-based `script-src` requires Next.js to inject the matching nonce into
+  its own framework inline scripts during **per-request server-side
+  rendering**. Next extracts the nonce from the `Content-Security-Policy` /
+  `-Report-Only` header on the *request* (set by the proxy via
+  `NextResponse.next({ request: { headers } })`).
+- Statically generated/SSG pages (`/`, `/blog`, `/blog/[slug]`) are
+  prerendered at build time with no request/nonce available, so their baked-in
+  framework `<script>` tags carry no `nonce` attribute. Confirmed empirically:
+  served HTML for `/` and `/blog` (both `x-nextjs-cache: HIT`) had 5–9 inline
+  `<script>` tags with no `nonce=` attribute.
+- A nonce-only `script-src` (dropping `unsafe-inline`) would therefore block
+  all of Next's framework inline scripts on these pages and break hydration.
+
+**Enforcement plan (when the client portal exists):**
+- Scope nonce-based CSP to **dynamically-rendered routes only** (the future
+  client portal), via per-route `export const dynamic = "force-dynamic"`.
+- On those routes, reuse `src/lib/nonce.ts`'s `generateNonce()` plus the proxy
+  pattern validated in Stage 1: generate a nonce per request, set `x-nonce` +
+  `Content-Security-Policy` (with `script-src 'self' 'nonce-${nonce}'`) on
+  **both** the proxy's request headers (`requestHeaders.set` +
+  `NextResponse.next({ request: { headers: requestHeaders } })`) and the
+  response headers.
+- Broaden `src/proxy.ts`'s matcher beyond `/api/:path*` to cover the portal
+  routes (e.g.
+  `["/api/:path*", {source: "/((?!_next/static|_next/image|favicon.ico).*)", missing: [...prefetch headers]}]`),
+  but keep the `/api/*` rate-limit logic gated on
+  `pathname.startsWith("/api/")` so it is unaffected.
+- Static marketing pages (`/`, `/blog`, `/blog/[slug]`) **stay on the existing
+  enforced static CSP in `next.config.mjs`**, including `script-src
+  'unsafe-inline'` — an accepted tradeoff, since these pages carry no
+  first-party inline scripts or injection surface.
+
+**Hash-based static CSP — evaluated, deliberately deferred:**
+- Next.js 16's `experimental.sri` only adds `integrity` attributes to
+  *external* `<script src="/_next/static/...">` bundle files; it does **not**
+  generate CSP `script-src 'sha256-...'` hash-sources for inline framework
+  scripts.
+- Dropping `unsafe-inline` on static pages would require custom postbuild
+  tooling: parse each prerendered page's inline `<script>` content → SHA-256 →
+  emit per-route CSP headers (e.g. via Netlify's `_headers` file, since
+  `next.config.mjs`'s `headers()` is static and can't vary per computed
+  content).
+- This is a separate future project, not currently planned.
 
 ### API Routes
 
 **Contact API (`src/app/api/contact/route.ts`):**
 - POST-only endpoint with method validation (405 for other methods)
-- Dual rate limiting: middleware (global) + endpoint-specific (`src/lib/rate-limit.ts`, 5 req/min)
+- Dual rate limiting: proxy (global) + endpoint-specific (`src/lib/rate-limit.ts`, 5 req/min)
 - Accepts both JSON and form-data submissions
 - Zod validation for name/email/message fields
 - Sends via Resend API when `RESEND_EMAIL_API_KEY` is set
@@ -134,16 +183,18 @@ This is a **Next.js 15 App Router** application with strict TypeScript and Tailw
 3. Post automatically appears in `/blog` (sorted by date, newest first)
 
 ### Rate Limiting Layers
-- **Middleware layer:** 60 requests per 5 minutes per IP (all `/api/*` routes)
+- **Proxy layer (`src/proxy.ts`):** 60 requests per 5 minutes per IP (all `/api/*` routes)
 - **Contact API layer:** 5 requests per minute per IP (specific to `/api/contact`)
 - Both use sliding window algorithm
 - Both return 429 + Retry-After on limit breach
 
 ### CSP and Inline Scripts
-- All inline scripts/styles require nonce attribute
-- Access nonce via `data-csp-nonce` attribute on `<body>` element
-- Middleware regenerates nonce on every request
-- Do not hardcode nonces - always read from headers/attributes
+- The enforced CSP (`next.config.mjs`) currently allows `'unsafe-inline'` for
+  both `script-src` and `style-src`
+- No custom inline `<script>`/`<style>`/`dangerouslySetInnerHTML` exist in
+  `src/` — only Next.js framework-injected inline scripts
+- See "CSP Nonce Rollout" above for the planned nonce-based hardening path,
+  scoped to future dynamic routes only
 
 ### Environment Variables
 - `RESEND_EMAIL_API_KEY` - Required for sending contact form emails
@@ -151,9 +202,10 @@ This is a **Next.js 15 App Router** application with strict TypeScript and Tailw
 
 ## File References
 
-- Security headers: `src/middleware.ts:12-18`, `next.config.mjs:1-10`
-- Rate limiting implementation: `src/middleware.ts:69-99`, `src/lib/rate-limit.ts`
+- Security headers: `next.config.mjs:12-57`
+- Rate limiting implementation: `src/proxy.ts`, `src/lib/rate-limit.ts`
+- Nonce generation (planned, currently unused): `src/lib/nonce.ts` — see "CSP Nonce Rollout"
 - Blog post loading: `src/lib/posts.ts`
 - Contact API validation: `src/app/api/contact/route.ts:6-10`
-- Font configuration: `src/app/fonts.ts`, `tailwind.config.ts:11-59`
-- Test utilities: `tests/contact_test.ts`
+- Font configuration: `src/app/fonts.ts`
+- Test utilities: `tests/contact_test.ts`, `tests/proxy_test.ts`
