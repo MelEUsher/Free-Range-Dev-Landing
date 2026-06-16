@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import SupportModalRoot from './components/SupportModalRoot';
 
 const LOGO_SRC = '/assets/free-range-dev-logo-no-background.png';
 
@@ -66,8 +67,9 @@ const SectionDivider = () => (
 
 export default function Home() {
   return (
-    <main className="home-redesign">
-      <nav className="home-nav" aria-label="Primary navigation">
+    <>
+      <main className="home-redesign">
+        <nav className="home-nav" aria-label="Primary navigation">
         <div className="home-wrap home-nav-inner">
           <Link className="home-brand-lockup" href="/" {...newTabProps('/')}>
             <Image
@@ -289,7 +291,9 @@ export default function Home() {
             <span>From Command Line to Coast Line</span>
           </div>
         </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
+      <SupportModalRoot />
+    </>
   );
 }
