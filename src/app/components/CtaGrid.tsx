@@ -44,7 +44,7 @@ export const CtaGrid = () => {
   return (
     <div
       aria-label="Primary Free Range Dev calls to action"
-      className="grid w-full max-w-[720px] place-items-center gap-y-[0.85rem] sm:grid-cols-3 sm:gap-x-8 sm:gap-y-[0.85rem] mx-auto"
+      className="grid w-full max-w-180 place-items-center gap-y-[0.85rem] sm:grid-cols-3 sm:gap-x-8 sm:gap-y-[0.85rem] mx-auto"
     >
       {CTA_LINKS.map(({ ariaLabel, href, label }) => {
         const opensInNewTab = !href.startsWith('#');

@@ -57,6 +57,9 @@ const config: Config = {
           "sans-serif",
         ],
       },
+      maxWidth: {
+        "180": "45rem",
+      },
     },
   },
   plugins: [],
