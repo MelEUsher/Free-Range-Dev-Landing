@@ -20,6 +20,10 @@ body {
   color: var(--color-text-base);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: var(--font-inter), Inter, system-ui, -apple-system, "Segoe UI",
@@ -454,6 +458,24 @@ body {
   padding: 100px 0;
 }
 
+.home-section-divider {
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    #11203a 0%,
+    #1d3357 22%,
+    #3a4d74 40%,
+    #6f6388 53%,
+    #b97a72 65%,
+    #e2966a 75%,
+    #f3b461 84%,
+    #f6c87e 90%,
+    #21385a 100%
+  );
+  opacity: 0.86;
+}
+
 .home-section-head {
   max-width: 660px;
   margin: 0 auto 62px;
@@ -746,6 +768,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .home-redesign *,
   .home-redesign *::before,
   .home-redesign *::after {

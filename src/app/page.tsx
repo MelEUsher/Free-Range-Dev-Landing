@@ -6,8 +6,7 @@ const LOGO_SRC = "/assets/free-range-dev-logo-no-background.png";
 const navLinks = [
   { href: "/studio", label: "Studio" },
   { href: "#building", label: "What I'm Building" },
-  { href: "https://www.thefreerangedev.store/", label: "Tools + Gear" },
-  { href: "https://www.youtube.com/@TheFreeRangeDev", label: "Content" },
+  { href: "#join-the-squad", label: "Content" },
 ];
 
 const pillars = [
@@ -23,8 +22,8 @@ const pillars = [
   },
   {
     number: "03",
-    title: "Live Intentionally",
-    body: "Location independence, low-overhead living, and honest experiments in designing a life with room to breathe.",
+    title: "Live and Build Intentionally",
+    body: "Location fluidity, low-overhead building, and designing a business with room to breathe.",
   },
 ];
 
@@ -34,26 +33,25 @@ const buildingCards = [
     label: "Studio",
     title: "Free Range Studio",
     live: true,
-    body: "AI workflow automation built in days, not months. CRM integrations, accounting workflows, and custom API orchestration for small teams.",
+    body: "AI workflow automation built fast, CRM integrations, accounting workflows, and custom API orchestration.",
     action: "Explore the Studio",
   },
   {
-    href: "https://www.youtube.com/@TheFreeRangeDev",
+    href: "#join-the-squad",
     label: "Content",
     title: "The Squad",
     body: "Dev and entrepreneur hacks, build-in-public experiments, and honest lessons from designing a freer way to work.",
     action: "Watch + follow",
   },
-  {
-    href: "https://www.thefreerangedev.store/",
-    label: "Store",
-    title: "Tools + Gear",
-    body: "The kit, software, and resources I actually use - curated for builders chasing the same kind of freedom.",
-    action: "Browse the store",
-  },
 ];
 
 const isExternal = (href: string) => href.startsWith("http");
+
+const SectionDivider = () => (
+  <div className="home-wrap" aria-hidden="true">
+    <div className="home-section-divider" />
+  </div>
+);
 
 export default function Home() {
   return (
@@ -109,9 +107,8 @@ export default function Home() {
             to <em>Coast Line</em>
           </h1>
           <p className="home-lede">
-            Breaking stuff, building income, living free - together. Software,
-            automation, and systems for designing a freer way to build, earn,
-            and live.
+            Software, automations, and systems for designing a more sustainable
+            way to build, earn, and live.
           </p>
           <div className="home-actions">
             <a className="home-btn home-btn-primary" href="/studio">
@@ -119,9 +116,7 @@ export default function Home() {
             </a>
             <a
               className="home-btn home-btn-ghost"
-              href="https://www.youtube.com/@TheFreeRangeDev"
-              rel="noopener noreferrer"
-              target="_blank"
+              href="#join-the-squad"
             >
               Watch on YouTube
             </a>
@@ -129,6 +124,7 @@ export default function Home() {
         </div>
         <div className="home-hero-fade" />
       </header>
+      <SectionDivider />
 
       <section className="home-section">
         <div className="home-wrap">
@@ -138,8 +134,7 @@ export default function Home() {
               Freedom, built on <em>systems</em>
             </h2>
             <p>
-              Not hype, not theory - practical pathways toward more autonomy,
-              optionality, and resilience.
+              Practical pathways toward more autonomy and resilience.
             </p>
           </div>
           <div className="home-pillars">
@@ -153,6 +148,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <SectionDivider />
 
       <section className="home-section" id="building">
         <div className="home-wrap">
@@ -185,16 +181,17 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <SectionDivider />
 
-      <section className="home-join">
+      <section className="home-join" id="join-the-squad">
         <div className="home-wrap">
           <span className="home-kicker">Join the Squad</span>
           <h2>
-            Build your <em>freedom</em>, together
+            Build your <em>freedom</em>
           </h2>
           <p>
-            Follow along as I break things, build income, and figure out a
-            freer life - out loud and in public.
+            Follow along as I fix broken things, build income, and create more
+            sustainable ways to build.
           </p>
           <div className="home-actions">
             <a
@@ -203,9 +200,28 @@ export default function Home() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Join on YouTube <span className="home-arrow">→</span>
+              YouTube <span className="home-arrow">→</span>
             </a>
-            <a className="home-btn home-btn-ghost" href="/studio">
+            <a
+              className="home-btn home-btn-ghost"
+              href="https://www.tiktok.com/@thefreerangedev"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              TikTok <span className="home-arrow">→</span>
+            </a>
+            <a
+              className="home-btn home-btn-ghost"
+              href="https://www.instagram.com/thefreerangedev/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Instagram <span className="home-arrow">→</span>
+            </a>
+            <a
+              className="home-btn home-btn-ghost"
+              href="https://thefreerangedev.com/studio"
+            >
               Work with the Studio
             </a>
           </div>

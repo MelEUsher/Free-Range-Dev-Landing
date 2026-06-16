@@ -126,6 +126,23 @@
 
   /* SECTIONS */
   .section { padding: 100px 0; position: relative; }
+  .section-divider {
+    height: 3px;
+    border-radius: 99px;
+    background: linear-gradient(
+      90deg,
+      #11203a 0%,
+      #1d3357 22%,
+      #3a4d74 40%,
+      #6f6388 53%,
+      #b97a72 65%,
+      #e2966a 75%,
+      #f3b461 84%,
+      #f6c87e 90%,
+      #21385a 100%
+    );
+    opacity: 0.86;
+  }
   .section-head { text-align: center; max-width: 660px; margin: 0 auto 62px; }
   .section-head .kicker { display: block; margin-bottom: 18px; }
   .section-head h2 { font-family: var(--display); font-size: clamp(36px, 5vw, 56px); font-weight: 500; line-height: 1.08; }
@@ -197,8 +214,7 @@
     <div class="nav-links" id="navlinks">
       <a href="/studio">Studio</a>
       <a href="#building">What I'm Building</a>
-      <a href="https://www.thefreerangedev.store/">Tools + Gear</a>
-      <a href="https://www.youtube.com/@TheFreeRangeDev">Content</a>
+      <a href="#join-the-squad">Content</a>
       <a class="nav-cta" href="/studio">Work with me</a>
     </div>
   </div>
@@ -208,21 +224,22 @@
   <div class="wrap hero-inner">
     <span class="kicker">Software · Systems · Freedom</span>
     <h1>From Command Line<br>to <em>Coast Line</em></h1>
-    <p class="lede">Breaking stuff, building income, living free — together. Software, automation, and systems for designing a freer way to build, earn, and live.</p>
+    <p class="lede">Software, automations, and systems for designing a more sustainable way to build, earn, and live.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="/studio">Explore the Studio <span class="arrow">→</span></a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/@TheFreeRangeDev">Watch on YouTube</a>
+      <a class="btn btn-ghost" href="#join-the-squad">Watch on YouTube</a>
     </div>
   </div>
   <div class="hero-fade"></div>
 </header>
+<div class="wrap" aria-hidden="true"><div class="section-divider"></div></div>
 
 <section class="section">
   <div class="wrap">
     <div class="section-head">
       <span class="kicker">The Approach</span>
       <h2>Freedom, built on <em>systems</em></h2>
-      <p>Not hype, not theory — practical pathways toward more autonomy, optionality, and resilience.</p>
+      <p>Practical pathways toward more autonomy and resilience.</p>
     </div>
     <div class="pillars">
       <div class="pillar">
@@ -237,12 +254,13 @@
       </div>
       <div class="pillar">
         <div class="pnum">03</div>
-        <h3>Live Intentionally</h3>
-        <p>Location independence, low-overhead living, and honest experiments in designing a life with room to breathe.</p>
+        <h3>Live and Build Intentionally</h3>
+        <p>Location fluidity, low-overhead building, and designing a business with room to breathe.</p>
       </div>
     </div>
   </div>
 </section>
+<div class="wrap" aria-hidden="true"><div class="section-divider"></div></div>
 
 <section class="section" id="building">
   <div class="wrap">
@@ -254,33 +272,30 @@
       <a class="card" href="/studio">
         <span class="clabel">Studio</span>
         <h3>Free Range Studio <span class="live">LIVE</span></h3>
-        <p>AI workflow automation built in days, not months. CRM integrations, accounting workflows, and custom API orchestration for small teams.</p>
+        <p>AI workflow automation built fast, CRM integrations, accounting workflows, and custom API orchestration.</p>
         <span class="go">Explore the Studio <span class="arrow">→</span></span>
       </a>
-      <a class="card" href="https://www.youtube.com/@TheFreeRangeDev">
+      <a class="card" href="#join-the-squad">
         <span class="clabel">Content</span>
         <h3>The Squad</h3>
         <p>Dev and entrepreneur hacks, build-in-public experiments, and honest lessons from designing a freer way to work.</p>
         <span class="go">Watch + follow <span class="arrow">→</span></span>
       </a>
-      <a class="card" href="https://www.thefreerangedev.store/">
-        <span class="clabel">Store</span>
-        <h3>Tools + Gear</h3>
-        <p>The kit, software, and resources I actually use — curated for builders chasing the same kind of freedom.</p>
-        <span class="go">Browse the store <span class="arrow">→</span></span>
-      </a>
     </div>
   </div>
 </section>
+<div class="wrap" aria-hidden="true"><div class="section-divider"></div></div>
 
-<section class="join">
+<section class="join" id="join-the-squad">
   <div class="wrap">
     <span class="kicker">Join the Squad</span>
-    <h2 style="margin-top:18px;">Build your <em>freedom</em>, together</h2>
-    <p>Follow along as I break things, build income, and figure out a freer life — out loud and in public.</p>
+    <h2 style="margin-top:18px;">Build your <em>freedom</em></h2>
+    <p>Follow along as I fix broken things, build income, and create more sustainable ways to build.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="https://www.youtube.com/@TheFreeRangeDev">Join on YouTube <span class="arrow">→</span></a>
-      <a class="btn btn-ghost" href="/studio">Work with the Studio</a>
+      <a class="btn btn-primary" href="https://www.youtube.com/@TheFreeRangeDev" target="_blank" rel="noopener noreferrer">YouTube <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="https://www.tiktok.com/@thefreerangedev" target="_blank" rel="noopener noreferrer">TikTok <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/thefreerangedev/" target="_blank" rel="noopener noreferrer">Instagram <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="https://thefreerangedev.com/studio">Work with the Studio</a>
     </div>
   </div>
 </section>
