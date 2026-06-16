@@ -83,6 +83,8 @@ const BlogCard = ({ post }: { post: PostMeta }) => {
           href={href}
           aria-label={`Read more: ${post.title}`}
           className={`mt-2 inline-flex min-h-[44px] items-center text-left font-display text-[1.35rem] leading-tight text-base-text text-balance transition hover:text-[#58786a] ${cardFocusClasses}`}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           {post.title}
         </Link>
@@ -95,6 +97,8 @@ const BlogCard = ({ post }: { post: PostMeta }) => {
           href={href}
           aria-label={`Read more: ${post.title}`}
           className={`${gradientButtonClasses} ${cardFocusClasses}`}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           Read More →
         </Link>

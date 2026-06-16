@@ -22,7 +22,7 @@ const CTA_LINKS: CtaLink[] = [
   },
   {
     ariaLabel: "Explore Tools + Gear at The Free Range Dev store",
-    href: "https://www.thefreerangedev.store/",
+    href: "https://thefreerangedev.com/store",
     label: "Explore Tools + Gear",
   },
   {
@@ -44,18 +44,18 @@ export const CtaGrid = () => {
   return (
     <div
       aria-label="Primary Free Range Dev calls to action"
-      className="grid w-full max-w-[720px] place-items-center gap-y-[0.85rem] sm:grid-cols-3 sm:gap-x-8 sm:gap-y-[0.85rem] mx-auto"
+      className="grid w-full max-w-180 place-items-center gap-y-[0.85rem] sm:grid-cols-3 sm:gap-x-8 sm:gap-y-[0.85rem] mx-auto"
     >
       {CTA_LINKS.map(({ ariaLabel, href, label }) => {
-        const isExternal = href.startsWith("http");
+        const opensInNewTab = !href.startsWith("#");
         return (
           <a
             key={label}
             aria-label={ariaLabel}
             className={`${buttonBaseClasses} ${buttonInteractiveClasses}`}
             href={href}
-            rel={isExternal ? "noopener noreferrer" : undefined}
-            target={isExternal ? "_blank" : undefined}
+            rel={opensInNewTab ? "noopener noreferrer" : undefined}
+            target={opensInNewTab ? "_blank" : undefined}
           >
             {label}
           </a>

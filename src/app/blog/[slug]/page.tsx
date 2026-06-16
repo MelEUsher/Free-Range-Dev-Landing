@@ -73,13 +73,13 @@ const markdownComponents: Components = {
   },
   a: ({ node, className, href, ...props }) => {
     void node;
-    const isExternal = typeof href === "string" && href.startsWith("http");
+    const opensInNewTab = typeof href === "string" && !href.startsWith("#");
     return (
       <a
         {...props}
         href={href}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
+        target={opensInNewTab ? "_blank" : undefined}
+        rel={opensInNewTab ? "noopener noreferrer" : undefined}
         className={mergeClassNames(
           "font-semibold text-[#58786a] underline decoration-[#a8bdb0] underline-offset-4 transition duration-150 ease-out hover:text-[#1f2d3d] focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-[#ffbd59] focus-visible:outline-offset-2",
           className
