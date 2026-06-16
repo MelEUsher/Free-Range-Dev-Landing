@@ -77,7 +77,6 @@ export default function Home() {
         </div>
         <div className="home-hero-fade" />
       </header>
-      <SectionDivider />
 
       <section className="home-section">
         <div className="home-wrap">
