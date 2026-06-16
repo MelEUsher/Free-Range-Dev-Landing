@@ -310,31 +310,60 @@ const SupportModal = () => {
               Contact Support Squad
             </h3>
 
-            <div className="flex flex-col gap-1">
-              <label
-                className="text-sm font-semibold text-[#1f2d3d]"
-                htmlFor={FIRST_NAME_INPUT_ID}
-              >
-                First name
-              </label>
-              <input
-                aria-describedby={firstNameErrorId}
-                aria-invalid={Boolean(fieldErrors.firstName)}
-                autoComplete="given-name"
-                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
-                id={FIRST_NAME_INPUT_ID}
-                maxLength={120}
-                name="firstName"
-                onChange={handleInputChange}
-                placeholder="First name"
-                type="text"
-                value={formFields.firstName}
-              />
-              {fieldErrors.firstName && (
-                <p className="text-sm text-red-600" id={firstNameErrorId}>
-                  {fieldErrors.firstName}
-                </p>
-              )}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-1 flex-col gap-1">
+                <label
+                  className="text-sm font-semibold text-[#1f2d3d]"
+                  htmlFor={FIRST_NAME_INPUT_ID}
+                >
+                  First name
+                </label>
+                <input
+                  aria-describedby={firstNameErrorId}
+                  aria-invalid={Boolean(fieldErrors.firstName)}
+                  autoComplete="given-name"
+                  className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
+                  id={FIRST_NAME_INPUT_ID}
+                  maxLength={120}
+                  name="firstName"
+                  onChange={handleInputChange}
+                  placeholder="First name"
+                  type="text"
+                  value={formFields.firstName}
+                />
+                {fieldErrors.firstName && (
+                  <p className="text-sm text-red-600" id={firstNameErrorId}>
+                    {fieldErrors.firstName}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-1 flex-col gap-1">
+                <label
+                  className="text-sm font-semibold text-[#1f2d3d]"
+                  htmlFor={LAST_NAME_INPUT_ID}
+                >
+                  Last name
+                </label>
+                <input
+                  aria-describedby={lastNameErrorId}
+                  aria-invalid={Boolean(fieldErrors.lastName)}
+                  autoComplete="family-name"
+                  className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
+                  id={LAST_NAME_INPUT_ID}
+                  maxLength={120}
+                  name="lastName"
+                  onChange={handleInputChange}
+                  placeholder="Last name"
+                  type="text"
+                  value={formFields.lastName}
+                />
+                {fieldErrors.lastName && (
+                  <p className="text-sm text-red-600" id={lastNameErrorId}>
+                    {fieldErrors.lastName}
+                  </p>
+                )}
+              </div>
             </div>
 
             <div className="flex flex-col gap-1">
@@ -360,33 +389,6 @@ const SupportModal = () => {
               {fieldErrors.businessName && (
                 <p className="text-sm text-red-600" id={businessNameErrorId}>
                   {fieldErrors.businessName}
-                </p>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <label
-                className="text-sm font-semibold text-[#1f2d3d]"
-                htmlFor={LAST_NAME_INPUT_ID}
-              >
-                Last name
-              </label>
-              <input
-                aria-describedby={lastNameErrorId}
-                aria-invalid={Boolean(fieldErrors.lastName)}
-                autoComplete="family-name"
-                className="w-full rounded-md border border-[#a8bdb0] bg-white px-3 py-2 text-[#1f2d3d] placeholder:text-[#6b7c89] focus:border-[#95a89d] focus:outline-hidden focus:ring-2 focus:ring-[#95a89d]"
-                id={LAST_NAME_INPUT_ID}
-                maxLength={120}
-                name="lastName"
-                onChange={handleInputChange}
-                placeholder="Last name"
-                type="text"
-                value={formFields.lastName}
-              />
-              {fieldErrors.lastName && (
-                <p className="text-sm text-red-600" id={lastNameErrorId}>
-                  {fieldErrors.lastName}
                 </p>
               )}
             </div>

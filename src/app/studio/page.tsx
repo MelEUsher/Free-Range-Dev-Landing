@@ -10,17 +10,17 @@ const offerings = [
   {
     label: 'CRM',
     title: 'CRM Integration',
-    body: 'Connect and automate your customer pipeline so leads and follow-ups run themselves.',
+    body: 'Connect and automate your customer pipeline so leads and follow-ups run themselves',
   },
   {
     label: 'Accounting',
     title: 'Accounting Workflow',
-    body: 'Automate invoicing, reconciliation, and reporting busywork.',
+    body: 'Automate invoicing, reconciliation, and reporting busywork',
   },
   {
     label: 'APIs',
     title: 'Custom API Orchestration',
-    body: 'Wire your tools together into one system that runs without babysitting.',
+    body: 'Wire your tools together into one system that runs without babysitting',
   },
 ];
 
@@ -38,11 +38,11 @@ export default function StudioPage() {
 
         <header className="home-hero studio-hero">
           <div className="home-wrap home-hero-inner">
-            <span className="home-kicker">Free Range Studio</span>
+            <span className="home-kicker">The Free Range Studio</span>
             <h1>
               Workflow Automations That Run 24/7
               <br />
-              <em>Built in Days, Not Months</em>
+              <em>Built to Last, Delivered Fast</em>
             </h1>
             <p className="home-lede">
               AI-powered automations for businesses drowning in manual work.
@@ -66,7 +66,7 @@ export default function StudioPage() {
             <div className="home-section-head">
               <span className="home-kicker">What We Build</span>
               <h2 id="studio-offerings">
-                Practical automations for <em>daily work</em>
+                Practical Automations for <em>daily work</em>
               </h2>
             </div>
             <div className="home-cards">
