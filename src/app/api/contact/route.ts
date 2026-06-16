@@ -5,7 +5,8 @@ import { enforceRateLimit } from '@/lib/rate-limit';
 
 const contactSchema = z.object({
   firstName: z.string().trim().min(1).max(100),
-  lastName: z.string().trim().min(1).max(100),
+  lastName: z.string().trim().max(100).optional().default(''),
+  businessName: z.string().trim().max(100).optional().default(''),
   email: z.string().trim().email().max(254),
   message: z.string().trim().min(1).max(1000),
 });
@@ -13,6 +14,7 @@ const contactSchema = z.object({
 type ContactPayload = {
   firstName: string;
   lastName: string;
+  businessName: string;
   email: string;
   message: string;
 };
@@ -151,6 +153,7 @@ const parseFormBody = async (request: Request) => {
     return {
       firstName: getValue('firstName'),
       lastName: getValue('lastName'),
+      businessName: getValue('businessName'),
       email: getValue('email'),
       message: getValue('message'),
     };
@@ -177,6 +180,7 @@ const sendWithResend = async (payload: ContactPayload, apiKey: string) => {
   const textBody = [
     `First name: ${payload.firstName}`,
     `Last name: ${payload.lastName}`,
+    `Business name: ${payload.businessName}`,
     `Email: ${payload.email}`,
     '',
     payload.message,

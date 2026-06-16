@@ -79,6 +79,7 @@ describe('contact API', () => {
         {
           firstName: 'Support',
           lastName: 'Tester',
+          businessName: 'Test Studio',
           email: 'support@example.com',
           message: 'Hello there!',
         },
@@ -94,10 +95,13 @@ describe('contact API', () => {
 
     const resendBody = JSON.parse(String(requests[0]?.init?.body)) as {
       reply_to?: string;
+      text?: string;
       to?: string[];
     };
     assert.equal(resendBody.reply_to, 'support@example.com');
     assert.deepEqual(resendBody.to, ['squad@thefreerangedev.dev']);
+    assert.match(resendBody.text ?? '', /Business name: Test Studio/);
+    assert.match(resendBody.text ?? '', /Last name: Tester/);
 
     for (const header of REQUIRED_SECURITY_HEADERS) {
       assert.ok(response.headers.get(header), `expected ${header} header to be set`);
@@ -120,6 +124,38 @@ describe('contact API', () => {
     assert.equal(response.status, 422);
     const body = (await response.json()) as { ok?: boolean };
     assert.equal(body.ok, false);
+  });
+
+  it('accepts blank optional last name and business name fields', async () => {
+    process.env.RESEND_EMAIL_API_KEY = 'test-api-key';
+    const requests: Array<{ url: string; init?: RequestInit }> = [];
+    globalThis.fetch = (async (url: string | URL | Request, init?: RequestInit) => {
+      requests.push({ url: String(url), init });
+      return new Response(JSON.stringify({ id: 'email_test' }), {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      });
+    }) as typeof fetch;
+
+    const response = await POST(
+      makeFormDataRequest(
+        {
+          firstName: 'Solo',
+          lastName: '',
+          businessName: '',
+          email: 'solo@example.com',
+          message: 'No last name or business name.',
+        },
+        { 'x-forwarded-for': '203.0.113.5' },
+      ),
+    );
+
+    assert.equal(response.status, 200);
+    const resendBody = JSON.parse(String(requests[0]?.init?.body)) as {
+      text?: string;
+    };
+    assert.match(resendBody.text ?? '', /Last name: /);
+    assert.match(resendBody.text ?? '', /Business name: /);
   });
 
   it('enforces the sliding window rate limit and returns 429 with Retry-After', async () => {
