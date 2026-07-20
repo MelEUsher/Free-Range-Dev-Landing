@@ -169,6 +169,14 @@ export default function Home() {
             >
               Work with the Studio
             </a>
+            <a
+              className="home-btn home-btn-ghost"
+              href="/articles"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Articles <span className="home-arrow">→</span>
+            </a>
           </div>
         </div>
       </section>

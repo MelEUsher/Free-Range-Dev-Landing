@@ -77,6 +77,24 @@ export default function StudioPage() {
                 </article>
               ))}
             </div>
+            <div className="studio-second-row">
+              <a
+                className="home-card"
+                href="/articles"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span className="home-clabel">Writing</span>
+                <h3>Articles</h3>
+                <p>
+                  Field notes on workflow automation, systems, and building a freer
+                  way to work.
+                </p>
+                <span className="home-go">
+                  Explore <span className="home-arrow">→</span>
+                </span>
+              </a>
+            </div>
           </div>
         </section>
         <SectionDivider />

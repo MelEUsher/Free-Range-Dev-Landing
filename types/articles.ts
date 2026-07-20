@@ -1,9 +1,9 @@
-export type PostFrontmatter = {
+export type ArticleFrontmatter = {
   title: string;
   date: string; // ISO string
 };
 
-export type PostMeta = {
+export type ArticleMeta = {
   slug: string;
   title: string;
   dateISO: string;

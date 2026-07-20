@@ -87,6 +87,9 @@ export function HomeFooter({ tagline = 'From Command Line to Coast Line' }: Home
           </div>
           <div className="home-foot-col">
             <h3>Connect</h3>
+            <Link href="/articles" rel="noopener noreferrer" target="_blank">
+              Articles
+            </Link>
             <a
               href="https://www.youtube.com/@TheFreeRangeDev"
               rel="noopener noreferrer"
