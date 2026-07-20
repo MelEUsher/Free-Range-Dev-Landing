@@ -35,12 +35,12 @@ npx tsx --test tests/contact_test.ts
 ## Architecture Overview
 
 ### Next.js 15 App Router Structure
-This is a **Next.js 15 App Router** application with strict TypeScript and Tailwind CSS. The architecture emphasizes security, rate limiting, and markdown-based blog content.
+This is a **Next.js 15 App Router** application with strict TypeScript and Tailwind CSS. The architecture emphasizes security, rate limiting, and markdown-based article content.
 
 **Core directories:**
 - `src/app/` - App Router pages, layouts, and components
-- `src/lib/` - Shared utilities (rate limiting, blog post loading, nonce generation)
-- `content/posts/` - Markdown/MDX blog posts (`.md` or `.mdx` files)
+- `src/lib/` - Shared utilities (rate limiting, article loading, nonce generation)
+- `content/articles/` - Markdown/MDX articles (`.md` or `.mdx` files)
 - `types/` - TypeScript type definitions
 - `tests/` - Node.js native test runner tests
 - `public/` - Static assets and `_redirects` for Netlify
@@ -74,10 +74,10 @@ accidental dead code.
   rendering**. Next extracts the nonce from the `Content-Security-Policy` /
   `-Report-Only` header on the *request* (set by the proxy via
   `NextResponse.next({ request: { headers } })`).
-- Statically generated/SSG pages (`/`, `/blog`, `/blog/[slug]`) are
+- Statically generated/SSG pages (`/`, `/articles`, `/articles/[slug]`) are
   prerendered at build time with no request/nonce available, so their baked-in
   framework `<script>` tags carry no `nonce` attribute. Confirmed empirically:
-  served HTML for `/` and `/blog` (both `x-nextjs-cache: HIT`) had 5–9 inline
+  served HTML for `/` and `/articles` (both `x-nextjs-cache: HIT`) had 5–9 inline
   `<script>` tags with no `nonce=` attribute.
 - A nonce-only `script-src` (dropping `unsafe-inline`) would therefore block
   all of Next's framework inline scripts on these pages and break hydration.
@@ -96,7 +96,7 @@ accidental dead code.
   `["/api/:path*", {source: "/((?!_next/static|_next/image|favicon.ico).*)", missing: [...prefetch headers]}]`),
   but keep the `/api/*` rate-limit logic gated on
   `pathname.startsWith("/api/")` so it is unaffected.
-- Static marketing pages (`/`, `/blog`, `/blog/[slug]`) **stay on the existing
+- Static marketing pages (`/`, `/articles`, `/articles/[slug]`) **stay on the existing
   enforced static CSP in `next.config.mjs`**, including `script-src
   'unsafe-inline'` — an accepted tradeoff, since these pages carry no
   first-party inline scripts or injection surface.
@@ -124,21 +124,24 @@ accidental dead code.
 - Returns an error when email delivery is not configured
 - All responses include security headers
 
-### Blog System
+### Articles System
 
-**Content loading (`src/lib/posts.ts`):**
-- Reads markdown files from `content/posts/`
+**Content loading (`src/lib/articles.ts`):**
+- Reads markdown files from `content/articles/`
 - Uses `gray-matter` to parse frontmatter (requires `title` and `date` fields)
 - Provides three main functions:
-  - `getAllPosts()` - Returns sorted list of post metadata (sync, for static generation)
-  - `loadPosts()` - Async version for SSR contexts
-  - `loadPostBySlug(slug)` - Loads individual post with full content
+  - `getAllArticles()` - Returns sorted list of article metadata (sync, for static generation)
+  - `loadArticles()` - Async version for SSR contexts
+  - `loadArticleBySlug(slug)` - Loads individual article with full content
 - Auto-generates excerpts from markdown content
 - Supports both `.md` and `.mdx` files
 
-**Blog routes:**
-- `/blog` - Post listing page (`src/app/blog/page.tsx`)
-- `/blog/[slug]` - Individual post page (`src/app/blog/[slug]/page.tsx`)
+**Articles routes:**
+- `/articles` - Persistent layout (left index rail + center); index shows the
+  featured (newest) article (`src/app/articles/page.tsx`,
+  `src/app/articles/layout.tsx`)
+- `/articles/[slug]` - Individual article in the center column
+  (`src/app/articles/[slug]/page.tsx`)
 
 ### Font System
 
@@ -171,16 +174,16 @@ accidental dead code.
 
 ## Development Notes
 
-### Adding New Blog Posts
-1. Create markdown file in `content/posts/` (e.g., `my-post.md`)
+### Adding New Articles
+1. Create markdown file in `content/articles/` (e.g., `my-article.md`)
 2. Include required frontmatter:
    ```yaml
    ---
-   title: "Post Title"
+   title: "Article Title"
    date: "2024-01-15"
    ---
    ```
-3. Post automatically appears in `/blog` (sorted by date, newest first)
+3. Article automatically appears in `/articles` (sorted by date, newest first)
 
 ### Rate Limiting Layers
 - **Proxy layer (`src/proxy.ts`):** 60 requests per 5 minutes per IP (all `/api/*` routes)
@@ -205,7 +208,7 @@ accidental dead code.
 - Security headers: `next.config.mjs:12-57`
 - Rate limiting implementation: `src/proxy.ts`, `src/lib/rate-limit.ts`
 - Nonce generation (planned, currently unused): `src/lib/nonce.ts` — see "CSP Nonce Rollout"
-- Blog post loading: `src/lib/posts.ts`
+- Article loading: `src/lib/articles.ts`
 - Contact API validation: `src/app/api/contact/route.ts:6-10`
 - Font configuration: `src/app/fonts.ts`
 - Test utilities: `tests/contact_test.ts`, `tests/proxy_test.ts`

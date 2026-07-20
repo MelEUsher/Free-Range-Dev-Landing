@@ -2,9 +2,9 @@ import fs from "fs";
 import { promises as fsPromises } from "fs";
 import path from "path";
 import matter from "gray-matter";
-import type { PostFrontmatter, PostMeta } from "../../types/blog";
+import type { ArticleFrontmatter, ArticleMeta } from "../../types/articles";
 
-const POSTS_DIRECTORY = path.join(process.cwd(), "content", "posts");
+const ARTICLES_DIRECTORY = path.join(process.cwd(), "content", "articles");
 const ALLOWED_EXTENSIONS = new Set([".md", ".mdx"]);
 
 export function formatDate(iso: string) {
@@ -27,16 +27,16 @@ export function toExcerpt(markdownBody: string, max = 160) {
   return text.length > max ? text.slice(0, max - 1).trimEnd() + "…" : text;
 }
 
-const POST_FILE_EXTENSIONS = [".mdx", ".md"];
+const ARTICLE_FILE_EXTENSIONS = [".mdx", ".md"];
 
-export type MarkdownFrontmatter = PostFrontmatter & {
+export type MarkdownFrontmatter = ArticleFrontmatter & {
   description?: string;
   publishedAt?: string;
   updatedAt?: string;
   [key: string]: unknown;
 };
 
-export type MarkdownPost = {
+export type MarkdownArticle = {
   slug: string;
   content: string;
   frontmatter: MarkdownFrontmatter;
@@ -47,27 +47,27 @@ function isMarkdownFile(fileName: string) {
 }
 
 function isValidFrontmatter(
-  frontmatter: Partial<PostFrontmatter>
-): frontmatter is PostFrontmatter {
+  frontmatter: Partial<ArticleFrontmatter>
+): frontmatter is ArticleFrontmatter {
   return Boolean(frontmatter?.title && frontmatter?.date);
 }
 
-export function getAllPosts(): PostMeta[] {
-  if (!fs.existsSync(POSTS_DIRECTORY)) {
+export function getAllArticles(): ArticleMeta[] {
+  if (!fs.existsSync(ARTICLES_DIRECTORY)) {
     return [];
   }
 
-  const entries = fs.readdirSync(POSTS_DIRECTORY, { withFileTypes: true });
+  const entries = fs.readdirSync(ARTICLES_DIRECTORY, { withFileTypes: true });
 
-  const posts = entries.reduce<PostMeta[]>((acc, entry) => {
+  const articles = entries.reduce<ArticleMeta[]>((acc, entry) => {
     if (!entry.isFile() || !isMarkdownFile(entry.name)) {
       return acc;
     }
 
-    const fullPath = path.join(POSTS_DIRECTORY, entry.name);
+    const fullPath = path.join(ARTICLES_DIRECTORY, entry.name);
     const fileContent = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContent);
-    const frontmatter = data as Partial<PostFrontmatter>;
+    const frontmatter = data as Partial<ArticleFrontmatter>;
 
     if (!isValidFrontmatter(frontmatter)) {
       return acc;
@@ -92,17 +92,17 @@ export function getAllPosts(): PostMeta[] {
     return acc;
   }, []);
 
-  return posts.sort(
+  return articles.sort(
     (a, b) =>
       new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
   );
 }
 
-function resolvePostPath(slug: string) {
+function resolveArticlePath(slug: string) {
   const normalized = slug.replace(/\.mdx?$/, "");
 
-  for (const ext of POST_FILE_EXTENSIONS) {
-    const candidate = path.join(POSTS_DIRECTORY, `${normalized}${ext}`);
+  for (const ext of ARTICLE_FILE_EXTENSIONS) {
+    const candidate = path.join(ARTICLES_DIRECTORY, `${normalized}${ext}`);
     if (fs.existsSync(candidate)) {
       return candidate;
     }
@@ -111,23 +111,23 @@ function resolvePostPath(slug: string) {
   return null;
 }
 
-export async function loadPosts(): Promise<MarkdownPost[]> {
-  if (!fs.existsSync(POSTS_DIRECTORY)) {
+export async function loadArticles(): Promise<MarkdownArticle[]> {
+  if (!fs.existsSync(ARTICLES_DIRECTORY)) {
     return [];
   }
 
-  const entries = await fsPromises.readdir(POSTS_DIRECTORY, {
+  const entries = await fsPromises.readdir(ARTICLES_DIRECTORY, {
     withFileTypes: true,
   });
 
-  const posts: MarkdownPost[] = [];
+  const articles: MarkdownArticle[] = [];
 
   for (const entry of entries) {
     if (!entry.isFile() || !isMarkdownFile(entry.name)) {
       continue;
     }
 
-    const fullPath = path.join(POSTS_DIRECTORY, entry.name);
+    const fullPath = path.join(ARTICLES_DIRECTORY, entry.name);
     const fileContent = await fsPromises.readFile(fullPath, "utf8");
     const { data, content } = matter(fileContent);
     const frontmatter = data as Partial<MarkdownFrontmatter>;
@@ -136,20 +136,20 @@ export async function loadPosts(): Promise<MarkdownPost[]> {
       continue;
     }
 
-    posts.push({
+    articles.push({
       slug: path.basename(entry.name, path.extname(entry.name)),
       content,
       frontmatter: frontmatter as MarkdownFrontmatter,
     });
   }
 
-  return posts;
+  return articles;
 }
 
-export async function loadPostBySlug(
+export async function loadArticleBySlug(
   slug: string
-): Promise<MarkdownPost | null> {
-  const fullPath = resolvePostPath(slug);
+): Promise<MarkdownArticle | null> {
+  const fullPath = resolveArticlePath(slug);
 
   if (!fullPath) {
     return null;
