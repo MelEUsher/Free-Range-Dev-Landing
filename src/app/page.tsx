@@ -138,7 +138,7 @@ export default function Home() {
           </p>
           <div className="home-actions">
             <a
-              className="home-btn home-btn-primary"
+              className="home-btn home-btn-ghost"
               href="https://www.youtube.com/@TheFreeRangeDev"
               rel="noopener noreferrer"
               target="_blank"
