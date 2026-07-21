@@ -606,11 +606,11 @@ body {
 
 .home-card:not(a):hover {
   border-color: var(--home-card-bd);
-  background: rgba(240, 176, 80, 0.06);
 }
 
 .home-card:hover {
   border-color: var(--home-amber);
+  background: rgba(240, 176, 80, 0.06);
   transform: translateY(-6px);
 }
 
