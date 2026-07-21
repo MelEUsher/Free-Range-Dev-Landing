@@ -84,11 +84,11 @@ export default function StudioPage() {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="home-clabel">Writing</span>
+                <span className="home-clabel">Field Notes</span>
                 <h3>Articles</h3>
                 <p>
-                  Field notes on workflow automation, systems, and building a freer
-                  way to work.
+                  How we build automation that actually runs — notes straight from
+                  the work.
                 </p>
                 <span className="home-go">
                   Explore <span className="home-arrow">→</span>
