@@ -61,5 +61,5 @@ When I hand off a GoHighLevel build, I am not handing over the version that work
 
 If you already have automations running and are not sure they would survive that night, that is worth knowing before your customers find out for you. It is a far better thing to look at on a calm afternoon than to untangle while you are apologizing for double charges. If you want a second set of eyes on what you have built, or on what you are about to trust with live payments, that is exactly the kind of thing I am happy to look at. You can find how to reach me on the work with me page, and there is no pressure in a conversation.
 
-Melissa Usher, The Free Range Dev
+— Melissa Usher, The Free Range Dev
 thefreerangedev.com
