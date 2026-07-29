@@ -24,7 +24,7 @@ The fix is to design for it instead of hoping it stays away:
 
 The goal is simple: one real event produces one set of consequences, no matter how many times the customer taps.
 
-## Timing races in the handoffs
+## Timing Races In The Handoffs
 
 Most CRM automations are not one workflow. They are several, passing a contact between them, plus whatever your booking calendar, payment processor, and email system are doing at the same time. Each moves at its own speed, and none of them wait politely in line.
 
@@ -38,7 +38,7 @@ I check for this by asking a blunt question at every handoff: what does this ste
 
 Timing bugs pass every calm test and then surface only when the system is busy, which is exactly when you least want to be debugging.
 
-## Silent failures nobody sees
+## Silent Failures Nobody Sees
 
 This is the one that worries me most, because the others at least announce themselves. A duplicate charge draws an angry email. A race condition sends a broken link someone notices. A silent failure sends nothing, does nothing, and tells no one.
 
@@ -53,7 +53,7 @@ You cannot fix what you cannot see, so the work here is making failures visible 
 
 The point is not to prevent every possible failure, which is not realistic. It is to guarantee that when something breaks, a person knows before a customer does.
 
-## Why this is the actual job
+## Why This Is The Actual Job
 
 None of this shows up in a demo, and that is exactly why it matters. Anyone can build the happy path. The reliability lives in the parts you only notice when they hold: the duplicate that got caught, the race that got sequenced away, the silent failure that pinged me instead of costing you a customer.
 
