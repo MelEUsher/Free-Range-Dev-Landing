@@ -10,7 +10,7 @@ Then a real customer shows up on a Saturday night, double-taps checkout because 
 
 The gap between those two moments is where most of my work actually lives. A demo proves the happy path exists. It says nothing about what happens under real load, with real timing and real human behavior. That gap matters most for the kind of businesses I build for: small training and events shops running CRM, payments, and booking together (online workshops, live events, paid sessions, that world), where a workflow slip is a real customer and a real charge, not a test row. So before I trust a GoHighLevel workflow with live leads and live payments, I run it through a specific set of failure modes. Here are the ones I check first, and what I do about each.
 
-## Duplicate triggers, or the double-tap problem
+## Duplicate Triggers, or The Double-Tap Problem
 
 People double-click. They refresh a slow page. They submit a form, see no response, and submit again. Payment providers sometimes send the same webhook twice on their own, because most of them retry delivery and can send the same event more than once by design. Every one of these is normal, and every one can fire your workflow more than once for a single real event.
 
