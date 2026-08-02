@@ -40,7 +40,7 @@ Then I make sure the answer is up to me and not left to luck:
 
 Timing bugs pass every calm test and then surface only when the system is busy, which is exactly when you least want to be debugging.
 
-## Silent Failures Nobody Sees
+## Behind the Scenes Failures Nobody Sees
 
 This is the one that worries me most, because the others at least announce themselves. A duplicate charge brings in an angry email. A race condition sends a broken link someone notices. A silent failure sends nothing, does nothing, and tells no one.
 
