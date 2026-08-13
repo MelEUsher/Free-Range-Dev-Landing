@@ -2,7 +2,7 @@
 title: "What to Automate First: A Small Business Owner's Order of Operations"
 date: "2026-08-05"
 description: "Most owners have a prioritization problem, not an automation one. Automate first where a gap hurts your customers most, not where the build looks impressive."
-publishedAt: "2026-08-05"
+category: "automation-tech"
 ---
 
 In my experience, most owners do not have an automation problem. They have a prioritization problem.

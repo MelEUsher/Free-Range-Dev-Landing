@@ -1,7 +1,7 @@
 ---
 title: "How AI Workflow Automation Saves Time for Small Teams"
 date: "2026-07-20"
-publishedAt: "2026-07-20"
+category: "automation-tech"
 ---
 
 The best automation I've ever built is something almost no one noticed.

@@ -1,7 +1,7 @@
 ---
 title: "Designing GoHighLevel Automations That Survive Real Customers"
 date: "2026-07-29"
-publishedAt: "2026-07-29"
+category: "automation-tech"
 ---
 
 An automation that works in a demo is a low standard. A workflow can be wired up in an afternoon with one clean lead run through it, the email lands and the tag applies, and it's called done. It looks great. Everyone nods.

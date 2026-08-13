@@ -2,7 +2,7 @@
 title: "The Seams Between Your Tools: Where Small Businesses Lose Customers"
 date: "2026-08-12"
 description: "Your form, CRM, email, and checkout each work fine alone. Customers slip through the seams where those tools hand off, and closing those gaps is the real work."
-publishedAt: "2026-08-12"
+category: "automation-tech"
 ---
 
 Last week I wrote about what to automate first, and how the answer is almost never the tool that looks impressive. It is the gap that costs you the most in the customer process. This week I want to go one level down, into a specific kind of gap that hits in almost every small business I look at.
