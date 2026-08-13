@@ -6,6 +6,11 @@ import ReactMarkdown from 'react-markdown';
 
 import type { MarkdownArticle } from '@/lib/articles';
 import { loadArticleBySlug, loadArticles } from '@/lib/articles';
+import {
+  UNCATEGORIZED_KEY,
+  categoryLabel,
+  resolveCategoryKey,
+} from '@/lib/categories';
 
 export const runtime = 'nodejs';
 export const dynamicParams = false;
@@ -99,16 +104,21 @@ export default async function ArticlePage({
     notFound();
   }
 
-  const publishedAt = article.frontmatter.publishedAt;
+  const publishedDate = article.frontmatter.date;
+  const categoryKey = resolveCategoryKey(article.frontmatter.category);
+  const showCategory = categoryKey !== UNCATEGORIZED_KEY;
 
   return (
     <article className="articles-single" aria-label="Article">
       <header className="articles-single-head">
         <span className="home-kicker">The Free Range Dev</span>
+        {showCategory ? (
+          <span className="articles-single-chip">{categoryLabel(categoryKey)}</span>
+        ) : null}
         <h1 className="articles-single-title">{article.frontmatter.title}</h1>
-        {publishedAt && (
-          <time className="articles-single-date" dateTime={publishedAt}>
-            {new Date(publishedAt).toLocaleDateString('en-US', {
+        {publishedDate && (
+          <time className="articles-single-date" dateTime={publishedDate}>
+            {new Date(publishedDate).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

@@ -3,6 +3,7 @@ import { promises as fsPromises } from "fs";
 import path from "path";
 import matter from "gray-matter";
 import type { ArticleFrontmatter, ArticleMeta } from "../../types/articles";
+import { resolveCategoryKey } from "./categories";
 
 const ARTICLES_DIRECTORY = path.join(process.cwd(), "content", "articles");
 const ALLOWED_EXTENSIONS = new Set([".md", ".mdx"]);
@@ -46,9 +47,9 @@ function isMarkdownFile(fileName: string) {
   return ALLOWED_EXTENSIONS.has(path.extname(fileName).toLowerCase());
 }
 
-function isValidFrontmatter(
-  frontmatter: Partial<ArticleFrontmatter>
-): frontmatter is ArticleFrontmatter {
+function isValidFrontmatter<T extends Partial<ArticleFrontmatter>>(
+  frontmatter: T
+): frontmatter is T & ArticleFrontmatter {
   return Boolean(frontmatter?.title && frontmatter?.date);
 }
 
@@ -67,7 +68,7 @@ export function getAllArticles(): ArticleMeta[] {
     const fullPath = path.join(ARTICLES_DIRECTORY, entry.name);
     const fileContent = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContent);
-    const frontmatter = data as Partial<ArticleFrontmatter>;
+    const frontmatter = data as Partial<MarkdownFrontmatter>;
 
     if (!isValidFrontmatter(frontmatter)) {
       return acc;
@@ -80,6 +81,11 @@ export function getAllArticles(): ArticleMeta[] {
     }
 
     const dateISO = parsedDate.toISOString();
+    const rawDescription = frontmatter.description;
+    const description =
+      typeof rawDescription === "string" && rawDescription.trim().length > 0
+        ? rawDescription.trim()
+        : undefined;
 
     acc.push({
       slug: path.basename(entry.name, path.extname(entry.name)),
@@ -87,14 +93,15 @@ export function getAllArticles(): ArticleMeta[] {
       dateISO,
       dateDisplay: formatDate(dateISO),
       excerpt: toExcerpt(content),
+      description,
+      categoryKey: resolveCategoryKey(frontmatter.category),
     });
 
     return acc;
   }, []);
 
   return articles.sort(
-    (a, b) =>
-      new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
+    (a, b) => new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
   );
 }
 

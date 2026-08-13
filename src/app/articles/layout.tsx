@@ -3,13 +3,15 @@ import type { ReactNode } from 'react';
 import { HomeFooter, HomeNav } from '@/app/components/HomeChrome';
 import SupportModalRoot from '@/app/components/SupportModalRoot';
 import { getAllArticles } from '@/lib/articles';
+import { renderedCategories } from '@/lib/categories';
 
-import ArticlesRail from './ArticlesRail';
+import ArticlesNav from './ArticlesNav';
 
 export default function ArticlesLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   const articles = getAllArticles();
+  const categories = renderedCategories(articles);
 
   return (
     <>
@@ -17,7 +19,7 @@ export default function ArticlesLayout({
         <HomeNav />
 
         <div className="home-wrap articles-shell">
-          <ArticlesRail articles={articles} />
+          <ArticlesNav categories={categories} articles={articles} />
           <div className="articles-center">{children}</div>
         </div>
 
