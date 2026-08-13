@@ -822,7 +822,7 @@ body {
   }
 }
 
-/* Articles section — dark home-redesign theme (rail + center) */
+/* Articles section — dark home-redesign theme (category nav + center) */
 .articles-shell {
   display: grid;
   grid-template-columns: 268px minmax(0, 1fr);
@@ -833,7 +833,8 @@ body {
   padding-bottom: 104px;
 }
 
-.articles-rail {
+/* Left rail: category navigation */
+.articles-nav {
   position: sticky;
   top: 98px;
   min-width: 0;
@@ -842,58 +843,44 @@ body {
   gap: 18px;
 }
 
-.articles-rail-kicker {
+.articles-nav-kicker {
   display: block;
   margin-bottom: 2px;
 }
 
-.articles-rail-nav {
+.articles-nav-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
-.articles-rail-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 14px 16px;
+.articles-nav-item {
+  display: block;
+  padding: 12px 16px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--home-card);
+  color: var(--home-cream);
+  font-family: var(--home-display);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-.articles-rail-item:hover {
+.articles-nav-item:hover {
   border-color: var(--home-card-bd);
   background: rgba(240, 176, 80, 0.06);
   transform: translateY(-2px);
 }
 
-.articles-rail-item.is-active {
+.articles-nav-item.is-active {
   border-color: var(--home-amber);
   background: rgba(240, 176, 80, 0.08);
-}
-
-.articles-rail-date {
-  color: var(--home-sage);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.articles-rail-title {
-  font-family: var(--home-display);
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-.articles-rail-item.is-active .articles-rail-title {
   color: var(--home-amber);
 }
 
@@ -901,41 +888,160 @@ body {
   min-width: 0;
 }
 
-.articles-featured,
-.articles-empty {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  background: var(--home-card);
-  padding: 48px 44px;
+/* Shared view header (Featured view + category views) */
+.articles-view-head {
+  margin-bottom: 30px;
 }
 
-.articles-featured-date {
-  margin-top: 14px;
-  color: var(--home-sage);
-  font-size: 12px;
+.articles-view-title {
+  margin-top: 12px;
+  font-family: var(--home-display);
+  font-size: clamp(32px, 4.4vw, 50px);
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+/* Featured view: adaptive grid of most-recent-per-category cards */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 360px));
+  justify-content: start;
+  gap: 24px;
+}
+
+/* Category view: larger lead card + stacked row cards */
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.articles-list-rest {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Article card (variants: featured | lead | row) */
+.articles-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: var(--home-card);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.articles-card:hover {
+  border-color: var(--home-amber);
+  background: rgba(240, 176, 80, 0.06);
+  transform: translateY(-6px);
+}
+
+.articles-card:hover .home-arrow {
+  transform: translateX(4px);
+}
+
+.articles-card-chip {
+  align-self: flex-start;
+  margin-bottom: 14px;
+  padding: 5px 12px;
+  border: 1px solid var(--home-card-bd);
+  border-radius: 99px;
+  background: rgba(240, 176, 80, 0.08);
+  color: var(--home-amber);
+  font-family: var(--home-body);
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.articles-featured-title {
+.articles-card-date {
+  color: var(--home-sage);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.articles-card-title {
   margin-top: 10px;
   font-family: var(--home-display);
-  font-size: clamp(34px, 4.5vw, 52px);
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.articles-card-blurb {
+  margin-top: 12px;
+  color: var(--home-muted);
+  font-weight: 300;
+  line-height: 1.6;
+  /* clamp to a preview; full text remains in the DOM for assistive tech */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.articles-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: var(--home-amber);
+  font-family: var(--home-body);
+  font-size: 14px;
   font-weight: 500;
+}
+
+.articles-card-cta .home-arrow {
+  color: var(--home-amber);
+}
+
+/* Featured card: compact, uniform in the grid */
+.articles-card-featured {
+  padding: 30px 28px;
+}
+
+.articles-card-featured .articles-card-title {
+  font-size: 25px;
+}
+
+/* Lead card: larger visual highlight at the top of a category list */
+.articles-card-lead {
+  padding: 40px 36px;
+}
+
+.articles-card-lead .articles-card-title {
+  font-size: clamp(28px, 3.6vw, 40px);
   line-height: 1.08;
 }
 
-.articles-featured-excerpt {
-  margin-top: 18px;
-  color: var(--home-muted);
+.articles-card-lead .articles-card-blurb {
   font-size: 17px;
-  font-weight: 300;
-  line-height: 1.7;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
-.articles-featured-cta {
-  margin-top: 30px;
+/* Row card: compact, uniform beneath the lead */
+.articles-card-row {
+  padding: 24px 26px;
+}
+
+.articles-card-row .articles-card-title {
+  font-size: 21px;
+}
+
+.articles-empty {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: var(--home-card);
+  padding: 48px 44px;
 }
 
 .articles-empty h1 {
@@ -955,6 +1061,25 @@ body {
 
 .articles-single-head {
   margin-bottom: 34px;
+}
+
+.articles-single-head .home-kicker {
+  display: block;
+}
+
+.articles-single-chip {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 5px 12px;
+  border: 1px solid var(--home-card-bd);
+  border-radius: 99px;
+  background: rgba(240, 176, 80, 0.08);
+  color: var(--home-amber);
+  font-family: var(--home-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .articles-single-title {
@@ -1066,12 +1191,17 @@ body {
     padding-top: 44px;
   }
 
-  .articles-rail {
+  .articles-nav {
     position: static;
     top: auto;
   }
 
-  .articles-featured,
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .articles-card-featured,
+  .articles-card-lead,
   .articles-empty {
     padding: 34px 26px;
   }
