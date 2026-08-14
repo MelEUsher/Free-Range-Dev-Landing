@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 import { getAllArticles } from '@/lib/articles';
+import { featuredPerCategory } from '@/lib/categories';
+
+import ArticleCard from './ArticleCard';
 
 export const dynamic = 'force-static';
 
@@ -19,9 +21,9 @@ export const metadata: Metadata = {
 
 export default function ArticlesIndexPage() {
   const articles = getAllArticles();
-  const featured = articles[0];
+  const featured = featuredPerCategory(articles);
 
-  if (!featured) {
+  if (featured.length === 0) {
     return (
       <div className="articles-empty">
         <span className="home-kicker">Articles</span>
@@ -31,17 +33,28 @@ export default function ArticlesIndexPage() {
     );
   }
 
-  const href = `/articles/${featured.slug}`;
-
   return (
-    <article className="articles-featured">
-      <span className="home-kicker">Featured Article</span>
-      <p className="articles-featured-date">{featured.dateDisplay}</p>
-      <h1 className="articles-featured-title">{featured.title}</h1>
-      <p className="articles-featured-excerpt">{featured.excerpt}</p>
-      <Link className="home-btn home-btn-primary articles-featured-cta" href={href}>
-        Read the article <span className="home-arrow">→</span>
-      </Link>
-    </article>
+    <section
+      className="articles-view articles-featured-view"
+      aria-labelledby="articles-featured-heading"
+    >
+      <header className="articles-view-head">
+        <span className="home-kicker">Articles</span>
+        <h1 id="articles-featured-heading" className="articles-view-title">
+          Featured Articles
+        </h1>
+      </header>
+
+      <div className="articles-list">
+        {featured.map(({ category, article }) => (
+          <ArticleCard
+            key={article.slug}
+            article={article}
+            variant="lead"
+            categoryLabel={category.label}
+          />
+        ))}
+      </div>
+    </section>
   );
 }

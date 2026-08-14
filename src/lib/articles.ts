@@ -3,6 +3,7 @@ import { promises as fsPromises } from "fs";
 import path from "path";
 import matter from "gray-matter";
 import type { ArticleFrontmatter, ArticleMeta } from "../../types/articles";
+import { resolveCategoryKey } from "./categories";
 
 const ARTICLES_DIRECTORY = path.join(process.cwd(), "content", "articles");
 const ALLOWED_EXTENSIONS = new Set([".md", ".mdx"]);
@@ -29,6 +30,11 @@ export function toExcerpt(markdownBody: string, max = 160) {
 
 const ARTICLE_FILE_EXTENSIONS = [".mdx", ".md"];
 
+// Slugs are derived from filenames and are interpolated into hrefs and used to
+// resolve files on disk. Constrain them to a URL- and path-safe allowlist so a
+// stray or hostile filename can never reach an href or a path.join.
+const SAFE_SLUG = /^[a-z0-9-]+$/;
+
 export type MarkdownFrontmatter = ArticleFrontmatter & {
   description?: string;
   publishedAt?: string;
@@ -46,9 +52,9 @@ function isMarkdownFile(fileName: string) {
   return ALLOWED_EXTENSIONS.has(path.extname(fileName).toLowerCase());
 }
 
-function isValidFrontmatter(
-  frontmatter: Partial<ArticleFrontmatter>
-): frontmatter is ArticleFrontmatter {
+function isValidFrontmatter<T extends Partial<ArticleFrontmatter>>(
+  frontmatter: T
+): frontmatter is T & ArticleFrontmatter {
   return Boolean(frontmatter?.title && frontmatter?.date);
 }
 
@@ -67,7 +73,7 @@ export function getAllArticles(): ArticleMeta[] {
     const fullPath = path.join(ARTICLES_DIRECTORY, entry.name);
     const fileContent = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContent);
-    const frontmatter = data as Partial<ArticleFrontmatter>;
+    const frontmatter = data as Partial<MarkdownFrontmatter>;
 
     if (!isValidFrontmatter(frontmatter)) {
       return acc;
@@ -80,21 +86,32 @@ export function getAllArticles(): ArticleMeta[] {
     }
 
     const dateISO = parsedDate.toISOString();
+    const rawDescription = frontmatter.description;
+    const description =
+      typeof rawDescription === "string" && rawDescription.trim().length > 0
+        ? rawDescription.trim()
+        : undefined;
+
+    const slug = path.basename(entry.name, path.extname(entry.name));
+    if (!SAFE_SLUG.test(slug)) {
+      return acc;
+    }
 
     acc.push({
-      slug: path.basename(entry.name, path.extname(entry.name)),
+      slug,
       title: frontmatter.title,
       dateISO,
       dateDisplay: formatDate(dateISO),
       excerpt: toExcerpt(content),
+      description,
+      categoryKey: resolveCategoryKey(frontmatter.category),
     });
 
     return acc;
   }, []);
 
   return articles.sort(
-    (a, b) =>
-      new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
+    (a, b) => new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
   );
 }
 
@@ -136,8 +153,13 @@ export async function loadArticles(): Promise<MarkdownArticle[]> {
       continue;
     }
 
+    const slug = path.basename(entry.name, path.extname(entry.name));
+    if (!SAFE_SLUG.test(slug)) {
+      continue;
+    }
+
     articles.push({
-      slug: path.basename(entry.name, path.extname(entry.name)),
+      slug,
       content,
       frontmatter: frontmatter as MarkdownFrontmatter,
     });
@@ -149,6 +171,10 @@ export async function loadArticles(): Promise<MarkdownArticle[]> {
 export async function loadArticleBySlug(
   slug: string
 ): Promise<MarkdownArticle | null> {
+  if (!SAFE_SLUG.test(slug.replace(/\.mdx?$/, ""))) {
+    return null;
+  }
+
   const fullPath = resolveArticlePath(slug);
 
   if (!fullPath) {
