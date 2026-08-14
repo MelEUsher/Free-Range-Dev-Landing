@@ -45,12 +45,12 @@ export default function ArticlesIndexPage() {
         </h1>
       </header>
 
-      <div className="articles-grid">
+      <div className="articles-list">
         {featured.map(({ category, article }) => (
           <ArticleCard
             key={article.slug}
             article={article}
-            variant="featured"
+            variant="lead"
             categoryLabel={category.label}
           />
         ))}

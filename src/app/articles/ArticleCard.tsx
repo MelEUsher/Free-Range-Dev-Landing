@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import type { ArticleMeta } from '../../../types/articles';
 
-type ArticleCardVariant = 'featured' | 'lead' | 'row';
+type ArticleCardVariant = 'lead' | 'row';
 
 type ArticleCardProps = {
   article: ArticleMeta;
