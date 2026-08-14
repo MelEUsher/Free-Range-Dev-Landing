@@ -30,6 +30,11 @@ export function toExcerpt(markdownBody: string, max = 160) {
 
 const ARTICLE_FILE_EXTENSIONS = [".mdx", ".md"];
 
+// Slugs are derived from filenames and are interpolated into hrefs and used to
+// resolve files on disk. Constrain them to a URL- and path-safe allowlist so a
+// stray or hostile filename can never reach an href or a path.join.
+const SAFE_SLUG = /^[a-z0-9-]+$/;
+
 export type MarkdownFrontmatter = ArticleFrontmatter & {
   description?: string;
   publishedAt?: string;
@@ -87,8 +92,13 @@ export function getAllArticles(): ArticleMeta[] {
         ? rawDescription.trim()
         : undefined;
 
+    const slug = path.basename(entry.name, path.extname(entry.name));
+    if (!SAFE_SLUG.test(slug)) {
+      return acc;
+    }
+
     acc.push({
-      slug: path.basename(entry.name, path.extname(entry.name)),
+      slug,
       title: frontmatter.title,
       dateISO,
       dateDisplay: formatDate(dateISO),
@@ -143,8 +153,13 @@ export async function loadArticles(): Promise<MarkdownArticle[]> {
       continue;
     }
 
+    const slug = path.basename(entry.name, path.extname(entry.name));
+    if (!SAFE_SLUG.test(slug)) {
+      continue;
+    }
+
     articles.push({
-      slug: path.basename(entry.name, path.extname(entry.name)),
+      slug,
       content,
       frontmatter: frontmatter as MarkdownFrontmatter,
     });
@@ -156,6 +171,10 @@ export async function loadArticles(): Promise<MarkdownArticle[]> {
 export async function loadArticleBySlug(
   slug: string
 ): Promise<MarkdownArticle | null> {
+  if (!SAFE_SLUG.test(slug.replace(/\.mdx?$/, ""))) {
+    return null;
+  }
+
   const fullPath = resolveArticlePath(slug);
 
   if (!fullPath) {
