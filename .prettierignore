@@ -1,0 +1,4 @@
+# Approved article copy is structurally exempt from the formatter. Mel rules on
+# the prose; a future Prettier config change (proseWrap, quote style) must not be
+# able to reflow or rewrite it.
+content/**
