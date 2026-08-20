@@ -20,6 +20,15 @@ jobs:
     name: Build + Lighthouse CI
     runs-on: ubuntu-latest
 
+    # Least privilege, matching codeql.yml. Nothing in this job writes to the
+    # repository or the API: checkout and setup-node both document contents:read
+    # as sufficient, upload-artifact and the Actions cache authenticate with the
+    # Actions runtime token rather than GITHUB_TOKEN, and Lighthouse uploads to
+    # the filesystem and Google temporary public storage, with no LHCI GitHub
+    # status token configured.
+    permissions:
+      contents: read
+
     # Push-event guard only, and deliberately left as-is. On pull_request events
     # there is no github.event.head_commit, so the first clause tests an empty
     # string and always passes. That is correct here: GitHub already skips
