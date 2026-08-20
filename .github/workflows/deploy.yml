@@ -5,26 +5,28 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+    # Only prose is exempt from CI. Dependency manifests (package.json,
+    # package-lock.json), everything under public/, and image assets must run
+    # the build and Lighthouse audit: dependency bumps are the change class most
+    # likely to break the build, and static assets are exactly what Lighthouse
+    # exists to police.
     paths-ignore:
       - '**/*.md'
-      - '**/*.json'
       - 'README'
       - 'README.md'
-      - 'public/**'
-      - '**/*.png'
-      - '**/*.jpg'
-      - '**/*.jpeg'
-      - '**/*.gif'
-      - '**/*.svg'
-      - '**/*.webp'
-      - '**/*.avif'
-      - '**/*.ico'
 
 jobs:
   build-and-audit:
     name: Build + Lighthouse CI
     runs-on: ubuntu-latest
 
+    # Push-event guard only, and deliberately left as-is. On pull_request events
+    # there is no github.event.head_commit, so the first clause tests an empty
+    # string and always passes. That is correct here: GitHub already skips
+    # push and pull_request runs natively when the head commit message contains
+    # [skip ci], and the only rewrite that would make this clause live on PRs
+    # (matching the PR title instead) would add a new way to skip CI, which is
+    # the opposite of what this workflow needs.
     if: >
       !contains(join(github.event.head_commit.message, ' '), '[skip ci]') &&
       !endsWith(github.ref, '/skip')
