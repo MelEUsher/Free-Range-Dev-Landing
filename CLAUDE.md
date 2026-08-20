@@ -178,7 +178,8 @@ by browsing the site. Check the key against the registry before committing.
 `renderedCategories(articles)` narrows the registry to categories that have at least one article.
 A registered category with no articles stays out of the nav and the Featured view, and its topics
 route returns 404, until its first article publishes. It then appears on the next build with no code
-change. `sales-persuasion` has no published article on `main` as of 2026-08-20, so it is hidden.
+change. A category can therefore be registered ahead of the writing that fills it, and an empty
+registered category is an expected state rather than a defect.
 
 To add a category, add one entry to `CATEGORIES` with a `key`, a `label`, and an `order`, then tag
 at least one article with that key.
