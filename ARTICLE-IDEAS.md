@@ -1,7 +1,7 @@
 # Article Ideas and Topics
 
 This file is the durable record of which articles are published, which topics are queued, and
-which topics have been ruled out for the Free Range Studio articles on this site.
+which topics have been ruled out for The Free Range Dev's articles on this site.
 
 It is not a published page. It lives at the repository root and never renders on the live site,
 because only markdown files in `content/articles/` build article pages. Do not move this file
