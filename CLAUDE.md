@@ -135,7 +135,7 @@ purpose for the rollout below and is not accidental dead code.
 (PR #105) replaced the flat article index with a category taxonomy, so an article's `category`
 frontmatter field is what makes it appear anywhere on the site.
 
-**The article queue lives at `/ARTICLE-IDEAS.md`.** That file at the repository root is the durable
+**The article queue lives at `ARTICLE-IDEAS.md`.** That file at the repository root is the durable
 record of which articles are published, which topics are queued, and which topics have been ruled
 out. It is the primary source the weekly article-planning session reads, because that session runs
 fresh and cannot count on reaching project memory, while it can always read this repository. The
@@ -340,7 +340,7 @@ with Retry-After once the limit is exceeded, and independent tracking per client
 6. Start the body at H2 (`##`). The page renders the H1 from the title.
 7. Build the site. `generateStaticParams` reads the directory, so no manifest, index, or config
    change is needed.
-8. Check off the article's entry in `/ARTICLE-IDEAS.md` in the same pull request that adds the
+8. Check off the article's entry in `ARTICLE-IDEAS.md` in the same pull request that adds the
    article, recording its date and its slug. That file is how the next article-planning session
    knows the piece shipped, so an unchecked entry gets the topic proposed a second time.
 
