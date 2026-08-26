@@ -320,6 +320,7 @@ with Retry-After once the limit is exceeded, and independent tracking per client
    lowercase kebab-case matching `/^[a-z0-9-]+$/` (for example `where-your-api-key-should-live.md`).
 2. Include all four frontmatter fields:
 
+   <!-- prettier-ignore -->
    ```yaml
    ---
    title: "Article Title"
