@@ -34,7 +34,8 @@ Registry key: `automation-tech`
 - [x] The Seams Between Your Tools: Where Small Businesses Lose Customers (2026-08-12, `the-seams-between-your-tools`)
 - [x] Where Your API Key Should Live (2026-08-19, `where-your-api-key-should-live`)
 - [ ] **IN PROGRESS** Should Your Small Business Add an AI Chatbot?
-  - Drafted and with Mel to proofread as of 2026-08-26. It stays unchecked until it merges.
+  - Drafted and with Mel to proofread as of 2026-08-26. It stays unchecked on main until its
+    pull request merges.
 
 One piece is in progress and nothing is queued behind it. The next Automation & Tech slot after
 that draft needs a topic from Mel.
@@ -46,7 +47,7 @@ Registry key: `sales-persuasion`
 - [x] When Discovery Decides the Sale (2026-08-19, `when-discovery-decides-the-sale`)
 - [ ] **IN PROGRESS** Good Selling Doesn't Feel Like Being Sold To
   - Drafted and with Mel to proofread as of 2026-08-26. It has been through the agent chain and
-    is not published, so it stays unchecked until it merges.
+    is not published, so it stays unchecked on main until its pull request merges.
 - [ ] **NEXT** Creative Innovation as Market Positioning (working title)
   - Next in line for this category, Mel's call 2026-08-26. The title is a working title. The
     angle is already set and recorded in Mel's editorial memory, so it is not restated here.
