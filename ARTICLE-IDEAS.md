@@ -60,8 +60,13 @@ These topics have been decided against, so that nobody proposes them again.
 
 - When an article publishes, Flint checks off its entry in the same pull request that adds the
   article, and records the date and the slug.
-- Every Monday, Flint and Hawk sync new ideas from Mel's project memory into this file, so
-  anything she queues during the week lands here.
+- A Monday 8:00 a.m. Central scheduled task syncs new ideas from Mel's project memory into this
+  file, so anything she queues during the week lands here. That task is bound to Mel's computer,
+  so project memory is reachable whenever her desktop is connected, and on a morning it cannot be
+  reached the task reports the miss to Mel instead of skipping in silence.
+- The Wednesday planning session has no such binding. It runs fresh in the cloud and cannot reach
+  project memory, which is the difference that makes this file necessary. Monday can read memory;
+  Wednesday can only read this repository.
 - Mel adds ideas by telling Cadence to add them to the article queue.
 - The Wednesday session reads this file first. If a category's queue is empty, it asks Mel for a
   topic instead of inventing one.
