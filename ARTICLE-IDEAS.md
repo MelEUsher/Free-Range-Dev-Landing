@@ -20,8 +20,9 @@ Cadence, Mel's ruling 2026-08-26: a category may go quiet for a week, so long as
 gets at least one article per month.
 
 Status markers: `- [ ] **IN PROGRESS**` is written and waiting on Mel, `- [ ] **NEXT**` is the
-next piece to be written in that category, an untagged `- [ ]` is further back in the queue, and
-`- [x]` means published and nothing else.
+next piece to be written in that category, `- [ ] **SCHEDULED (YYYY-MM-DD)**` is dated for a
+specific day, an untagged `- [ ]` is further back in the queue, and `- [x]` means published and
+nothing else.
 
 ## Automation & Tech
 
@@ -49,10 +50,10 @@ Registry key: `sales-persuasion`
 - [ ] **NEXT** Creative Innovation as Market Positioning (working title)
   - Next in line for this category, Mel's call 2026-08-26. The title is a working title. The
     angle is already set and recorded in Mel's editorial memory, so it is not restated here.
-- [ ] The Challenger Sale Piece (working title)
+- [ ] **SCHEDULED (2026-09-09)** The Challenger Sale Piece (working title)
   - No title yet. Standing constraint: Challenger is an article angle, never a credential, and it
-    does not go on a resume, a profile, or a cover letter. Parked until Mel has read more of the
-    book.
+    does not go on a resume, a profile, or a cover letter. Scheduled for 2026-09-09, Mel's call
+    2026-08-26, dated two weeks out to give her time to get further into the book.
 - [ ] Customers Default to Price Only When You Give Them Nothing Else to Weigh
   - Queued 2026-08-26. The idea comes from the Alex Hormozi "Scale or Fail" transcript in Mel's
     sales training folder, near the start of the body.
