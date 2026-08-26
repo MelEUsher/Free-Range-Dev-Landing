@@ -16,6 +16,13 @@ Flint maintains this file and Hawk reviews the changes. Mel rules on every topic
 A queued topic is a subject, not a brief. Mel sets the angle in conversation when the piece comes
 up, so no angles or briefs are recorded here.
 
+Cadence, Mel's ruling 2026-08-26: a category may go quiet for a week, so long as every category
+gets at least one article per month.
+
+Status markers: `- [ ] **IN PROGRESS**` is written and waiting on Mel, `- [ ] **NEXT**` is the
+next piece to be written in that category, an untagged `- [ ]` is further back in the queue, and
+`- [x]` means published and nothing else.
+
 ## Automation & Tech
 
 Registry key: `automation-tech`
@@ -25,15 +32,27 @@ Registry key: `automation-tech`
 - [x] What to Automate First: A Small Business Owner's Order of Operations (2026-08-05, `what-to-automate-first`)
 - [x] The Seams Between Your Tools: Where Small Businesses Lose Customers (2026-08-12, `the-seams-between-your-tools`)
 - [x] Where Your API Key Should Live (2026-08-19, `where-your-api-key-should-live`)
+- [ ] **IN PROGRESS** Should Your Small Business Add an AI Chatbot?
+  - Drafted and with Mel to proofread as of 2026-08-26. It stays unchecked until it merges.
 
-There are no queued ideas in this category. The next Automation & Tech slot needs a topic from
-Mel.
+One piece is in progress and nothing is queued behind it. The next Automation & Tech slot after
+that draft needs a topic from Mel.
 
 ## Sales & Persuasion
 
 Registry key: `sales-persuasion`
 
 - [x] When Discovery Decides the Sale (2026-08-19, `when-discovery-decides-the-sale`)
+- [ ] **IN PROGRESS** Good Selling Doesn't Feel Like Being Sold To
+  - Drafted and with Mel to proofread as of 2026-08-26. It has been through the agent chain and
+    is not published, so it stays unchecked until it merges.
+- [ ] **NEXT** Creative Innovation as Market Positioning (working title)
+  - Next in line for this category, Mel's call 2026-08-26. The title is a working title. The
+    angle is already set and recorded in Mel's editorial memory, so it is not restated here.
+- [ ] The Challenger Sale Piece (working title)
+  - No title yet. Standing constraint: Challenger is an article angle, never a credential, and it
+    does not go on a resume, a profile, or a cover letter. Parked until Mel has read more of the
+    book.
 - [ ] Customers Default to Price Only When You Give Them Nothing Else to Weigh
   - Queued 2026-08-26. The idea comes from the Alex Hormozi "Scale or Fail" transcript in Mel's
     sales training folder, near the start of the body.
