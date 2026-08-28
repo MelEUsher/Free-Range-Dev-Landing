@@ -1,37 +1,73 @@
-repository:
-  name: Free-Range-Dev-Landing
-  private: false
-  default_branch: main
-
-branches:
-  - name: main
-    protection:
-      required_pull_request_reviews:
-        required_approving_review_count: 1
-      required_status_checks:
-        strict: true
-        contexts:
-          - lint
-          - test
-          - build
-      required_linear_history: true
-      allow_force_pushes: false
-      allow_deletions: false
-      enforce_admins: true
-      restrictions:
-        users:
-          - melissausher
-        teams: []
-        apps: []
-  - pattern: "feature/*"
-    protection:
-      required_pull_request_reviews:
-        required_approving_review_count: 1
-      allow_force_pushes: false
-      allow_deletions: false
-  - pattern: "chore/*"
-    protection:
-      required_pull_request_reviews:
-        required_approving_review_count: 1
-      allow_force_pushes: false
-      allow_deletions: false
+# THIS FILE IS NOT APPLIED. IT CONFIGURES NOTHING.
+#
+# Branch protection for this repository lives in a repository ruleset named
+# "main protection", configured 2026-08-28 under Settings > Rules > Rulesets.
+# Look there, not here.
+#
+# This file is intentionally empty of configuration. It is kept only so that
+# nobody writes a new settings.yml believing protection is missing.
+#
+# ---------------------------------------------------------------------------
+# WHY THE PREVIOUS CONTENTS WERE REMOVED
+# ---------------------------------------------------------------------------
+#
+# This file described protection driven by the Probot Settings GitHub App.
+# That app is not installed, so the file never took effect. Its contents were
+# also wrong in five ways, and would have broken the repository if the app had
+# ever been installed:
+#
+#   1. It required the status checks "lint", "test" and "build". No workflow
+#      produces any of those names, and there is no "test" script in
+#      package.json at all. Every pull request would have blocked forever.
+#
+#   2. It set required_approving_review_count to 1 on main, together with
+#      enforce_admins: true. Pull requests in this repository are authored
+#      under the owner's own account, and GitHub does not let a user approve
+#      their own pull request. That combination is a hard deadlock.
+#
+#   3. It applied the same one-approval requirement to "feature/*" and
+#      "chore/*", which would have blocked every working branch as well.
+#
+#   4. It used "restrictions", which is an organization-only feature. This is
+#      a user-owned repository, so that block could not apply.
+#
+#   5. The username in "restrictions" was "melissausher". The account is
+#      "MelEUsher".
+#
+# ---------------------------------------------------------------------------
+# WHY A RULESET AND NOT THIS FILE
+# ---------------------------------------------------------------------------
+#
+# Config-as-code for branch protection is circular. Anyone who can merge a
+# change to this file can rewrite the rules that were supposed to govern that
+# merge. The Probot Settings app also needs repository administration
+# permission and adds a third-party availability dependency.
+#
+# Rulesets avoid both problems and can be exported to JSON through the GitHub
+# API whenever a written record is wanted.
+#
+# ---------------------------------------------------------------------------
+# WHAT THE RULESET ACTUALLY ENFORCES
+# ---------------------------------------------------------------------------
+#
+#   Restrict deletions
+#   Block force pushes
+#   Require a pull request before merging, with required approvals set to 0
+#   Require conversation resolution before merging
+#   Require these status checks to pass:
+#     Analyze (actions)
+#     Analyze (javascript-typescript)
+#     netlify/thefreerangedev/deploy-preview
+#
+# Two settings are deliberately off. "Require linear history" is off because
+# the repository allows merge commits. "Require branches to be up to date
+# before merging" is off because it forces a rebase and a re-run every time
+# main moves.
+#
+# "Build + Lighthouse CI" is deliberately NOT a required check. The deploy
+# workflow carries paths-ignore for "**/*.md", so on a markdown-only pull
+# request that workflow run is never created and no check run is ever posted.
+# A required check with no reported status waits forever, which would block
+# every article pull request permanently. The Netlify deploy preview is a real
+# production build and does run on markdown-only pull requests, so it provides
+# the build gate instead.
