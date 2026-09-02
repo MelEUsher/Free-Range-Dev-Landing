@@ -33,12 +33,9 @@ Registry key: `automation-tech`
 - [x] What to Automate First: A Small Business Owner's Order of Operations (2026-08-05, `what-to-automate-first`)
 - [x] The Seams Between Your Tools: Where Small Businesses Lose Customers (2026-08-12, `the-seams-between-your-tools`)
 - [x] Where Your API Key Should Live (2026-08-19, `where-your-api-key-should-live`)
-- [ ] **IN PROGRESS** Should Your Small Business Add an AI Chatbot?
-  - Drafted and with Mel to proofread as of 2026-08-26. It stays unchecked on main until its
-    pull request merges.
+- [x] Should Your Small Business Add an AI Chatbot? (2026-09-02, `should-your-small-business-add-an-ai-chatbot`)
 
-One piece is in progress and nothing is queued behind it. The next Automation & Tech slot after
-that draft needs a topic from Mel.
+Nothing is queued in this category. The next Automation & Tech slot needs a topic from Mel.
 
 ## Sales & Persuasion
 
@@ -46,9 +43,10 @@ Registry key: `sales-persuasion`
 
 - [x] When Discovery Decides the Sale (2026-08-19, `when-discovery-decides-the-sale`)
 - [x] Good Selling Doesn't Feel Like Being Sold To (2026-08-26, `good-selling-doesnt-feel-like-being-sold-to`)
-- [ ] **NEXT** Creative Innovation as Market Positioning (working title)
-  - Next in line for this category, Mel's call 2026-08-26. The title is a working title. The
-    angle is already set and recorded in Mel's editorial memory, so it is not restated here.
+- [ ] **SCHEDULED (2026-09-03)** Creative Innovation as Market Positioning (working title)
+  - Next in line for this category, Mel's call 2026-08-26, and dated to 2026-09-03 at her call on
+    2026-09-02. The title is a working title. The angle is already set and recorded in Mel's
+    editorial memory, so it is not restated here.
 - [ ] **SCHEDULED (2026-09-09)** The Challenger Sale Piece (working title)
   - No title yet. Standing constraint: Challenger is an article angle, never a credential, and it
     does not go on a resume, a profile, or a cover letter. Scheduled for 2026-09-09, Mel's call
