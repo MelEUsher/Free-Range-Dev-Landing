@@ -246,6 +246,10 @@ basename contains an uppercase letter, an underscore, a space, a dot, or any oth
 
 - The single-article page supplies the H1 from `frontmatter.title`, so the markdown body should
   start at H2 (`##`). An H1 in the body duplicates the title.
+- Internal links to other articles are root-relative, in the form
+  `[what to automate first](/articles/what-to-automate-first)`. Every published article uses this
+  form. Do not write a scheme or a host, and never `http:///articles/slug`, which is malformed and
+  has reached a draft.
 - The OpenGraph and Twitter image is the site logo constant
   (`/assets/free-range-dev-logo-no-background.png`) for every article. Per-article images are not
   implemented.
@@ -338,7 +342,8 @@ with Retry-After once the limit is exceeded, and independent tracking per client
    Twitter card, and it renders as the visible blurb on the article card. Without it the card falls
    back to a mechanical 160-character truncation of the body.
 5. Do not add `publishedAt`. The date field is `date`.
-6. Start the body at H2 (`##`). The page renders the H1 from the title.
+6. Start the body at H2 (`##`). The page renders the H1 from the title. Write internal links to
+   other articles root-relative, as `/articles/slug`, with no scheme and no host.
 7. Build the site. `generateStaticParams` reads the directory, so no manifest, index, or config
    change is needed.
 8. Check off the article's entry in `ARTICLE-IDEAS.md` in the same pull request that adds the
