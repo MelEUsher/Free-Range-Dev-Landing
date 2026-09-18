@@ -14,7 +14,8 @@ not memory, is what tells it what already exists.
 Flint maintains this file and Hawk reviews the changes. Mel rules on every topic.
 
 A queued topic is a subject, not a brief. Mel sets the angle in conversation when the piece comes
-up, so no angles or briefs are recorded here.
+up, so no briefs are recorded here. A one-line angle may sit under a queued entry once Mel has
+approved it in a plan.
 
 Cadence, Mel's ruling 2026-08-26: a category may go quiet for a week, so long as every category
 gets at least one article per month.
