@@ -64,10 +64,9 @@ Registry key: `sales-persuasion`
 - [ ] Composure in High-Stakes Conversations
   - Queued as a later piece. It carries the heaviest accuracy constraints.
 
-## Education (working name)
+## CS & Programming
 
-There is no registry key yet. This category does not exist in `CATEGORIES` in
-`src/lib/categories.ts`, and "Education" is a working name, not the final display name.
+Registry key: `cs-programming`
 
 This category holds software engineering learning content: what the languages are, where they came
 from, what you can build with them, and how to learn them. It is a third category, separate from
@@ -88,21 +87,17 @@ There are two phases:
   conversational intro article per micro course of Mel's book-based CS / software engineering
   curriculum. These are written as each book is finished and are not queued with titles yet.
 
-Prerequisite: nothing in this queue publishes until the category key is added to `CATEGORIES` in
-`src/lib/categories.ts`. That is a separate, small Flint PR that Hawk reviews. No entry below
-carries a **NEXT** tag until that PR merges.
+Mel named the category "CS & Programming" with the key `cs-programming`, so its topic page is
+`/articles/topics/cs-programming` once its first article publishes. Articles in this category may
+use a custom topic image instead of the standard title card, and they are also posted to LinkedIn.
 
-Open decisions for Mel:
-
-- Mel picks the final display name for the category.
-- Mel picks the URL slug for the category. It is chosen once and becomes the path for every
-  article below.
-- Mel decides the subscription topic: whether the category gets its own Resend topic or segment,
-  and whether existing subscribers are opted in by default.
+Open decision for Mel: whether the category gets its own Resend subscription topic or segment, and
+whether existing subscribers are opted in by default.
 
 Source material: the demand data, per-language fact blocks (creator, year, problem solved, steward,
 with sources), and verified learning resources for every Phase 1 article live in Hawk's report
-`hawk-language-series-plan.md`. Writers pull from it rather than re-researching.
+`hawk-language-series-plan.md`, in the `AI_Agency/Plans/Programming Curricula` folder on Mel's
+computer. Writers pull from it rather than re-researching.
 
 ### Phase 1: programming languages
 
