@@ -91,8 +91,8 @@ Mel named the category "CS & Programming" with the key `cs-programming`, so its 
 `/articles/topics/cs-programming` once its first article publishes. Articles in this category may
 use a custom topic image instead of the standard title card, and they are also posted to LinkedIn.
 
-Open decision for Mel: whether the category gets its own Resend subscription topic or segment, and
-whether existing subscribers are opted in by default.
+The open decision for Mel is whether the category gets its own Resend subscription topic or
+segment, and whether existing subscribers are opted in by default.
 
 Source material: the demand data, per-language fact blocks (creator, year, problem solved, steward,
 with sources), and verified learning resources for every Phase 1 article live in Hawk's report
