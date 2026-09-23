@@ -21,6 +21,7 @@ export type Category = {
 export const CATEGORIES: Category[] = [
   { key: "automation-tech", label: "Automation & Tech", order: 1 },
   { key: "sales-persuasion", label: "Sales & Persuasion", order: 2 },
+  { key: "cs-programming", label: "CS & Programming", order: 3 },
 ];
 
 const CATEGORY_BY_KEY = new Map(

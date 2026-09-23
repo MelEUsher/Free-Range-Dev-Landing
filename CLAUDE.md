@@ -164,11 +164,12 @@ is true of `updatedAt`. Do not add either field to a new article.
 
 #### Category resolution (`src/lib/categories.ts`)
 
-`CATEGORIES` is the registry and the single source of truth for the taxonomy. It holds two keys
+`CATEGORIES` is the registry and the single source of truth for the taxonomy. It holds three keys
 today:
 
 - `automation-tech` (label "Automation & Tech", order 1)
 - `sales-persuasion` (label "Sales & Persuasion", order 2)
+- `cs-programming` (label "CS & Programming", order 3)
 
 `resolveCategoryKey(raw)` trims and lowercases the frontmatter value, returns it when the registry
 contains it, and otherwise returns `UNCATEGORIZED_KEY` (`"uncategorized"`). `uncategorized` is not a
@@ -331,9 +332,9 @@ with Retry-After once the limit is exceeded, and independent tracking per client
    ```
 
 3. `category` must be a key registered in `src/lib/categories.ts`. The current keys are
-   `automation-tech` and `sales-persuasion`. Any other value, or no value, resolves to
-   `uncategorized` and the article vanishes from the nav, the Featured view, and every topic list
-   while remaining live at its own URL.
+   `automation-tech`, `sales-persuasion`, and `cs-programming`. Any other value, or no value,
+   resolves to `uncategorized` and the article vanishes from the nav, the Featured view, and every
+   topic list while remaining live at its own URL.
 4. `description` is a required pre-publish step. It feeds the meta description, OpenGraph, and
    Twitter card, and it renders as the visible blurb on the article card. Without it the card falls
    back to a mechanical 160-character truncation of the body.
