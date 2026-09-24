@@ -282,16 +282,17 @@ the `home-redesign` theme used by the homepage, `/studio`, and the articles page
 Node.js native test runner through an on-demand TypeScript loader:
 
 ```bash
-npx tsx --test tests/contact_test.ts   # 6 tests
-npx tsx --test tests/proxy_test.ts     # 3 tests
+npx tsx --test tests/contact_test.ts    # 6 tests
+npx tsx --test tests/proxy_test.ts      # 3 tests
+npx tsx --test tests/articles_test.ts   # 4 tests
 ```
 
-Both suites pass as of 2026-08-20. `tsx` is fetched on demand by `npx` and is not a declared
+All three suites pass as of 2026-09-24. `tsx` is fetched on demand by `npx` and is not a declared
 dependency.
 
 **CI does not run them.** `.github/workflows/deploy.yml` runs `npm ci`, `npm run build`, and
 Lighthouse CI. It does not run lint, typecheck, or the test files, so run `npm run verify` and the
-two commands above locally before opening a pull request.
+three commands above locally before opening a pull request.
 
 **Node.js native test runner conventions:**
 
@@ -312,6 +313,12 @@ two commands above locally before opening a pull request.
 
 **Proxy test coverage (`tests/proxy_test.ts`):** the suite covers requests under the limit, a 429
 with Retry-After once the limit is exceeded, and independent tracking per client.
+
+**Article date test coverage (`tests/articles_test.ts`):** the suite checks that `formatDate`
+renders the front matter date unchanged when the process runs in America/Chicago, UTC-11, UTC,
+and UTC+14. Front matter dates parse as UTC midnight, so both date call sites (`formatDate` and
+the single-article page) pass `timeZone: "UTC"` to `toLocaleDateString`. Without it, a build on a
+machine west of UTC renders every article one day early.
 
 ## Development Notes
 
@@ -382,4 +389,4 @@ with Retry-After once the limit is exceeded, and independent tracking per client
 - Article UI: `src/app/articles/ArticlesNav.tsx`, `src/app/articles/ArticleCard.tsx`
 - Contact API validation: `src/app/api/contact/route.ts:6-12`
 - Font configuration: `src/app/fonts.ts`
-- Test files: `tests/contact_test.ts`, `tests/proxy_test.ts`
+- Test files: `tests/contact_test.ts`, `tests/proxy_test.ts`, `tests/articles_test.ts`
