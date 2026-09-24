@@ -45,10 +45,10 @@ Registry key: `sales-persuasion`
 - [x] When Discovery Decides the Sale (2026-08-19, `when-discovery-decides-the-sale`)
 - [x] Good Selling Doesn't Feel Like Being Sold To (2026-08-26, `good-selling-doesnt-feel-like-being-sold-to`)
 - [x] Build Something Your Market Hasn't Seen Yet (2026-09-24, `build-something-your-market-hasnt-seen-yet`)
-- [ ] **SCHEDULED (2026-09-09)** The Challenger Sale Piece (working title)
+- [ ] **SCHEDULED (Unknown)** The Challenger Sale Piece (working title)
   - No title yet. Standing constraint: Challenger is an article angle, never a credential, and it
-    does not go on a resume, a profile, or a cover letter. Scheduled for 2026-09-09, Mel's call
-    2026-08-26, dated two weeks out to give her time to get further into the book.
+    does not go on a resume, a profile, or a cover letter. Mel changed the date to Unknown on
+    2026-09-24.
 - [ ] Customers Default to Price Only When You Give Them Nothing Else to Weigh
   - Queued 2026-08-26. The idea comes from the Alex Hormozi "Scale or Fail" transcript in Mel's
     sales training folder, near the start of the body.
