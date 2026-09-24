@@ -44,10 +44,7 @@ Registry key: `sales-persuasion`
 
 - [x] When Discovery Decides the Sale (2026-08-19, `when-discovery-decides-the-sale`)
 - [x] Good Selling Doesn't Feel Like Being Sold To (2026-08-26, `good-selling-doesnt-feel-like-being-sold-to`)
-- [ ] **SCHEDULED (2026-09-03)** Creative Innovation as Market Positioning (working title)
-  - Next in line for this category, Mel's call 2026-08-26, and dated to 2026-09-03 at her call on
-    2026-09-02. The title is a working title. The angle is already set and recorded in Mel's
-    editorial memory, so it is not restated here.
+- [x] Build Something Your Market Hasn't Seen Yet (2026-09-24, `build-something-your-market-hasnt-seen-yet`)
 - [ ] **SCHEDULED (2026-09-09)** The Challenger Sale Piece (working title)
   - No title yet. Standing constraint: Challenger is an article angle, never a credential, and it
     does not go on a resume, a profile, or a cover letter. Scheduled for 2026-09-09, Mel's call
